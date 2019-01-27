@@ -1,6 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App';
+import Router from 'components/Router';
+import Devices from 'components/Devices';
+import Converter from 'components/Converter';
+import AddDevice from 'components/AddDevice';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const routes = [
+  {
+    path: '/',
+    render: () => <Devices />,
+  },
+  {
+    path: '/converter/:id',
+    render: ([, deviceId]) => <Converter deviceId={deviceId} />,
+  },
+  {
+    path: '/add',
+    render: () => <AddDevice />,
+  },
+];
+
+ReactDOM.render(
+  <Router routes={routes}>{component => component}</Router>,
+  document.getElementById('app'),
+);
