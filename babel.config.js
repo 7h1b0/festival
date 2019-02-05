@@ -1,19 +1,22 @@
-module.exports = {
-  presets: [
-    [
-      '@emotion/babel-preset-css-prop',
-      {
-        autoLabel: false,
-      },
-    ],
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          firefox: 60,
+module.exports = api => {
+  api.cache(true);
+  return {
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          targets: {
+            firefox: 60,
+          },
         },
-      },
+      ],
+      [
+        '@emotion/babel-preset-css-prop',
+        {
+          autoLabel: false,
+        },
+      ],
     ],
-  ],
-  plugins: ['@babel/plugin-proposal-class-properties'],
+    plugins: ['@babel/plugin-proposal-class-properties'],
+  };
 };

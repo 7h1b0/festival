@@ -11,7 +11,7 @@ const Rate = ({ rate, origin, target, amount = 1, className }) => (
     `}
     className={className}
   >
-    {formatRate(rate, origin, target, 1)}
+    {formatRate(rate, origin, target, amount)}
   </p>
 );
 
