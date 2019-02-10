@@ -45,10 +45,7 @@ const Convert = ({ showForm }) => {
         <button onClick={showForm}>Add Currency</button>
       </div>
       <Converter currency={selected} />
-      <Actions
-        onDelete={() => dispatch(removeCurrency(selected.name))}
-        onDefault={setAsDefault(selected.name)}
-      />
+      <Actions onDelete={() => dispatch(removeCurrency(selected.name))} />
     </div>
   );
 };

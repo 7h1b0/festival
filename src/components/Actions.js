@@ -11,7 +11,7 @@ const baseButton = css`
   padding: ${spaceM} ${spaceL};
 `;
 
-const Actions = ({ onDelete, onDefault }) => (
+const Actions = ({ onDelete }) => (
   <div
     css={css`
       background: #fff;
@@ -19,15 +19,6 @@ const Actions = ({ onDelete, onDefault }) => (
       margin: ${spaceL} 0;
     `}
   >
-    <button css={baseButton} onClick={onDefault}>
-      Set as default
-    </button>
-    <div
-      css={css`
-        background: ${colorDivider};
-        height: 1px;
-      `}
-    />
     <button css={baseButton} onClick={onDelete}>
       Remove
     </button>
@@ -36,7 +27,6 @@ const Actions = ({ onDelete, onDefault }) => (
 
 Actions.propTypes = {
   onDelete: PropTypes.func.isRequired,
-  onDefault: PropTypes.func.isRequired,
 };
 
 export default Actions;

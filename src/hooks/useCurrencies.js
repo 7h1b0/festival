@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from 'react';
-import { getDefault } from 'modules/preferences';
+import { getLastUsed, setAsLastUsed } from 'modules/preferences';
 import getDb, { CURRENCIES_TABLE } from 'modules/database';
 
 export const TYPE = {
@@ -13,6 +13,7 @@ function reducer(state, action) {
     case TYPE.SET:
       return { ...state, ...action.value };
     case TYPE.SELECT:
+      setAsLastUsed(action.value);
       return {
         ...state,
         selected: state.currencies.find(({ name }) => name === action.value),
@@ -37,7 +38,7 @@ async function removeCurrency(name) {
 }
 
 async function fetchCurrencies(dispatch) {
-  const defaultName = getDefault();
+  const defaultName = getLastUsed();
 
   const db = await getDb();
   const event = await db(CURRENCIES_TABLE).findAll();
@@ -52,7 +53,7 @@ async function fetchCurrencies(dispatch) {
     }) || currencies[0];
 
   dispatch({
-    type: 'set',
+    type: TYPE.SET,
     value: { currencies, loading: false, selected: defaultCurrency },
   });
 }

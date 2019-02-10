@@ -1,9 +1,9 @@
-const KEY = 'defaultCurrency';
+const KEY = 'lastUsedCurrency';
 
-export function setAsDefault(name) {
-  return () => localStorage.setItem(KEY, name);
+export function setAsLastUsed(name) {
+  return localStorage.setItem(KEY, name);
 }
 
-export function getDefault() {
+export function getLastUsed() {
   return localStorage.getItem(KEY);
 }
