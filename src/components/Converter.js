@@ -9,6 +9,8 @@ import {
   colorSubtitle,
   spaceL,
   spaceM,
+  sizeHeadline,
+  sizeLabel,
 } from 'modules/theme';
 
 function useFocus(options) {
@@ -24,7 +26,7 @@ function useFocus(options) {
 const baseInput = css`
   margin: ${spaceM} 0 0;
   border: 1px solid ${colorDivider};
-  font-size: 2rem;
+  font-size: ${sizeHeadline};
   display: block;
   width: 100%;
   background: none;
@@ -37,7 +39,7 @@ const baseInput = css`
 
 const baseCurrencyName = css`
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: ${sizeLabel};
   letter-spacing: 0.05rem;
   font-weight: bold;
   color: ${colorSubtitle};

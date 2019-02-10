@@ -8,7 +8,7 @@ import Divider from 'components/Divider';
 import CurrencyName from 'components/steps/CurrencyName';
 import FestivalName from 'components/steps/FestivalName';
 import getDb, { CURRENCIES_TABLE } from 'modules/database';
-import { spaceL, colorTitle } from 'modules/theme';
+import { spaceL, colorTitle, sizeLabel } from 'modules/theme';
 
 function isLastStep(step, steps) {
   return step === steps.length - 1;
@@ -62,7 +62,7 @@ const CurrencyForm = ({ onClose }) => {
       festival={state.festival}
       onChange={handleChange}
     />,
-    <Change currency={state.name} />,
+    <Change currencyLabel={state.name} onChange={rate => dispatch({ rate })} />,
   ];
 
   return (
@@ -91,7 +91,7 @@ const CurrencyForm = ({ onClose }) => {
             css={css`
               width: calc(100% - 30px);
               color: ${colorTitle};
-              font-size: 1rem;
+              font-size: ${sizeLabel};
               font-weight: bold;
               text-align: center;
             `}

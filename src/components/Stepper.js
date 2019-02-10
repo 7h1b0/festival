@@ -29,6 +29,7 @@ const Stepper = ({ steps, currentStep }) => {
         if (step % 2 === 0) {
           return (
             <div
+              key={step}
               css={css`
                 width: 20px;
                 height: 20px;
@@ -40,6 +41,7 @@ const Stepper = ({ steps, currentStep }) => {
         }
         return (
           <div
+            key={step}
             css={css`
               flex: 1;
               color: black;

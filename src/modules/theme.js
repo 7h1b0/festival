@@ -3,11 +3,14 @@ export const spaceM = '16px';
 export const spaceS = '8px';
 
 export const colorPrimary = '#5c8df6';
-export const colorSecondary = '#5c8df6';
 export const colorTitle = '#454B57';
 export const colorSubtitle = '#9f9f9f';
 export const colorDivider = '#cfd9ed';
 export const colorBackground = '#f9fbff';
+
+export const sizeHeadline = '2rem';
+export const sizeText = '1.1rem';
+export const sizeLabel = '1rem';
 
 export const borderRadius = '3px';
 export const boxShadow =

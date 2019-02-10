@@ -6,7 +6,10 @@ import {
   colorDivider,
   colorPrimary,
   colorTitle,
+  colorSubtitle,
   spaceS,
+  sizeLabel,
+  sizeText,
 } from 'modules/theme';
 
 const Input = ({
@@ -21,7 +24,8 @@ const Input = ({
   <label
     htmlFor={name}
     css={css`
-      color: ${colorTitle};
+      color: ${colorSubtitle};
+      font-size: ${sizeLabel};
     `}
   >
     {label}
@@ -34,6 +38,8 @@ const Input = ({
         border: 1px solid ${colorDivider};
         background-color: #fff;
         border-radius: ${borderRadius};
+        color: ${colorTitle};
+        font-size: ${sizeText};
         &:focus {
           border: 1px solid ${colorPrimary};
           outline: none;

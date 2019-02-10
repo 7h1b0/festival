@@ -1,17 +1,17 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
-import { spaceS, colorSecondary, borderRadius } from 'modules/theme';
+import { spaceS, colorPrimary, borderRadius, sizeLabel } from 'modules/theme';
 
 const style = {
   flat: css`
-    color: ${colorSecondary};
+    color: ${colorPrimary};
     background-color: transparent;
-    border: 1px solid ${colorSecondary};
+    border: 1px solid ${colorPrimary};
   `,
   raised: css`
     color: #fff;
-    background-color: ${colorSecondary};
+    background-color: ${colorPrimary};
     border: none;
   `,
 };
@@ -19,11 +19,12 @@ const style = {
 const base = css`
   text-align: center;
   display: block;
-  min-width: 110px;
+  min-width: 120px;
   padding: ${spaceS} 0;
   margin: 0 ${spaceS};
   border-radius: ${borderRadius};
   text-transform: capitalize;
+  font-size: ${sizeLabel};
   &:focus {
     outline: none;
   }
