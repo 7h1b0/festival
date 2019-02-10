@@ -2,8 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import useRoundValue from 'hooks/useRoundValue';
-import Rate from './Rate';
-import { spaceL, colorPrimary, borderRadius, spaceM } from 'modules/theme';
+import {
+  borderRadius,
+  colorDivider,
+  colorPrimary,
+  colorSubtitle,
+  spaceL,
+  spaceM,
+} from 'modules/theme';
 
 function useFocus(options) {
   const inputEl = useRef(null);
@@ -17,11 +23,16 @@ function useFocus(options) {
 
 const baseInput = css`
   margin: ${spaceM} 0 0;
-  border: none;
+  border: 1px solid ${colorDivider};
   font-size: 2rem;
   display: block;
   width: 100%;
   background: none;
+  border-radius: ${borderRadius};
+  &:focus {
+    border: 1px solid ${colorPrimary};
+    outline: none;
+  }
 `;
 
 const baseCurrencyName = css`
@@ -29,6 +40,7 @@ const baseCurrencyName = css`
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   font-weight: bold;
+  color: ${colorSubtitle};
 `;
 
 const Converter = ({ currency }) => {
@@ -40,15 +52,15 @@ const Converter = ({ currency }) => {
     <div
       css={css`
         background: #fff;
-        border-radius: ${borderRadius};
         padding: ${spaceL};
+        border-top: 1px solid ${colorDivider};
+        border-bottom: 1px solid ${colorDivider};
       `}
     >
       <div>
         <label htmlFor={currency.name} css={baseCurrencyName}>
           {currency.name}
         </label>
-        <Rate rate={currency.rate} origin={currency.name} target="EUR" />
         <input
           ref={inputEl}
           id={currency.name}
@@ -78,7 +90,6 @@ const Converter = ({ currency }) => {
         <label htmlFor="EUR" css={baseCurrencyName}>
           EUR
         </label>
-        <Rate rate={1 / currency.rate} target={currency.name} origin="EUR" />
         <input
           type="number"
           name="price"

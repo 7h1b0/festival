@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
-import { spaceM, borderRadius, spaceL, colorDivider } from 'modules/theme';
+import { spaceM, spaceL } from 'modules/theme';
 
 const baseButton = css`
   background: transparent;
@@ -14,8 +14,6 @@ const baseButton = css`
 const Actions = ({ onDelete }) => (
   <div
     css={css`
-      background: #fff;
-      border-radius: ${borderRadius};
       margin: ${spaceL} 0;
     `}
   >

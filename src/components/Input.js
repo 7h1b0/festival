@@ -1,7 +1,13 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
-import { spaceS, spaceM, borderRadius } from 'modules/theme';
+import {
+  borderRadius,
+  colorDivider,
+  colorPrimary,
+  colorTitle,
+  spaceS,
+} from 'modules/theme';
 
 const Input = ({
   name,
@@ -12,34 +18,36 @@ const Input = ({
   required = false,
   placeholder = '',
 }) => (
-  <fieldset
+  <label
+    htmlFor={name}
     css={css`
-      border: none;
-      margin-top: ${spaceM};
+      color: ${colorTitle};
     `}
   >
-    <label htmlFor={name}>
-      {label}
-      <input
-        css={css`
-          display: block;
-          width: 100%;
-          padding: ${spaceS} 0;
-          margin-top: 2px;
-          border: none;
-          background-color: #d6d6d6;
-          border-radius: ${borderRadius};
-        `}
-        id={name}
-        name={name}
-        type={type}
-        value={value}
-        onChange={onChange}
-        required={required}
-        placeholder={placeholder}
-      />
-    </label>
-  </fieldset>
+    {label}
+    <input
+      css={css`
+        display: block;
+        width: 100%;
+        padding: ${spaceS};
+        margin-top: 5px;
+        border: 1px solid ${colorDivider};
+        background-color: #fff;
+        border-radius: ${borderRadius};
+        &:focus {
+          border: 1px solid ${colorPrimary};
+          outline: none;
+        }
+      `}
+      id={name}
+      name={name}
+      type={type}
+      value={value}
+      onChange={onChange}
+      required={required}
+      placeholder={placeholder}
+    />
+  </label>
 );
 
 Input.propTypes = {

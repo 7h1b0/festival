@@ -1,14 +1,8 @@
 import React from 'react';
-import { css } from '@emotion/core';
 import Input from 'components/Input';
 
 const Change = ({ value, onChange, currency }) => (
-  <div
-    css={css`
-      display: flex;
-      justify-content: space-between;
-    `}
-  >
+  <>
     <Input
       name="eur"
       label="Euros"
@@ -24,7 +18,7 @@ const Change = ({ value, onChange, currency }) => (
       required
       placeholder="Example: 13"
     />
-  </div>
+  </>
 );
 
 export default Change;
