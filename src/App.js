@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Convert from 'pages/Convert';
-import CurrencyForm from 'components/CurrencyForm';
+import CurrencyForm from 'pages/CurrencyForm';
 
 const App = () => {
   const [showForm, setVisibilityForm] = useState(false);

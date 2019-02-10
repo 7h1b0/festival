@@ -3,7 +3,15 @@ import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import { spaceS, spaceM, borderRadius } from 'modules/theme';
 
-const Input = ({ name, value, onChange, type = 'text', required = false }) => (
+const Input = ({
+  name,
+  label,
+  value,
+  onChange,
+  type = 'text',
+  required = false,
+  placeholder = '',
+}) => (
   <fieldset
     css={css`
       border: none;
@@ -11,7 +19,7 @@ const Input = ({ name, value, onChange, type = 'text', required = false }) => (
     `}
   >
     <label htmlFor={name}>
-      {name}
+      {label}
       <input
         css={css`
           display: block;
@@ -28,6 +36,7 @@ const Input = ({ name, value, onChange, type = 'text', required = false }) => (
         value={value}
         onChange={onChange}
         required={required}
+        placeholder={placeholder}
       />
     </label>
   </fieldset>
@@ -35,10 +44,12 @@ const Input = ({ name, value, onChange, type = 'text', required = false }) => (
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   type: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default Input;
