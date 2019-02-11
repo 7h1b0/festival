@@ -1,4 +1,4 @@
-# :repeat: Festival Converter
+# :repeat: Festival Converter [![Build Status](https://travis-ci.com/7h1b0/festival.svg?branch=master)](https://travis-ci.com/7h1b0/festival)
 
 ## Quick Start
 
