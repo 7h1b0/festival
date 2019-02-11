@@ -6,8 +6,10 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack --env.prod",
-    "test": "jest",
-    "lint": "eslint --max-warnings 0 src"
+    "test": "jest --watch",
+    "lint": "eslint --max-warnings 0 src",
+    "prettier:check": "prettier --list-different \"src/**/*.js\"",
+    "coverage": "jest --coverage --ci --silent"
   },
   "keywords": [],
   "author": "",
