@@ -17,13 +17,6 @@ export default function getDb() {
           .objectStore(table)
           .getAll(),
       ),
-    find: id =>
-      promisifyRequest(
-        db
-          .transaction([table])
-          .objectStore(table)
-          .get(id),
-      ),
     add: obj =>
       promisifyRequest(
         db
@@ -48,7 +41,7 @@ export default function getDb() {
   });
 
   return new Promise((resolve, reject) => {
-    const request = window.indexedDB.open('festival', 2);
+    const request = window.indexedDB.open('festival', 1);
     request.onerror = reject;
     request.onsuccess = event => {
       db = event.target.result;
@@ -58,7 +51,8 @@ export default function getDb() {
     request.onupgradeneeded = event => {
       const db = event.target.result;
       db.createObjectStore(CURRENCIES_TABLE, {
-        keyPath: 'name',
+        keyPath: 'id',
+        autoIncrement: true,
       });
     };
   });

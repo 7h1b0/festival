@@ -15,9 +15,9 @@ const Currencies = ({ currencies, name, selected, onChange }) => (
       display: block;
     `}
   >
-    {currencies.map(({ name, festival }) => (
-      <option key={name} value={name}>
-        {`${name} - ${festival}`}
+    {currencies.map(({ festival, id }) => (
+      <option key={id} value={id}>
+        {festival}
       </option>
     ))}
   </select>

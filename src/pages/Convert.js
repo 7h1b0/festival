@@ -26,9 +26,9 @@ const Convert = ({ showForm }) => {
   return (
     <>
       <Currencies
-        selected={selected.name}
+        selected={selected.id}
         currencies={currencies}
-        onChange={e => dispatch(selectCurrency(e.target.value))}
+        onChange={e => dispatch(selectCurrency(Number(e.target.value)))}
       />
       <Converter currency={selected} />
       <Button

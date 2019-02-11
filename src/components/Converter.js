@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import useRoundValue from 'hooks/useRoundValue';
+import useFocus from 'hooks/useFocus';
 import {
   borderRadius,
   colorDivider,
@@ -12,16 +13,6 @@ import {
   sizeHeadline,
   sizeLabel,
 } from 'modules/theme';
-
-function useFocus(options) {
-  const inputEl = useRef(null);
-  useEffect(() => {
-    if (inputEl.current !== null) {
-      inputEl.current.focus();
-    }
-  }, options);
-  return inputEl;
-}
 
 const baseInput = css`
   margin: ${spaceM} 0 0;
@@ -50,6 +41,12 @@ const Converter = ({ currency }) => {
   const [euro, setEuro] = useRoundValue(0);
   const inputEl = useFocus([currency]);
 
+  useEffect(() => {
+    if (value) {
+      setEuro(value * currency.rate);
+    }
+  }, [currency]);
+
   return (
     <div
       css={css`
@@ -59,27 +56,24 @@ const Converter = ({ currency }) => {
         border-bottom: 1px solid ${colorDivider};
       `}
     >
-      <div>
-        <label htmlFor={currency.name} css={baseCurrencyName}>
-          {currency.name}
-        </label>
-        <input
-          ref={inputEl}
-          id={currency.name}
-          type="number"
-          name="price"
-          step="0.01"
-          value={value}
-          min={0}
-          onChange={e => {
-            setValue(e.target.value);
-            setEuro(e.target.value * currency.rate);
-          }}
-          css={css`
-            ${baseInput}
-          `}
-        />
-      </div>
+      <label htmlFor={currency.name} css={baseCurrencyName}>
+        {currency.name}
+      </label>
+      <input
+        ref={inputEl}
+        id={currency.name}
+        type="number"
+        step="0.01"
+        value={value}
+        min={0}
+        onChange={e => {
+          setValue(e.target.value);
+          setEuro(e.target.value * currency.rate);
+        }}
+        css={css`
+          ${baseInput}
+        `}
+      />
 
       <div
         css={css`
@@ -88,24 +82,21 @@ const Converter = ({ currency }) => {
           margin: ${spaceL} 0;
         `}
       />
-      <div>
-        <label htmlFor="EUR" css={baseCurrencyName}>
-          EUR
-        </label>
-        <input
-          type="number"
-          name="price"
-          id="EUR"
-          step="0.01"
-          value={euro}
-          min={0}
-          onChange={e => {
-            setEuro(e.target.value);
-            setValue(e.target.value / currency.rate);
-          }}
-          css={baseInput}
-        />
-      </div>
+      <label htmlFor="euro" css={baseCurrencyName}>
+        EUR
+      </label>
+      <input
+        type="number"
+        id="euro"
+        step="0.01"
+        value={euro}
+        min={0}
+        onChange={e => {
+          setEuro(e.target.value);
+          setValue(e.target.value / currency.rate);
+        }}
+        css={baseInput}
+      />
     </div>
   );
 };

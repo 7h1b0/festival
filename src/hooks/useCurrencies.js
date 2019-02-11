@@ -16,7 +16,7 @@ function reducer(state, action) {
       setAsLastUsed(action.value);
       return {
         ...state,
-        selected: state.currencies.find(({ name }) => name === action.value),
+        selected: state.currencies.find(({ id }) => id === action.value),
       };
     case TYPE.REMOVE:
       removeCurrency(action.value);
@@ -58,7 +58,7 @@ async function fetchCurrencies(dispatch) {
   });
 }
 
-export default function useCurrency(currencyName) {
+function useCurrencies() {
   const [state, dispatch] = useReducer(reducer, {
     currencies: [],
     selected: null,
@@ -71,3 +71,5 @@ export default function useCurrency(currencyName) {
 
   return { state, dispatch };
 }
+
+export default useCurrencies;
