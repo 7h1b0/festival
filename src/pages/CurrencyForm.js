@@ -8,7 +8,7 @@ import Divider from 'components/Divider';
 import CurrencyName from 'components/steps/CurrencyName';
 import FestivalName from 'components/steps/FestivalName';
 import getDb, { CURRENCIES_TABLE } from 'modules/database';
-import { spaceL, colorTitle, sizeLabel } from 'modules/theme';
+import { spaceH, spaceL, colorTitle, sizeLabel, spaceM } from 'modules/theme';
 
 function isLastStep(step, steps) {
   return step === steps.length - 1;
@@ -35,7 +35,8 @@ const CurrencyForm = ({ onClose }) => {
     {
       festival: '',
       name: '',
-      rate: 0,
+      euro: 0,
+      currency: 0,
     },
   );
 
@@ -47,8 +48,13 @@ const CurrencyForm = ({ onClose }) => {
   function handleNext(event) {
     event.preventDefault();
     if (isLastStep(currentStep, STEPS)) {
+      const newCurrency = {
+        festival: state.festival,
+        name: state.name,
+        rate: state.euro / state.currency,
+      };
       getDb()
-        .then(db => db(CURRENCIES_TABLE).add(state))
+        .then(db => db(CURRENCIES_TABLE).add(newCurrency))
         .then(() => onClose());
       return;
     }
@@ -62,7 +68,12 @@ const CurrencyForm = ({ onClose }) => {
       festival={state.festival}
       onChange={handleChange}
     />,
-    <Change currencyLabel={state.name} onChange={rate => dispatch({ rate })} />,
+    <Change
+      currencyLabel={state.name}
+      onChange={handleChange}
+      euro={state.euro}
+      currency={state.currency}
+    />,
   ];
 
   return (
@@ -77,7 +88,7 @@ const CurrencyForm = ({ onClose }) => {
           css={css`
             display: flex;
             align-items: center;
-            margin-bottom: ${spaceL};
+            margin-bottom: ${spaceM};
           `}
         >
           <CloseIcon
@@ -106,25 +117,26 @@ const CurrencyForm = ({ onClose }) => {
       <div
         css={css`
           width: 90%;
-          margin: ${spaceL} auto;
+          margin: ${spaceH} auto;
         `}
       >
         {STEPS[currentStep]}
         <div
           css={css`
             display: flex;
-            justify-content: center;
+            flex-direction: row-reverse;
+            justify-content: space-between;
             margin: ${spaceL} 0;
           `}
         >
+          <Button uiStyle="raised" onClick={handleNext}>
+            {isLastStep(currentStep, STEPS) ? 'Add' : 'Continue'}
+          </Button>
           {currentStep > 0 && (
             <Button uiStyle="flat" onClick={() => setCurrenStep(DECREMENT)}>
-              Previous
+              Back
             </Button>
           )}
-          <Button uiStyle="raised" onClick={handleNext}>
-            {isLastStep(currentStep, STEPS) ? 'Add' : 'Next'}
-          </Button>
         </div>
       </div>
     </>

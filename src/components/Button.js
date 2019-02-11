@@ -21,7 +21,6 @@ const base = css`
   display: block;
   min-width: 120px;
   padding: ${spaceS} 0;
-  margin: 0 ${spaceS};
   border-radius: ${borderRadius};
   text-transform: capitalize;
   font-size: ${sizeLabel};

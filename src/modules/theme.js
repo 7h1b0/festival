@@ -1,3 +1,4 @@
+export const spaceH = '36px';
 export const spaceL = '24px';
 export const spaceM = '16px';
 export const spaceS = '8px';
