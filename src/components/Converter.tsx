@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import useRoundValue from 'hooks/useRoundValue';
 import useFocus from 'hooks/useFocus';
+import { Currency } from 'modules/currency';
+
 import {
   borderRadius,
   colorDivider,
@@ -36,7 +37,7 @@ const baseCurrencyName = css`
   color: ${colorSubtitle};
 `;
 
-const Converter = ({ currency }) => {
+const Converter: React.FC<{ currency: Currency }> = ({ currency }) => {
   const [value, setValue] = useRoundValue(0);
   const [euro, setEuro] = useRoundValue(0);
   const inputEl = useFocus([currency]);
@@ -64,11 +65,11 @@ const Converter = ({ currency }) => {
         id={currency.name}
         type="number"
         step="0.01"
-        value={value}
+        value={value || ''}
         min={0}
         onChange={e => {
-          setValue(e.target.value);
-          setEuro(e.target.value * currency.rate);
+          setValue(Number(e.target.value));
+          setEuro(Number(e.target.value) * currency.rate);
         }}
         css={css`
           ${baseInput}
@@ -89,20 +90,16 @@ const Converter = ({ currency }) => {
         type="number"
         id="euro"
         step="0.01"
-        value={euro}
+        value={euro || ''}
         min={0}
         onChange={e => {
-          setEuro(e.target.value);
-          setValue(e.target.value / currency.rate);
+          setEuro(Number(e.target.value));
+          setValue(Number(e.target.value) / currency.rate);
         }}
         css={baseInput}
       />
     </div>
   );
-};
-
-Converter.propTypes = {
-  currency: PropTypes.object.isRequired,
 };
 
 export default Converter;

@@ -3,21 +3,28 @@ import { css } from '@emotion/core';
 import CloseIcon from 'components/CloseIcon';
 import Change from 'components/steps/Change';
 import Stepper from 'components/Stepper';
-import Button from 'components/Button';
+import Button from 'src/components/Button';
 import Divider from 'components/Divider';
 import CurrencyName from 'components/steps/CurrencyName';
 import FestivalName from 'components/steps/FestivalName';
-import getDb, { CURRENCIES_TABLE } from 'modules/database';
+import getDb from 'modules/database';
 import { spaceH, spaceL, colorTitle, sizeLabel, spaceM } from 'modules/theme';
 
-function isLastStep(step, steps) {
+function isLastStep(step: number, steps: unknown[]) {
   return step === steps.length - 1;
 }
 
 const INCREMENT = 'increment';
 const DECREMENT = 'decrement';
 
-function stepReducer(state, action) {
+type State = {
+  readonly festival: string;
+  readonly name: string;
+  readonly euro: number;
+  readonly currency: number;
+};
+
+function stepReducer(state: number, action: 'increment' | 'decrement'): number {
   switch (action) {
     case INCREMENT:
       return state + 1;
@@ -28,10 +35,10 @@ function stepReducer(state, action) {
   }
 }
 
-const CurrencyForm = ({ onClose }) => {
+const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [currentStep, setCurrenStep] = React.useReducer(stepReducer, 0);
   const [state, dispatch] = React.useReducer(
-    (state, action) => ({ ...state, ...action }),
+    (state, action): State => ({ ...state, ...action }),
     {
       festival: '',
       name: '',
@@ -45,7 +52,7 @@ const CurrencyForm = ({ onClose }) => {
     [dispatch],
   );
 
-  function handleNext(event) {
+  function handleNext(event: React.MouseEvent<HTMLElement, MouseEvent>) {
     event.preventDefault();
     if (isLastStep(currentStep, STEPS)) {
       const newCurrency = {
@@ -54,7 +61,7 @@ const CurrencyForm = ({ onClose }) => {
         rate: state.euro / state.currency,
       };
       getDb()
-        .then(db => db(CURRENCIES_TABLE).add(newCurrency))
+        .then(db => db.add(newCurrency))
         .then(() => onClose());
       return;
     }

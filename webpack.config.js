@@ -18,7 +18,7 @@ module.exports = ({ prod } = {}) => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.tsx?$/,
           loader: 'babel-loader',
           exclude: /node_modules/,
         },
@@ -45,13 +45,8 @@ module.exports = ({ prod } = {}) => {
       new CleanWebpackPlugin('dist', { verbose: false }),
     ],
     resolve: {
-      alias: {
-        actions: path.resolve(__dirname, 'src/actions/'),
-        components: path.resolve(__dirname, 'src/components/'),
-        hooks: path.resolve(__dirname, 'src/hooks/'),
-        modules: path.resolve(__dirname, 'src/modules/'),
-        pages: path.resolve(__dirname, 'src/pages/'),
-      },
+      extensions: ['.js', '.ts', '.tsx'],
+      modules: ['node_modules', '.'],
     },
     devServer: {
       contentBase: path.join(__dirname, 'src'),

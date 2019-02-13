@@ -1,11 +1,17 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { spaceL } from 'modules/theme';
+import { Currency } from 'modules/currency';
 
-const Currencies = ({ currencies, name, selected, onChange }) => (
+type Props = {
+  currencies: ReadonlyArray<Currency>;
+  selected: number;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+
+const Currencies: React.FC<Props> = ({ currencies, selected, onChange }) => (
   <select
     id={name}
-    name={name}
     value={selected}
     onChange={onChange}
     css={css`
