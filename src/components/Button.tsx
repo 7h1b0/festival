@@ -1,6 +1,5 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import PropTypes from 'prop-types';
 import { spaceS, colorPrimary, borderRadius, sizeLabel } from 'modules/theme';
 
 const style = {
@@ -29,7 +28,13 @@ const base = css`
   }
 `;
 
-const Button = ({ children, onClick, className, uiStyle }) => (
+type Props = {
+  uiStyle: 'flat' | 'raised';
+  onClick: (event: React.MouseEvent<HTMLElement>) => void;
+  className?: string;
+};
+
+const Button: React.FC<Props> = ({ children, onClick, className, uiStyle }) => (
   <button
     css={css`
       ${base};
@@ -41,12 +46,5 @@ const Button = ({ children, onClick, className, uiStyle }) => (
     {children}
   </button>
 );
-
-Button.propTypes = {
-  uiStyle: PropTypes.oneOf(['flat', 'raised']),
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
-  className: PropTypes.string,
-};
 
 export default Button;

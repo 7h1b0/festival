@@ -1,16 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Converter from 'components/Converter';
 import Currencies from 'components/Currencies';
 import Actions from 'components/Actions';
 import Button from 'components/Button';
 import useCurrencies from 'hooks/useCurrencies';
-import selectCurrency from 'actions/selectCurrency';
-import removeCurrency from 'actions/removeCurrency';
+import { selectCurrency, removeCurrency } from 'actions';
 import { spaceL } from 'modules/theme';
 
-const Convert = ({ showForm }) => {
+type Props = { showForm: () => void };
+
+const Convert: React.FC<Props> = ({ showForm }) => {
   const { state, dispatch } = useCurrencies();
   if (state.loading) {
     return <p>Loading</p>;
@@ -18,7 +18,7 @@ const Convert = ({ showForm }) => {
 
   const { currencies, selected } = state;
 
-  if (currencies.length === 0) {
+  if (selected == null) {
     showForm();
     return null;
   }
@@ -40,13 +40,9 @@ const Convert = ({ showForm }) => {
       >
         Add Currency
       </Button>
-      <Actions onDelete={() => dispatch(removeCurrency(selected.name))} />
+      <Actions onDelete={() => dispatch(removeCurrency(selected.id))} />
     </>
   );
-};
-
-Convert.propTypes = {
-  showForm: PropTypes.func.isRequired,
 };
 
 export default Convert;

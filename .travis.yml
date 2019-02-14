@@ -12,6 +12,7 @@ install:
 script:
   - npm run lint
   - npm run prettier:check
+  - npm run tsc
   - npm run coverage
 
 notifications:

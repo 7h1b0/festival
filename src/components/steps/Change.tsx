@@ -1,7 +1,19 @@
 import React from 'react';
 import Input from 'components/Input';
 
-const Change = ({ euro, currency, onChange, currencyLabel }) => (
+type Props = {
+  euro: number;
+  currency: number;
+  currencyLabel: string;
+  onChange: (event: React.ChangeEvent<HTMLElement>) => void;
+};
+
+const Change: React.FC<Props> = ({
+  euro,
+  currency,
+  onChange,
+  currencyLabel,
+}) => (
   <>
     <Input
       name="euro"

@@ -1,13 +1,14 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import PropTypes from 'prop-types';
 import { colorPrimary } from 'modules/theme';
 
-function generateRange(steps) {
+function generateRange(steps: number) {
   return Array.from({ length: steps }, (_, i) => i);
 }
 
-const Stepper = ({ steps, currentStep }) => {
+type Props = { steps: number; currentStep: number };
+
+const Stepper: React.FC<Props> = ({ steps, currentStep }) => {
   const range = generateRange(steps);
   return (
     <div
@@ -36,11 +37,6 @@ const Stepper = ({ steps, currentStep }) => {
       })}
     </div>
   );
-};
-
-Stepper.propTypes = {
-  steps: PropTypes.number.isRequired,
-  currentStep: PropTypes.number.isRequired,
 };
 
 export default Stepper;

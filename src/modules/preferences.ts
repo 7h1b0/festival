@@ -1,6 +1,6 @@
 const KEY = 'lastUsedCurrency';
 
-export function setAsLastUsed(name) {
+export function setAsLastUsed(name: string) {
   return localStorage.setItem(KEY, name);
 }
 

@@ -1,7 +1,13 @@
 import React from 'react';
 import Input from 'components/Input';
 
-const CurrencyName = ({ festival, value, onChange }) => (
+type Props = {
+  festival: string;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLElement>) => void;
+};
+
+const CurrencyName: React.FC<Props> = ({ festival, value, onChange }) => (
   <Input
     label={`Enter the currency name used by ${festival}:`}
     name="name"

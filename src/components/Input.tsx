@@ -1,6 +1,5 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import PropTypes from 'prop-types';
 import {
   borderRadius,
   colorDivider,
@@ -12,7 +11,17 @@ import {
   sizeText,
 } from 'modules/theme';
 
-const Input = ({
+type Props = {
+  name: string;
+  label: string;
+  value: string | number;
+  onChange: (event: React.ChangeEvent<HTMLElement>) => void;
+  type?: string;
+  required?: boolean;
+  placeholder?: string;
+};
+
+const Input: React.FC<Props> = ({
   name,
   label,
   value,
@@ -55,15 +64,5 @@ const Input = ({
     />
   </label>
 );
-
-Input.propTypes = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onChange: PropTypes.func.isRequired,
-  required: PropTypes.bool,
-  placeholder: PropTypes.string,
-};
 
 export default Input;

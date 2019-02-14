@@ -1,6 +1,5 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import PropTypes from 'prop-types';
 import { spaceM, spaceL } from 'modules/theme';
 
 const baseButton = css`
@@ -11,7 +10,11 @@ const baseButton = css`
   padding: ${spaceM} ${spaceL};
 `;
 
-const Actions = ({ onDelete }) => (
+type Props = {
+  onDelete: (event: React.MouseEvent<HTMLElement>) => void;
+};
+
+const Actions: React.FC<Props> = ({ onDelete }) => (
   <div
     css={css`
       margin: ${spaceL} 0;
@@ -22,9 +25,5 @@ const Actions = ({ onDelete }) => (
     </button>
   </div>
 );
-
-Actions.propTypes = {
-  onDelete: PropTypes.func.isRequired,
-};
 
 export default Actions;

@@ -1,9 +1,22 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import PropTypes from 'prop-types';
 import { formatRate } from 'modules/formatter';
 
-const Rate = ({ rate, origin, target, amount = 1, className }) => (
+type Props = {
+  rate: number;
+  origin: string;
+  target: string;
+  amount?: number;
+  className?: string;
+};
+
+const Rate: React.FC<Props> = ({
+  rate,
+  origin,
+  target,
+  amount = 1,
+  className,
+}) => (
   <p
     css={css`
       text-transform: uppercase;
@@ -14,13 +27,5 @@ const Rate = ({ rate, origin, target, amount = 1, className }) => (
     {formatRate(rate, origin, target, amount)}
   </p>
 );
-
-Rate.propTypes = {
-  rate: PropTypes.number.isRequired,
-  origin: PropTypes.string.isRequired,
-  target: PropTypes.string.isRequired,
-  amount: PropTypes.number,
-  className: PropTypes.string,
-};
 
 export default Rate;
