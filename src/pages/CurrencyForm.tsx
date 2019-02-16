@@ -42,13 +42,15 @@ const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     {
       festival: '',
       name: '',
-      euro: 0,
-      currency: 0,
+      euro: 1,
+      currency: 1,
     },
   );
+  const [isValidStep, setValidStep] = React.useState(false);
 
   const handleChange = React.useCallback(
-    event => dispatch({ [event.target.name]: event.target.value }),
+    (event: React.ChangeEvent<HTMLInputElement>) =>
+      dispatch({ [event.target.name]: event.target.value }),
     [dispatch],
   );
 
@@ -69,11 +71,16 @@ const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   }
 
   const STEPS = [
-    <FestivalName value={state.festival} onChange={handleChange} />,
+    <FestivalName
+      value={state.festival}
+      onChange={handleChange}
+      isValid={setValidStep}
+    />,
     <CurrencyName
       value={state.name}
       festival={state.festival}
       onChange={handleChange}
+      isValid={setValidStep}
     />,
     <Change
       currencyLabel={state.name}
@@ -136,7 +143,7 @@ const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             margin: ${spaceL} 0;
           `}
         >
-          <Button uiStyle="raised" onClick={handleNext}>
+          <Button uiStyle="raised" onClick={handleNext} disabled={!isValidStep}>
             {isLastStep(currentStep, STEPS) ? 'Add' : 'Continue'}
           </Button>
           {currentStep > 0 && (

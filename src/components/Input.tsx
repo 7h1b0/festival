@@ -15,7 +15,7 @@ type Props = {
   name: string;
   label: string;
   value: string | number;
-  onChange: (event: React.ChangeEvent<HTMLElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   required?: boolean;
   placeholder?: string;

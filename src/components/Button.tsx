@@ -1,6 +1,13 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import { spaceS, colorPrimary, borderRadius, sizeLabel } from 'modules/theme';
+import {
+  spaceS,
+  colorPrimary,
+  borderRadius,
+  sizeLabel,
+  colorDisabled,
+  colorTextDisabled,
+} from 'modules/theme';
 
 const style = {
   flat: css`
@@ -29,20 +36,34 @@ const base = css`
   }
 `;
 
+const disabledStyle = css`
+  background-color: ${colorDisabled};
+  color: ${colorTextDisabled};
+`;
+
 type Props = {
   uiStyle: 'flat' | 'raised';
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
+  disabled?: boolean;
   className?: string;
 };
 
-const Button: React.FC<Props> = ({ children, onClick, className, uiStyle }) => (
+const Button: React.FC<Props> = ({
+  children,
+  onClick,
+  className,
+  uiStyle,
+  disabled = false,
+}) => (
   <button
     css={css`
       ${base};
       ${style[uiStyle]}
+      ${disabled && disabledStyle}
     `}
     onClick={onClick}
     className={className}
+    disabled={disabled}
   >
     {children}
   </button>

@@ -5,7 +5,7 @@ type Props = {
   euro: number;
   currency: number;
   currencyLabel: string;
-  onChange: (event: React.ChangeEvent<HTMLElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const Change: React.FC<Props> = ({

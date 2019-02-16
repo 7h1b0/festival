@@ -8,6 +8,8 @@ export const colorTitle = '#454B57';
 export const colorSubtitle = '#9f9f9f';
 export const colorDivider = '#cfd9ed';
 export const colorBackground = '#f9fbff';
+export const colorDisabled = '#9DBAF9';
+export const colorTextDisabled = '#E1EAFD';
 
 export const sizeHeadline = '2rem';
 export const sizeText = '1.1rem';
