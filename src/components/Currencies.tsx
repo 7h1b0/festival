@@ -11,7 +11,7 @@ type Props = {
 
 const Currencies: React.FC<Props> = ({ currencies, selected, onChange }) => (
   <select
-    id={name}
+    title="currencies"
     value={selected}
     onChange={onChange}
     css={css`

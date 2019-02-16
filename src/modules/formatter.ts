@@ -2,8 +2,7 @@ export function formatPrice(number: number, separator = ' '): string {
   if (isNaN(number)) {
     return '-';
   }
-  const roundNumber = Math.round(number * 100) / 100;
-  return `${roundNumber
+  return `${round(number)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, () => separator)}`;
 }

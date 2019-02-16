@@ -19,6 +19,7 @@ const base = css`
   text-align: center;
   display: block;
   min-width: 120px;
+  min-height: 45px;
   padding: ${spaceS} 0;
   border-radius: ${borderRadius};
   text-transform: capitalize;
