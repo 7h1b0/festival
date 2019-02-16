@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { css } from '@emotion/core';
+import Rate from 'components/Rate';
 import useRoundValue from 'hooks/useRoundValue';
 import useFocus from 'hooks/useFocus';
 import { Currency } from 'modules/currency';
@@ -8,7 +9,7 @@ import {
   borderRadius,
   colorDivider,
   colorPrimary,
-  colorSubtitle,
+  colorTitle,
   spaceL,
   spaceM,
   sizeHeadline,
@@ -34,7 +35,7 @@ const baseCurrencyName = css`
   font-size: ${sizeLabel};
   letter-spacing: 0.05rem;
   font-weight: bold;
-  color: ${colorSubtitle};
+  color: ${colorTitle};
 `;
 
 const Converter: React.FC<{ currency: Currency }> = ({ currency }) => {
@@ -60,6 +61,7 @@ const Converter: React.FC<{ currency: Currency }> = ({ currency }) => {
       <label htmlFor={currency.name} css={baseCurrencyName}>
         {currency.name}
       </label>
+      <Rate rate={currency.rate} target="EUR" origin={currency.name} />
       <input
         ref={inputEl}
         id={currency.name}
@@ -86,6 +88,7 @@ const Converter: React.FC<{ currency: Currency }> = ({ currency }) => {
       <label htmlFor="euro" css={baseCurrencyName}>
         EUR
       </label>
+      <Rate rate={1 / currency.rate} origin="EUR" target={currency.name} />
       <input
         type="number"
         id="euro"

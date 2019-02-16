@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { formatRate } from 'modules/formatter';
+import { colorSubtitle } from 'modules/theme';
 
 type Props = {
   rate: number;
@@ -21,6 +22,7 @@ const Rate: React.FC<Props> = ({
     css={css`
       text-transform: uppercase;
       font-size: 0.8rem;
+      color: ${colorSubtitle};
     `}
     className={className}
   >

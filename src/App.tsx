@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Convert from 'pages/Convert';
 import CurrencyForm from 'pages/CurrencyForm';
 
 const App = () => {
-  const [showForm, setVisibilityForm] = useState(false);
+  const [showForm, setVisibilityForm] = React.useState(false);
 
   if (showForm) {
     return <CurrencyForm onClose={() => setVisibilityForm(false)} />;
