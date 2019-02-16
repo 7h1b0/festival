@@ -4,6 +4,7 @@ import Converter from 'components/Converter';
 import Currencies from 'components/Currencies';
 import Actions from 'components/Actions';
 import Button from 'components/Button';
+import GetStarted from 'components/GetStarted';
 import useCurrencies from 'hooks/useCurrencies';
 import { selectCurrency, removeCurrency } from 'actions';
 import { spaceL } from 'modules/theme';
@@ -19,8 +20,7 @@ const Convert: React.FC<Props> = ({ showForm }) => {
   const { currencies, selected } = state;
 
   if (selected == null) {
-    showForm();
-    return null;
+    return <GetStarted showForm={showForm} />;
   }
 
   return (
