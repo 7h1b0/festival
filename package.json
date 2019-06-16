@@ -8,7 +8,7 @@
     "build": "webpack --env.prod",
     "test": "jest --watch",
     "lint:check": "eslint --max-warnings 0 src",
-    "format:check": "prettier --list-different \"src/**/*.js\"",
+    "format:check": "prettier --list-different \"src/**/*.{ts,tsx}\"",
     "type:check": "tsc --noEmit",
     "coverage": "jest --coverage --ci --silent"
   },
