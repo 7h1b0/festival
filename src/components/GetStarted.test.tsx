@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import GetStarted from '../GetStarted';
+import GetStarted from './GetStarted';
 
 describe('GetStarted', () => {
   it('should render correctly', () => {

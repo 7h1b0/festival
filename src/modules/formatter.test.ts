@@ -1,4 +1,4 @@
-import { round, formatPrice, formatRate } from '../formatter';
+import { round, formatPrice, formatRate } from './formatter';
 
 describe.each([[1.2222, 1.22], [3.9, 3.9], [0, 0], [100.33333, 100.33]])(
   'round',

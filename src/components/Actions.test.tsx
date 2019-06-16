@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Actions from '../Actions';
+import Actions from './Actions';
 
 describe('Actions', () => {
   it('should render correctly', () => {

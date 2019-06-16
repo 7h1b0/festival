@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = ({ prod } = {}) => {
   return {
@@ -42,7 +42,7 @@ module.exports = ({ prod } = {}) => {
             }
           : undefined,
       }),
-      new CleanWebpackPlugin('dist', { verbose: false }),
+      new CleanWebpackPlugin({ verbose: false }),
     ],
     resolve: {
       extensions: ['.js', '.ts', '.tsx'],

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Rate from '../Rate';
+import Rate from './Rate';
 
 describe('Rate', () => {
   it('should render correctly', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Currencies from '../Currencies';
+import Currencies from './Currencies';
 
 describe('Currencies', () => {
   it('should render correctly', () => {
