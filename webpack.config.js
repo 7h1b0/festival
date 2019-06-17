@@ -1,8 +1,43 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = ({ prod } = {}) => {
+  const plugins = prod
+    ? [
+        new ManifestPlugin({
+          seed: {
+            short_name: 'Festival Converter',
+            name: 'Converter',
+            background_color: '#eeeeee',
+            display: 'standalone',
+            theme_color: '#eeeeee',
+            start_url: '/',
+            icons: [
+              {
+                src: 'icon-192.png',
+                type: 'image/png',
+                sizes: '192x192',
+              },
+              {
+                src: 'icon-512.png',
+                type: 'image/png',
+                sizes: '512x512',
+              },
+            ],
+          },
+        }),
+        new SWPrecacheWebpackPlugin({
+          filename: 'service-worker.js',
+          dontCacheBustUrlsMatching: /\.\w{8}\./,
+          minify: true,
+          staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+        }),
+      ]
+    : [];
+
   return {
     mode: prod ? 'production' : 'development',
     entry: {
@@ -43,6 +78,7 @@ module.exports = ({ prod } = {}) => {
           : undefined,
       }),
       new CleanWebpackPlugin({ verbose: false }),
+      ...plugins,
     ],
     resolve: {
       extensions: ['.js', '.ts', '.tsx'],
