@@ -5,7 +5,11 @@ function useValidator(
   regex: RegExp,
   isValid: (value: boolean) => void,
 ) {
-  React.useEffect(() => void isValid(regex.test(value)), [value]);
+  React.useEffect(() => void isValid(regex.test(value)), [
+    value,
+    isValid,
+    regex,
+  ]);
 }
 
 export default useValidator;

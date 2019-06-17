@@ -6,7 +6,7 @@ function useFocus(deps: ReadonlyArray<any>) {
     if (inputEl.current !== null) {
       inputEl.current.focus();
     }
-  }, deps);
+  }, deps); // eslint-disable-line
   return inputEl;
 }
 

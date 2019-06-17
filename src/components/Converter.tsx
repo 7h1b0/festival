@@ -47,7 +47,7 @@ const Converter: React.FC<{ currency: Currency }> = ({ currency }) => {
     if (value) {
       setEuro(value * currency.rate);
     }
-  }, [currency]);
+  }, [currency, value, setEuro]);
 
   return (
     <div
