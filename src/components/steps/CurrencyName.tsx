@@ -21,7 +21,7 @@ const CurrencyName: React.FC<Props> = ({
     <Input
       label={`Enter the currency name used by ${festival}:`}
       name="name"
-      placeholder="Example: Perl"
+      placeholder="Example: Pearl"
       value={value}
       onChange={onChange}
       required
