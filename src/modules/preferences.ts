@@ -1,9 +1,9 @@
-const KEY = 'lastUsedCurrency';
+const NAMESPACE = 'lastUsedCurrency';
 
-export function setAsLastUsed(name: string) {
-  return localStorage.setItem(KEY, name);
+export function setAsLastUsed(id: number) {
+  return localStorage.setItem(NAMESPACE, '' + id);
 }
 
 export function getLastUsed() {
-  return localStorage.getItem(KEY);
+  return parseInt(localStorage.getItem(NAMESPACE) || '', 10);
 }

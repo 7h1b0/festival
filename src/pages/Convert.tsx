@@ -2,21 +2,16 @@ import React from 'react';
 import { css } from '@emotion/core';
 import Converter from 'components/Converter';
 import Currencies from 'components/Currencies';
-import Actions from 'components/Actions';
 import Button from 'components/Button';
 import GetStarted from 'components/GetStarted';
 import useCurrencies from 'hooks/useCurrencies';
-import { selectCurrency, removeCurrency } from 'actions';
+import { selectCurrency } from 'actions';
 import { spaceL } from 'modules/theme';
 
 type Props = { showForm: () => void };
 
 const Convert: React.FC<Props> = ({ showForm }) => {
   const { state, dispatch } = useCurrencies();
-  if (state.loading) {
-    return <p>Loading</p>;
-  }
-
   const { currencies, selected } = state;
 
   if (selected == null) {
@@ -40,7 +35,6 @@ const Convert: React.FC<Props> = ({ showForm }) => {
       >
         Add Currency
       </Button>
-      <Actions onDelete={() => dispatch(removeCurrency(selected.id))} />
     </>
   );
 };

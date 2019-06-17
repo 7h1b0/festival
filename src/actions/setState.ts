@@ -6,14 +6,12 @@ export type SetStateAction = {
   value: {
     currencies: Currency[];
     selected: Currency | null;
-    loading: boolean;
   };
 };
 
 export default function(
   currencies: Currency[],
   selected: Currency | null,
-  loading: boolean,
 ): SetStateAction {
-  return { type: TYPE.SET, value: { currencies, selected, loading } };
+  return { type: TYPE.SET, value: { currencies, selected } };
 }

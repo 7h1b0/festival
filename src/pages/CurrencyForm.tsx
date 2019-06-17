@@ -7,7 +7,7 @@ import Button from 'src/components/Button';
 import Divider from 'components/Divider';
 import CurrencyName from 'components/steps/CurrencyName';
 import FestivalName from 'components/steps/FestivalName';
-import getDb from 'modules/database';
+import { addCurrency } from 'modules/database';
 import { spaceH, spaceL, colorTitle, sizeLabel, spaceM } from 'modules/theme';
 
 function isLastStep(step: number, steps: unknown[]) {
@@ -61,10 +61,10 @@ const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         festival: state.festival,
         name: state.name,
         rate: state.euro / state.currency,
+        id: Date.now(),
       };
-      getDb()
-        .then(db => db.add(newCurrency))
-        .then(() => onClose());
+      addCurrency(newCurrency);
+      onClose();
       return;
     }
     setCurrenStep(INCREMENT);
