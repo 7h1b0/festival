@@ -1,15 +1,16 @@
 import React from 'react';
 import Convert from 'pages/Convert';
 import CurrencyForm from 'pages/CurrencyForm';
+import useForm from 'hooks/useForm';
 
 const App = () => {
-  const [showForm, setVisibilityForm] = React.useState(false);
+  const { showForm, displayForm, hideForm } = useForm();
 
   if (showForm) {
-    return <CurrencyForm onClose={() => setVisibilityForm(false)} />;
+    return <CurrencyForm onClose={hideForm} />;
   }
 
-  return <Convert showForm={() => setVisibilityForm(true)} />;
+  return <Convert showForm={displayForm} />;
 };
 
 export default App;
