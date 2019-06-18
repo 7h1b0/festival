@@ -14,6 +14,7 @@ export const colorTextDisabled = '#E1EAFD';
 export const sizeHeadline = '2rem';
 export const sizeText = '1.1rem';
 export const sizeLabel = '1rem';
+export const sizeIcon = '20px';
 
 export const borderRadius = '3px';
 export const boxShadow =

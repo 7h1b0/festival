@@ -3,6 +3,7 @@ import { css } from '@emotion/core';
 import Converter from 'components/Converter';
 import Currencies from 'components/Currencies';
 import Button from 'components/Button';
+import BottomActions from 'components/BottomActions';
 import GetStarted from 'components/GetStarted';
 import useCurrencies from 'hooks/useCurrencies';
 import { selectCurrency } from 'actions';
@@ -28,15 +29,7 @@ const Convert: React.FC<Props> = ({ showForm }) => {
         onChange={e => dispatch(selectCurrency(Number(e.target.value)))}
       />
       <Converter />
-      <Button
-        uiStyle="flat"
-        onClick={showForm}
-        css={css`
-          margin: ${spaceL} auto;
-        `}
-      >
-        Add Currency
-      </Button>
+      <BottomActions onAdd={showForm} />
     </CurrencyContext.Provider>
   );
 };
