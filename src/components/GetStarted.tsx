@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import EmptyLIstIcon from 'components/EmptyListIcon';
+import EmptyLIstIcon from 'src/components/icons/EmptyListIcon';
 import Button from 'components/Button';
 import {
   spaceL,
