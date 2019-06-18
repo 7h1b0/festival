@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 import Rate from 'components/Rate';
 import useRoundValue from 'hooks/useRoundValue';
 import useFocus from 'hooks/useFocus';
-import { Currency } from 'modules/currency';
+import CurrencyContext from 'context/currencyContext';
 
 import {
   borderRadius,
@@ -38,7 +38,8 @@ const baseCurrencyName = css`
   color: ${colorTitle};
 `;
 
-const Converter: React.FC<{ currency: Currency }> = ({ currency }) => {
+const Converter: React.FC<{}> = () => {
+  const currency = React.useContext(CurrencyContext);
   const [value, setValue] = useRoundValue(0);
   const [euro, setEuro] = useRoundValue(0);
   const inputEl = useFocus([currency]);

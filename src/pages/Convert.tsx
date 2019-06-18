@@ -8,6 +8,8 @@ import useCurrencies from 'hooks/useCurrencies';
 import { selectCurrency } from 'actions';
 import { spaceL } from 'modules/theme';
 
+import CurrencyContext from 'context/currencyContext';
+
 type Props = { showForm: () => void };
 
 const Convert: React.FC<Props> = ({ showForm }) => {
@@ -19,13 +21,13 @@ const Convert: React.FC<Props> = ({ showForm }) => {
   }
 
   return (
-    <>
+    <CurrencyContext.Provider value={selected}>
       <Currencies
         selected={selected.id}
         currencies={currencies}
         onChange={e => dispatch(selectCurrency(Number(e.target.value)))}
       />
-      <Converter currency={selected} />
+      <Converter />
       <Button
         uiStyle="flat"
         onClick={showForm}
@@ -35,7 +37,7 @@ const Convert: React.FC<Props> = ({ showForm }) => {
       >
         Add Currency
       </Button>
-    </>
+    </CurrencyContext.Provider>
   );
 };
 
