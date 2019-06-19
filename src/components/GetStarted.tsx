@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import EmptyLIstIcon from 'components/EmptyListIcon';
+import EmptyListIcon from 'components/icons/EmptyListIcon';
 import Button from 'components/Button';
 import {
   spaceL,
@@ -25,7 +25,7 @@ const GetStarted: React.FC<Props> = ({ showForm }) => {
         min-height: 100vh;
       `}
     >
-      <EmptyLIstIcon
+      <EmptyListIcon
         css={css`
           fill: ${colorTitle};
           width: 150px;

@@ -57,6 +57,7 @@ const Converter: React.FC<{}> = () => {
         padding: ${spaceL};
         border-top: 1px solid ${colorDivider};
         border-bottom: 1px solid ${colorDivider};
+        flex: 1;
       `}
     >
       <label htmlFor={currency.name} css={baseCurrencyName}>
