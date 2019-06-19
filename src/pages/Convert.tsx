@@ -20,24 +20,15 @@ const Convert: React.FC<Props> = ({ showForm }) => {
   }
 
   return (
-    <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-      `}
-    >
-      <CurrencyContext.Provider value={selected}>
-        <Currencies
-          selected={selected.id}
-          currencies={currencies}
-          onChange={e => dispatch(selectCurrency(Number(e.target.value)))}
-        />
-        <Converter />
-        <BottomActions onAdd={showForm} />
-      </CurrencyContext.Provider>
-    </div>
+    <CurrencyContext.Provider value={selected}>
+      <Currencies
+        selected={selected.id}
+        currencies={currencies}
+        onChange={e => dispatch(selectCurrency(Number(e.target.value)))}
+      />
+      <Converter />
+      <BottomActions onAdd={showForm} />
+    </CurrencyContext.Provider>
   );
 };
 

@@ -6,6 +6,7 @@ import {
   colorPrimary,
   spaceS,
   spaceM,
+  spaceH,
   sizeIcon,
   colorTitle,
 } from 'modules/theme';
@@ -23,7 +24,7 @@ const BottomActions: React.FC<Props> = ({ onAdd }) => {
         align-items: center;
         justify-content: space-evenly;
         width: 100%;
-        margin: ${spaceM} auto;
+        margin: ${spaceH} auto ${spaceM};
       `}
     >
       <div
