@@ -23,7 +23,7 @@ const BottomActions: React.FC<Props> = ({ onAdd }) => {
         align-items: center;
         justify-content: space-evenly;
         width: 100%;
-        margin: 0 auto;
+        margin: ${spaceM} auto;
       `}
     >
       <div
