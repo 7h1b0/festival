@@ -1,5 +1,4 @@
 import React from 'react';
-import { css } from '@emotion/core';
 import Converter from 'components/Converter';
 import Currencies from 'components/Currencies';
 import BottomActions from 'components/BottomActions';

@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { getLastUsed, setAsLastUsed } from 'modules/preferences';
-import { getAllCurrencies } from 'modules/database';
+import {
+  getAllCurrencies,
+  addCurrency,
+  getLastUsed,
+  setAsLastUsed,
+} from 'modules/database';
 import { Currency } from 'modules/currency';
 import { setState, Action } from 'actions/';
 
@@ -31,7 +35,23 @@ function reducer(state: State, action: Action): State {
   }
 }
 
+function fetchCurrencyFromLocation(): void {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('rate') && params.has('festival') && params.has('name')) {
+    const sharedCurrency = {
+      rate: Number(params.get('rate')) || 1,
+      festival: params.get('festival') || '',
+      name: params.get('name') || '',
+      id: Date.now(),
+    };
+
+    addCurrency(sharedCurrency);
+    setAsLastUsed(sharedCurrency.id);
+  }
+}
+
 async function fetchCurrencies(dispatch: Function) {
+  fetchCurrencyFromLocation();
   const defaultName = getLastUsed();
   const currencies = getAllCurrencies();
 
