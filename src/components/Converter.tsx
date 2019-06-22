@@ -55,8 +55,7 @@ const Converter: React.FC<{}> = () => {
       css={css`
         background: #fff;
         padding: ${spaceL};
-        border-top: 1px solid ${colorDivider};
-        border-bottom: 1px solid ${colorDivider};
+        border: 1px solid ${colorDivider};
         flex: 1;
       `}
     >
