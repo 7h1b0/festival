@@ -25,8 +25,8 @@ const BottomActions: React.FC<Props> = ({ onAdd }) => {
 
   const handleShare = React.useCallback(() => {
     navigatorApi.share({
-      title: festival,
-      text: name,
+      title: '',
+      text: '',
       url: buildURI(window.location.origin, { festival, name, rate }),
     });
   }, [festival, name, rate]);
