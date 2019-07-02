@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { css } from '@emotion/core';
 import Rate from 'components/Rate';
 import useRoundValue from 'hooks/useRoundValue';
@@ -43,12 +43,6 @@ const Converter: React.FC<{}> = () => {
   const [value, setValue] = useRoundValue(0);
   const [euro, setEuro] = useRoundValue(0);
   const inputEl = useFocus([currency]);
-
-  useEffect(() => {
-    if (value) {
-      setEuro(value * currency.rate);
-    }
-  }, [currency, value, setEuro]);
 
   return (
     <div
