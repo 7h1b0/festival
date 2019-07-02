@@ -2,32 +2,23 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = ({ prod } = {}) => {
   const plugins = prod
     ? [
-        new ManifestPlugin({
-          seed: {
-            short_name: 'Festival Converter',
-            name: 'Converter',
-            background_color: '#eeeeee',
-            display: 'standalone',
-            theme_color: '#eeeeee',
-            start_url: '/',
-            icons: [
-              {
-                src: 'icon-192.png',
-                type: 'image/png',
-                sizes: '192x192',
-              },
-              {
-                src: 'icon-512.png',
-                type: 'image/png',
-                sizes: '512x512',
-              },
-            ],
-          },
+        new WebpackPwaManifest({
+          name: 'Festival Converter',
+          short_name: 'Converter',
+          description: 'Convert festival currency',
+          background_color: '#eeeeee',
+          theme_color: '#5c8df6',
+          icons: [
+            {
+              src: path.resolve('src/assets/icon.png'),
+              sizes: [192, 512],
+            },
+          ],
         }),
         new SWPrecacheWebpackPlugin({
           filename: 'service-worker.js',
