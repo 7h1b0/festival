@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 import Rate from 'components/Rate';
 import useRoundValue from 'hooks/useRoundValue';
 import useFocus from 'hooks/useFocus';
-import CurrencyContext from 'context/currencyContext';
+import { useCurrencies } from 'context/currenciesContext';
 
 import {
   borderRadius,
@@ -39,10 +39,10 @@ const baseCurrencyName = css`
 `;
 
 const Converter: React.FC<{}> = () => {
-  const currency = React.useContext(CurrencyContext);
+  const { selectedCurrency } = useCurrencies();
   const [value, setValue] = useRoundValue(0);
   const [euro, setEuro] = useRoundValue(0);
-  const inputEl = useFocus([currency]);
+  const inputEl = useFocus([selectedCurrency]);
 
   return (
     <div
@@ -53,20 +53,24 @@ const Converter: React.FC<{}> = () => {
         flex: 1;
       `}
     >
-      <label htmlFor={currency.name} css={baseCurrencyName}>
-        {currency.name}
+      <label htmlFor={selectedCurrency.name} css={baseCurrencyName}>
+        {selectedCurrency.name}
       </label>
-      <Rate rate={currency.rate} target="EUR" origin={currency.name} />
+      <Rate
+        rate={selectedCurrency.rate}
+        target="EUR"
+        origin={selectedCurrency.name}
+      />
       <input
         ref={inputEl}
-        id={currency.name}
+        id={selectedCurrency.name}
         type="number"
         step="0.01"
         value={value || ''}
         min={0}
         onChange={e => {
           setValue(Number(e.target.value));
-          setEuro(Number(e.target.value) * currency.rate);
+          setEuro(Number(e.target.value) * selectedCurrency.rate);
         }}
         css={css`
           ${baseInput}
@@ -83,7 +87,11 @@ const Converter: React.FC<{}> = () => {
       <label htmlFor="euro" css={baseCurrencyName}>
         EUR
       </label>
-      <Rate rate={1 / currency.rate} origin="EUR" target={currency.name} />
+      <Rate
+        rate={1 / selectedCurrency.rate}
+        origin="EUR"
+        target={selectedCurrency.name}
+      />
       <input
         type="number"
         id="euro"
@@ -92,7 +100,7 @@ const Converter: React.FC<{}> = () => {
         min={0}
         onChange={e => {
           setEuro(Number(e.target.value));
-          setValue(Number(e.target.value) / currency.rate);
+          setValue(Number(e.target.value) / selectedCurrency.rate);
         }}
         css={baseInput}
       />

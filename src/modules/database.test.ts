@@ -1,4 +1,4 @@
-import { store, getAllCurrencies, addCurrency } from './database';
+import { store, getAllCurrencies } from './database';
 
 describe('#database', () => {
   let setItemSpy: jest.SpyInstance<void, [string, string]>;
@@ -53,39 +53,6 @@ describe('#database', () => {
 
     it('should return a empty list by default', () => {
       expect(getAllCurrencies()).toEqual([]);
-    });
-  });
-
-  describe('#addCurrency', () => {
-    it('should store a new currency', () => {
-      const currency = {
-        festival: 'Fire',
-        name: 'fail',
-        rate: 0.1,
-        id: 1,
-      };
-
-      addCurrency(currency);
-
-      expect(setItemSpy).toHaveBeenCalledWith(
-        'currencies',
-        JSON.stringify([currency]),
-      );
-    });
-
-    it('should not add a currency if festival is already taken', () => {
-      const currency = {
-        festival: 'Fire',
-        name: 'fail',
-        rate: 0.1,
-        id: 1,
-      };
-
-      getItemSpy.mockReturnValue(JSON.stringify([currency]));
-
-      addCurrency(currency);
-
-      expect(setItemSpy).not.toHaveBeenCalled();
     });
   });
 });

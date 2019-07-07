@@ -11,7 +11,7 @@ import {
   colorTitle,
 } from 'modules/theme';
 import { buildURI } from 'modules/url';
-import CurrencyContext from 'context/currencyContext';
+import { useCurrencies } from 'src/context/currenciesContext';
 
 const secondaryIcons = css`
   width: ${sizeIcon};
@@ -21,15 +21,19 @@ const navigatorApi = window.navigator as any; // trick for TS
 
 type Props = { onAdd: () => void };
 const BottomActions: React.FC<Props> = ({ onAdd }) => {
-  const { festival, name, rate } = React.useContext(CurrencyContext);
+  const { selectedCurrency } = useCurrencies();
 
   const handleShare = React.useCallback(() => {
     navigatorApi.share({
       title: '',
       text: '',
-      url: buildURI(window.location.origin, { festival, name, rate }),
+      url: buildURI(window.location.origin, {
+        rate: selectedCurrency.rate,
+        festival: selectedCurrency.festival,
+        name: selectedCurrency.name,
+      }),
     });
-  }, [festival, name, rate]);
+  }, [selectedCurrency]);
 
   return (
     <div

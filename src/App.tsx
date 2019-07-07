@@ -1,16 +1,16 @@
 import React from 'react';
 import Convert from 'pages/Convert';
 import CurrencyForm from 'pages/CurrencyForm';
-import useForm from 'hooks/useForm';
+import useToggle from 'src/hooks/useToggle';
 
 const App = () => {
-  const { showForm, displayForm, hideForm } = useForm();
+  const [showForm, toggleForm] = useToggle();
 
   if (showForm) {
-    return <CurrencyForm onClose={hideForm} />;
+    return <CurrencyForm onClose={toggleForm} />;
   }
 
-  return <Convert showForm={displayForm} />;
+  return <Convert showForm={toggleForm} />;
 };
 
 export default App;
