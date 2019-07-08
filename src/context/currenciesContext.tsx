@@ -7,16 +7,29 @@ type Action = { type: 'add'; data: Currency };
 type CurrencyDispatch = (value: number) => void;
 type CurrenciesDispatch = (value: Action) => void;
 
-function reducer(state: Currency[], action: Action) {
-  switch (action.type) {
-    case 'add':
-      const newState = state.concat(action.data);
-      store(newState);
-      return newState;
+function isDifferentFrom(newCurrency: Currency) {
+  return (currency: Currency) =>
+    currency.festival !== newCurrency.festival &&
+    currency.name !== newCurrency.name;
+}
 
-    default:
-      return state;
-  }
+function reducer(dispatchCurrencyId: CurrencyDispatch) {
+  return (state: Currency[], action: Action) => {
+    switch (action.type) {
+      case 'add':
+        const isNew = state.every(isDifferentFrom(action.data));
+        if (isNew) {
+          const newState = state.concat(action.data);
+          store(newState);
+          dispatchCurrencyId(action.data.id);
+          return newState;
+        }
+        return state;
+
+      default:
+        return state;
+    }
+  };
 }
 
 const CurrenciesStateContext = React.createContext<Currency[]>([]);
@@ -41,21 +54,24 @@ export const useCurrencyDispatch = () =>
 export const CurrenciesProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [currencies, dispatch] = React.useReducer(reducer, undefined, () =>
-    getAllCurrencies(),
-  );
   const [selectedCurrencyId, setSelectedCurrencyId] = React.useState(
     getLastUsed,
-  );
-
-  const selectedCurrency = currencies.find(
-    ({ id }) => id === selectedCurrencyId,
   );
 
   const setSelectedCurrencyIdWithStorage = (selectedCurrencyId: number) => {
     setAsLastUsed(selectedCurrencyId);
     setSelectedCurrencyId(selectedCurrencyId);
   };
+
+  const [currencies, dispatch] = React.useReducer(
+    reducer(setSelectedCurrencyIdWithStorage),
+    undefined,
+    () => getAllCurrencies(),
+  );
+
+  const selectedCurrency = currencies.find(
+    ({ id }) => id === selectedCurrencyId,
+  );
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -67,7 +83,6 @@ export const CurrenciesProvider: React.FC<{ children: React.ReactNode }> = ({
         id: Date.now(),
       };
       dispatch({ type: 'add', data: sharedCurrency });
-      setSelectedCurrencyId(sharedCurrency.id);
     }
   }, []);
 
