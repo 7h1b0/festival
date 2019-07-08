@@ -57,6 +57,20 @@ export const CurrenciesProvider: React.FC<{ children: React.ReactNode }> = ({
     setSelectedCurrencyId(selectedCurrencyId);
   };
 
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('rate') && params.has('festival') && params.has('name')) {
+      const sharedCurrency = {
+        rate: Number(params.get('rate')) || 1,
+        festival: params.get('festival') || '',
+        name: params.get('name') || '',
+        id: Date.now(),
+      };
+      dispatch({ type: 'add', data: sharedCurrency });
+      setSelectedCurrencyId(sharedCurrency.id);
+    }
+  }, []);
+
   return (
     <CurrencyStateContext.Provider value={selectedCurrency}>
       <CurrenciesStateContext.Provider value={currencies}>
