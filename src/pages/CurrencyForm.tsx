@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import CloseIcon from 'components/CloseIcon';
+import CloseIcon from 'components/icons/CloseIcon';
 import Change from 'components/steps/Change';
 import Stepper from 'components/Stepper';
-import Button from 'src/components/Button';
+import Button from 'components/Button';
 import Divider from 'components/Divider';
 import CurrencyName from 'components/steps/CurrencyName';
 import FestivalName from 'components/steps/FestivalName';
