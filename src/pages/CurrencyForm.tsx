@@ -7,7 +7,7 @@ import Button from 'src/components/Button';
 import Divider from 'components/Divider';
 import CurrencyName from 'components/steps/CurrencyName';
 import FestivalName from 'components/steps/FestivalName';
-import { useCurrencies } from 'context/currenciesContext';
+import { useCurrenciesDispatch } from 'context/currenciesContext';
 import { spaceH, spaceL, colorTitle, sizeLabel, spaceM } from 'modules/theme';
 
 function isLastStep(step: number, steps: unknown[]) {
@@ -37,7 +37,7 @@ function stepReducer(state: number, action: 'increment' | 'decrement'): number {
 
 const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [currentStep, setCurrenStep] = React.useReducer(stepReducer, 0);
-  const { addCurrency } = useCurrencies();
+  const dispatchCurrencies = useCurrenciesDispatch();
   const [state, dispatch] = React.useReducer(
     (state, action): State => ({ ...state, ...action }),
     {
@@ -64,7 +64,7 @@ const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         rate: state.euro / state.currency,
         id: Date.now(),
       };
-      addCurrency(newCurrency);
+      dispatchCurrencies({ type: 'add', data: newCurrency });
       onClose();
       return;
     }

@@ -3,69 +3,71 @@ import { getAllCurrencies, store } from 'modules/database';
 import { setAsLastUsed, getLastUsed } from 'modules/database';
 import { Currency } from 'modules/currency';
 
-export type CurrenciesContext = {
-  selectedCurrency: Currency;
-  setSelectedCurrencyId: (currencyId: number) => void;
-  currencies: Currency[];
-  addCurrency: (currency: Currency) => void;
-  removeCurrency: (currencyId: number) => void;
-};
+type Action = { type: 'add'; data: Currency };
+type CurrencyDispatch = (value: number) => void;
+type CurrenciesDispatch = (value: Action) => void;
 
-const initCurrency = { id: -1, rate: 0, name: '', festival: '' };
-const initCurrencies = getAllCurrencies();
-const lastUsedCurrency = getLastUsed();
+function reducer(state: Currency[], action: Action) {
+  switch (action.type) {
+    case 'add':
+      const newState = state.concat(action.data);
+      store(newState);
+      return newState;
 
-const CurrenciesContext = React.createContext<CurrenciesContext>({
-  selectedCurrency: initCurrency,
-  setSelectedCurrencyId: () => {},
-  currencies: [],
-  addCurrency: () => {},
-  removeCurrency: () => {},
-});
+    default:
+      return state;
+  }
+}
 
-export const useCurrencies = () => React.useContext(CurrenciesContext);
+const CurrenciesStateContext = React.createContext<Currency[]>([]);
+const CurrencyStateContext = React.createContext<Currency | undefined>(
+  undefined,
+);
+
+const CurrenciesDispatchContext = React.createContext<CurrenciesDispatch>(
+  () => {},
+);
+const CurrencyDispatchContext = React.createContext<CurrencyDispatch>(() => {});
+
+export const useCurrenciesState = () =>
+  React.useContext(CurrenciesStateContext);
+export const useCurrencyState = () => React.useContext(CurrencyStateContext);
+
+export const useCurrenciesDispatch = () =>
+  React.useContext(CurrenciesDispatchContext);
+export const useCurrencyDispatch = () =>
+  React.useContext(CurrencyDispatchContext);
 
 export const CurrenciesProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [currencies, setState] = React.useState(initCurrencies);
+  const [currencies, dispatch] = React.useReducer(reducer, undefined, () =>
+    getAllCurrencies(),
+  );
   const [selectedCurrencyId, setSelectedCurrencyId] = React.useState(
-    lastUsedCurrency,
+    getLastUsed,
   );
 
-  const addCurrency = React.useCallback(
-    (currency: Currency) => {
-      setState(currencies => currencies.concat(currency));
-      setSelectedCurrencyId(currency.id);
-    },
-    [setState],
-  );
-  const removeCurrency = React.useCallback(
-    (currencyId: number) =>
-      setState(currencies => currencies.filter(({ id }) => id !== currencyId)),
-    [setState],
+  const selectedCurrency = currencies.find(
+    ({ id }) => id === selectedCurrencyId,
   );
 
-  const selectedCurrency =
-    currencies.find(({ id }) => id === selectedCurrencyId) || initCurrency;
-
-  React.useEffect(() => setAsLastUsed(selectedCurrencyId), [
-    selectedCurrencyId,
-  ]);
-
-  React.useEffect(() => store(currencies), [currencies]);
+  const setSelectedCurrencyIdWithStorage = (selectedCurrencyId: number) => {
+    setAsLastUsed(selectedCurrencyId);
+    setSelectedCurrencyId(selectedCurrencyId);
+  };
 
   return (
-    <CurrenciesContext.Provider
-      value={{
-        selectedCurrency,
-        setSelectedCurrencyId,
-        currencies,
-        addCurrency,
-        removeCurrency,
-      }}
-    >
-      {children}
-    </CurrenciesContext.Provider>
+    <CurrencyStateContext.Provider value={selectedCurrency}>
+      <CurrenciesStateContext.Provider value={currencies}>
+        <CurrencyDispatchContext.Provider
+          value={setSelectedCurrencyIdWithStorage}
+        >
+          <CurrenciesDispatchContext.Provider value={dispatch}>
+            {children}
+          </CurrenciesDispatchContext.Provider>
+        </CurrencyDispatchContext.Provider>
+      </CurrenciesStateContext.Provider>
+    </CurrencyStateContext.Provider>
   );
 };
