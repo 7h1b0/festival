@@ -2,6 +2,7 @@ import React from 'react';
 import { getAllCurrencies, store } from 'modules/database';
 import { setAsLastUsed, getLastUsed } from 'modules/database';
 import { Currency } from 'modules/currency';
+import { fetchCurrencyFromURL } from 'modules/url';
 
 type Action = { type: 'add'; data: Currency };
 type CurrencyDispatch = (value: number) => void;
@@ -51,20 +52,18 @@ export const useCurrenciesDispatch = () =>
 export const useCurrencyDispatch = () =>
   React.useContext(CurrencyDispatchContext);
 
-export const CurrenciesProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const CurrenciesProvider: React.FC<{}> = ({ children }) => {
   const [selectedCurrencyId, setSelectedCurrencyId] = React.useState(
     getLastUsed,
   );
 
-  const setSelectedCurrencyIdWithStorage = (selectedCurrencyId: number) => {
+  const handleSelectCurrency = (selectedCurrencyId: number) => {
     setAsLastUsed(selectedCurrencyId);
     setSelectedCurrencyId(selectedCurrencyId);
   };
 
   const [currencies, dispatch] = React.useReducer(
-    reducer(setSelectedCurrencyIdWithStorage),
+    reducer(handleSelectCurrency),
     undefined,
     () => getAllCurrencies(),
   );
@@ -74,14 +73,8 @@ export const CurrenciesProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 
   React.useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('rate') && params.has('festival') && params.has('name')) {
-      const sharedCurrency = {
-        rate: Number(params.get('rate')) || 1,
-        festival: params.get('festival') || '',
-        name: params.get('name') || '',
-        id: Date.now(),
-      };
+    const sharedCurrency = fetchCurrencyFromURL();
+    if (sharedCurrency) {
       dispatch({ type: 'add', data: sharedCurrency });
     }
   }, []);
@@ -89,9 +82,7 @@ export const CurrenciesProvider: React.FC<{ children: React.ReactNode }> = ({
   return (
     <CurrencyStateContext.Provider value={selectedCurrency}>
       <CurrenciesStateContext.Provider value={currencies}>
-        <CurrencyDispatchContext.Provider
-          value={setSelectedCurrencyIdWithStorage}
-        >
+        <CurrencyDispatchContext.Provider value={handleSelectCurrency}>
           <CurrenciesDispatchContext.Provider value={dispatch}>
             {children}
           </CurrenciesDispatchContext.Provider>
