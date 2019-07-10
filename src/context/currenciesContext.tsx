@@ -4,7 +4,9 @@ import { setAsLastUsed, getLastUsed } from 'modules/database';
 import { Currency } from 'modules/currency';
 import { fetchCurrencyFromURL } from 'modules/url';
 
-type Action = { type: 'add'; data: Currency };
+type Action =
+  | { type: 'add'; data: Currency }
+  | { type: 'remove'; data: Currency };
 type CurrencyDispatch = (value: number) => void;
 type CurrenciesDispatch = (value: Action) => void;
 
@@ -26,6 +28,15 @@ function reducer(dispatchCurrencyId: CurrencyDispatch) {
           return newState;
         }
         return state;
+
+      case 'remove':
+        const newState = state.filter(({ id }) => id !== action.data.id);
+        store(newState);
+        const lastCurrency = newState[newState.length - 1];
+        const lastId = lastCurrency ? lastCurrency.id : -1;
+        dispatchCurrencyId(lastId);
+
+        return newState;
 
       default:
         return state;

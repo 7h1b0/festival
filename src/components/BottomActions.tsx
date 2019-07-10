@@ -11,7 +11,10 @@ import {
   colorTitle,
 } from 'modules/theme';
 import { buildURI } from 'modules/url';
-import { useCurrencyState } from 'src/context/currenciesContext';
+import {
+  useCurrencyState,
+  useCurrenciesDispatch,
+} from 'src/context/currenciesContext';
 
 const secondaryIcons = css`
   width: ${sizeIcon};
@@ -22,8 +25,9 @@ const navigatorApi = window.navigator as any; // trick for TS
 type Props = { onAdd: () => void };
 const BottomActions: React.FC<Props> = ({ onAdd }) => {
   const currency = useCurrencyState();
+  const dispatch = useCurrenciesDispatch();
 
-  const handleShare = React.useCallback(() => {
+  const handleShare = () => {
     if (currency !== undefined) {
       navigatorApi.share({
         title: '',
@@ -35,7 +39,13 @@ const BottomActions: React.FC<Props> = ({ onAdd }) => {
         }),
       });
     }
-  }, [currency]);
+  };
+
+  const handleRemove = () => {
+    if (currency !== undefined) {
+      dispatch({ type: 'remove', data: currency });
+    }
+  };
 
   return (
     <div
@@ -75,7 +85,7 @@ const BottomActions: React.FC<Props> = ({ onAdd }) => {
           Add
         </p>
       </div>
-      <RemoveIcon css={secondaryIcons} />
+      <RemoveIcon css={secondaryIcons} onClick={handleRemove} />
       <UpdateIcon css={secondaryIcons} />
       {navigatorApi.share && (
         <ShareIcon css={secondaryIcons} onClick={handleShare} />
