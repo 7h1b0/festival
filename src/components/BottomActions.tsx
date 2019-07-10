@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import { AddIcon, RemoveIcon, ShareIcon, UpdateIcon } from 'components/icons';
+import { AddIcon, RemoveIcon, ShareIcon } from 'components/icons';
 import {
   colorPrimary,
   spaceS,
@@ -86,7 +86,6 @@ const BottomActions: React.FC<Props> = ({ onAdd }) => {
         </p>
       </div>
       <RemoveIcon css={secondaryIcons} onClick={handleRemove} />
-      <UpdateIcon css={secondaryIcons} />
       {navigatorApi.share && (
         <ShareIcon css={secondaryIcons} onClick={handleShare} />
       )}
