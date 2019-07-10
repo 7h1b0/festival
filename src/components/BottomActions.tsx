@@ -2,24 +2,18 @@ import React from 'react';
 import { css } from '@emotion/core';
 
 import { AddIcon, RemoveIcon, ShareIcon } from 'components/icons';
-import {
-  colorPrimary,
-  spaceS,
-  spaceM,
-  spaceH,
-  sizeIcon,
-  colorTitle,
-} from 'modules/theme';
+import { colorSubtitle, spaceM, spaceH, sizeIcon } from 'modules/theme';
 import { buildURI } from 'modules/url';
 import {
   useCurrencyState,
   useCurrenciesDispatch,
 } from 'src/context/currenciesContext';
+import BottomButton from './BottomButton';
 
-const secondaryIcons = css`
-  width: ${sizeIcon};
-  fill: ${colorTitle};
-`;
+const IconStyle = {
+  fill: colorSubtitle,
+  width: sizeIcon,
+};
 const navigatorApi = window.navigator as any; // trick for TS
 
 type Props = { onAdd: () => void };
@@ -52,42 +46,26 @@ const BottomActions: React.FC<Props> = ({ onAdd }) => {
       css={css`
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
         width: 100%;
         margin: ${spaceH} auto ${spaceM};
       `}
     >
-      <div
+      <BottomButton
         onClick={onAdd}
-        css={css`
-          display: flex;
-          align-items: center;
-          border-radius: 20px;
-          height: 40px;
-          background: ${colorPrimary};
-          padding: ${spaceS} ${spaceM};
-        `}
-      >
-        <AddIcon
-          css={css`
-            width: ${sizeIcon};
-            fill: white;
-          `}
-        />
-        <p
-          css={css`
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            color: white;
-            margin-left: ${spaceS};
-          `}
-        >
-          Add
-        </p>
-      </div>
-      <RemoveIcon css={secondaryIcons} onClick={handleRemove} />
+        icon={<AddIcon css={IconStyle} />}
+        label="Add"
+      />
+      <BottomButton
+        onClick={handleRemove}
+        icon={<RemoveIcon css={IconStyle} />}
+        label="Remove"
+      />
       {navigatorApi.share && (
-        <ShareIcon css={secondaryIcons} onClick={handleShare} />
+        <BottomButton
+          onClick={handleShare}
+          icon={<ShareIcon css={IconStyle} />}
+          label="Share"
+        />
       )}
     </div>
   );
