@@ -11,15 +11,17 @@ export type Action =
 export type CurrencyDispatch = (value: number) => void;
 export type CurrenciesDispatch = (value: Action) => void;
 
-const CurrenciesStateContext = React.createContext<Currency[]>([]);
-const CurrencyStateContext = React.createContext<Currency | undefined>(
+export const CurrenciesStateContext = React.createContext<Currency[]>([]);
+export const CurrencyStateContext = React.createContext<Currency | undefined>(
   undefined,
 );
 
-const CurrenciesDispatchContext = React.createContext<CurrenciesDispatch>(
+export const CurrenciesDispatchContext = React.createContext<
+  CurrenciesDispatch
+>(() => {});
+export const CurrencyDispatchContext = React.createContext<CurrencyDispatch>(
   () => {},
 );
-const CurrencyDispatchContext = React.createContext<CurrencyDispatch>(() => {});
 
 export const useCurrenciesState = () =>
   React.useContext(CurrenciesStateContext);

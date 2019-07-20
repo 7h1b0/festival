@@ -89,13 +89,13 @@ const Converter: React.FC<{}> = () => {
           margin: ${spaceL} 0;
         `}
       />
-      <label htmlFor="euro" css={baseCurrencyName}>
+      <label htmlFor="euros" css={baseCurrencyName}>
         EUR
       </label>
       <Rate rate={1 / currency.rate} origin="EUR" target={currency.name} />
       <input
         type="number"
-        id="euro"
+        id="euros"
         step="0.01"
         value={euro || ''}
         min={0}
