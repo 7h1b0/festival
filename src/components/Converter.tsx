@@ -44,6 +44,11 @@ const Converter: React.FC<{}> = () => {
   const [euro, setEuro] = useRoundValue(0);
   const inputEl = useFocus([currency]);
 
+  React.useEffect(() => {
+    setValue(0);
+    setEuro(0);
+  }, [currency]);
+
   if (currency === undefined) {
     return null;
   }
