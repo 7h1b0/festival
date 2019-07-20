@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import Rate from 'components/Rate';
-import useRoundValue from 'hooks/useRoundValue';
+import useConverter from 'hooks/useConverter';
 import useFocus from 'hooks/useFocus';
 import { useCurrencyState } from 'context/currenciesContext';
 
@@ -40,14 +40,10 @@ const baseCurrencyName = css`
 
 const Converter: React.FC<{}> = () => {
   const currency = useCurrencyState();
-  const [value, setValue] = useRoundValue(0);
-  const [euro, setEuro] = useRoundValue(0);
+  const [{ value, euros }, dispatch] = useConverter(
+    currency ? currency.rate : 0,
+  );
   const inputEl = useFocus([currency]);
-
-  React.useEffect(() => {
-    setValue(0);
-    setEuro(0);
-  }, [currency]);
 
   if (currency === undefined) {
     return null;
@@ -74,8 +70,7 @@ const Converter: React.FC<{}> = () => {
         value={value || ''}
         min={0}
         onChange={e => {
-          setValue(Number(e.target.value));
-          setEuro(Number(e.target.value) * currency.rate);
+          dispatch({ type: 'TO_EUROS', data: Number(e.target.value) });
         }}
         css={css`
           ${baseInput}
@@ -97,11 +92,10 @@ const Converter: React.FC<{}> = () => {
         type="number"
         id="euros"
         step="0.01"
-        value={euro || ''}
+        value={euros || ''}
         min={0}
         onChange={e => {
-          setEuro(Number(e.target.value));
-          setValue(Number(e.target.value) / currency.rate);
+          dispatch({ type: 'TO_CURRENCY', data: Number(e.target.value) });
         }}
         css={baseInput}
       />
