@@ -1,48 +1,15 @@
 import React from 'react';
-import { getAllCurrencies, store } from 'modules/database';
+import { getAllCurrencies } from 'modules/database';
 import { setAsLastUsed, getLastUsed } from 'modules/database';
 import { Currency } from 'modules/currency';
 import { fetchCurrencyFromURL } from 'modules/url';
+import reducer from './currenciesReducer';
 
-type Action =
+export type Action =
   | { type: 'add'; data: Currency }
   | { type: 'remove'; data: Currency };
-type CurrencyDispatch = (value: number) => void;
-type CurrenciesDispatch = (value: Action) => void;
-
-function isDifferentFrom(newCurrency: Currency) {
-  return (currency: Currency) =>
-    currency.festival !== newCurrency.festival &&
-    currency.name !== newCurrency.name;
-}
-
-function reducer(dispatchCurrencyId: CurrencyDispatch) {
-  return (state: Currency[], action: Action) => {
-    switch (action.type) {
-      case 'add':
-        const isNew = state.every(isDifferentFrom(action.data));
-        if (isNew) {
-          const newState = state.concat(action.data);
-          store(newState);
-          dispatchCurrencyId(action.data.id);
-          return newState;
-        }
-        return state;
-
-      case 'remove':
-        const newState = state.filter(({ id }) => id !== action.data.id);
-        store(newState);
-        const lastCurrency = newState[newState.length - 1];
-        const lastId = lastCurrency ? lastCurrency.id : -1;
-        dispatchCurrencyId(lastId);
-
-        return newState;
-
-      default:
-        return state;
-    }
-  };
-}
+export type CurrencyDispatch = (value: number) => void;
+export type CurrenciesDispatch = (value: Action) => void;
 
 const CurrenciesStateContext = React.createContext<Currency[]>([]);
 const CurrencyStateContext = React.createContext<Currency | undefined>(
