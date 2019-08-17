@@ -14,9 +14,14 @@ type Action =
       type: 'RESET';
     };
 
+type Converter = {
+  value: number;
+  euros: number;
+};
+
 const initialState = { euros: 0, value: 0 };
 function reducer(rate: number) {
-  return (state: Currencies, action: Action): Currencies => {
+  return (state: Converter, action: Action): Converter => {
     switch (action.type) {
       case 'TO_EUROS':
         return {
@@ -40,12 +45,7 @@ function reducer(rate: number) {
   };
 }
 
-type Currencies = {
-  value: number;
-  euros: number;
-};
-
-function useConverter(rate: number): [Currencies, React.Dispatch<Action>] {
+function useConverter(rate: number): [Converter, React.Dispatch<Action>] {
   const [state, dispatch] = React.useReducer(reducer(rate), initialState);
 
   React.useEffect(() => {
