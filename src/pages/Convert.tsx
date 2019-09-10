@@ -1,23 +1,22 @@
 import React from 'react';
+import { RouteComponentProps, Redirect } from '@reach/router';
+
 import Converter from 'components/Converter';
 import Currencies from 'components/Currencies';
 import BottomActions from 'components/BottomActions';
-import GetStarted from 'components/GetStarted';
 import {
   useCurrencyState,
   useCurrenciesState,
   useCurrencyDispatch,
 } from 'context/currenciesContext';
 
-type Props = { showForm: () => void };
-
-const Convert: React.FC<Props> = ({ showForm }) => {
+const Convert: React.FC<RouteComponentProps> = () => {
   const currencies = useCurrenciesState();
   const selectedCurrency = useCurrencyState();
   const dispatch = useCurrencyDispatch();
 
   if (selectedCurrency == null) {
-    return <GetStarted showForm={showForm} />;
+    return <Redirect to="/start" />;
   }
 
   return (
@@ -28,7 +27,7 @@ const Convert: React.FC<Props> = ({ showForm }) => {
         onChange={e => dispatch(Number(e.target.value))}
       />
       <Converter />
-      <BottomActions onAdd={showForm} />
+      <BottomActions />
     </>
   );
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import { navigate, RouteComponentProps } from '@reach/router';
+
 import EmptyListIcon from 'components/icons/EmptyListIcon';
 import Button from 'components/Button';
 import {
@@ -11,9 +13,11 @@ import {
   spaceS,
 } from 'modules/theme';
 
-type Props = { showForm: () => void };
+const GetStarted: React.FC<RouteComponentProps> = () => {
+  const redirectToAdd = () => {
+    navigate('/add');
+  };
 
-const GetStarted: React.FC<Props> = ({ showForm }) => {
   return (
     <div
       css={css`
@@ -53,7 +57,7 @@ const GetStarted: React.FC<Props> = ({ showForm }) => {
       </p>
       <Button
         uiStyle="raised"
-        onClick={showForm}
+        onClick={redirectToAdd}
         css={css`
           margin: ${spaceL} auto;
         `}

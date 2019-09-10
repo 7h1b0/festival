@@ -1,16 +1,18 @@
 import React from 'react';
+import { Router } from '@reach/router';
+
 import Convert from 'pages/Convert';
 import CurrencyForm from 'pages/CurrencyForm';
-import useToggle from 'src/hooks/useToggle';
+import GetStarted from 'pages/GetStarted';
 
 const App = () => {
-  const [showForm, toggleForm] = useToggle();
-
-  if (showForm) {
-    return <CurrencyForm onClose={toggleForm} />;
-  }
-
-  return <Convert showForm={toggleForm} />;
+  return (
+    <Router>
+      <CurrencyForm path="/add" />
+      <Convert path="/" />
+      <GetStarted path="/start" />
+    </Router>
+  );
 };
 
 export default App;
