@@ -116,6 +116,7 @@ const CurrencyForm: React.FC<RouteComponentProps> = () => {
             css={css`
               width: 15px;
               fill: ${colorTitle};
+              cursor: pointer;
             `}
             onClick={redirectToConvert}
           />
