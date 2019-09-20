@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import { navigate } from '@reach/router';
 
 import { AddIcon, RemoveIcon, ShareIcon } from 'components/icons';
 import { colorSubtitle, spaceM, spaceH, sizeIcon } from 'modules/theme';
@@ -16,8 +17,7 @@ const IconStyle = {
 };
 const navigatorApi = window.navigator as any; // trick for TS
 
-type Props = { onAdd: () => void };
-const BottomActions: React.FC<Props> = ({ onAdd }) => {
+const BottomActions: React.FC<{}> = () => {
   const currency = useCurrencyState();
   const dispatch = useCurrenciesDispatch();
 
@@ -41,6 +41,10 @@ const BottomActions: React.FC<Props> = ({ onAdd }) => {
     }
   };
 
+  const handleAdd = () => {
+    navigate('/add');
+  };
+
   return (
     <div
       css={css`
@@ -51,7 +55,7 @@ const BottomActions: React.FC<Props> = ({ onAdd }) => {
       `}
     >
       <BottomButton
-        onClick={onAdd}
+        onClick={handleAdd}
         icon={<AddIcon css={IconStyle} />}
         label="Add"
       />

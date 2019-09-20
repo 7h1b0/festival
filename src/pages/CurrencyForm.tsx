@@ -1,5 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import { navigate, RouteComponentProps } from '@reach/router';
+
 import CloseIcon from 'components/icons/CloseIcon';
 import Change from 'components/steps/Change';
 import Stepper from 'components/Stepper';
@@ -35,7 +37,7 @@ function stepReducer(state: number, action: 'increment' | 'decrement'): number {
   }
 }
 
-const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+const CurrencyForm: React.FC<RouteComponentProps> = () => {
   const [currentStep, setCurrenStep] = React.useReducer(stepReducer, 0);
   const dispatchCurrencies = useCurrenciesDispatch();
   const [state, dispatch] = React.useReducer(
@@ -65,11 +67,15 @@ const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         id: Date.now(),
       };
       dispatchCurrencies({ type: 'add', data: newCurrency });
-      onClose();
+      redirectToConvert();
       return;
     }
     setCurrenStep(INCREMENT);
   }
+
+  const redirectToConvert = () => {
+    navigate('/');
+  };
 
   const STEPS = [
     <FestivalName
@@ -111,7 +117,7 @@ const CurrencyForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               width: 15px;
               fill: ${colorTitle};
             `}
-            onClick={onClose}
+            onClick={redirectToConvert}
           />
           <h1
             css={css`
