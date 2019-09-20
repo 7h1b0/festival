@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 import { navigate, RouteComponentProps } from '@reach/router';
 
 import EmptyListIcon from 'components/icons/EmptyListIcon';
-import Button from 'src/components/button';
+import Button from 'components/button';
 import {
   spaceL,
   colorTitle,
