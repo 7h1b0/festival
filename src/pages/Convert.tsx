@@ -1,9 +1,9 @@
 import React from 'react';
 import { RouteComponentProps, Redirect } from '@reach/router';
 
-import Converter from 'components/Converter';
-import Currencies from 'components/Currencies';
-import BottomActions from 'components/BottomActions';
+import Converter from 'components/converter';
+import Currencies from 'components/currencies';
+import BottomActions from 'components/bottom-actions';
 import {
   useCurrencyState,
   useCurrenciesState,

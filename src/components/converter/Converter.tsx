@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import Rate from 'components/Rate';
+import Rate from 'components/rate';
 import useConverter from 'hooks/useConverter';
 import useFocus from 'hooks/useFocus';
 import { useCurrencyState } from 'context/currenciesContext';

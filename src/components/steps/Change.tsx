@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from 'components/Input';
+import Input from 'components/input';
 import { css } from '@emotion/core';
 
 import { colorSubtitle, sizeText, spaceM } from 'modules/theme';

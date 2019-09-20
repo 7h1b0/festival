@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import useFocus from 'hooks/useFocus';
 import {
   borderRadius,
   colorDivider,
@@ -32,13 +33,7 @@ const Input: React.FC<Props> = ({
   placeholder = '',
   autofocus = false,
 }) => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
-
-  React.useEffect(() => {
-    if (inputRef.current && autofocus) {
-      inputRef.current.focus();
-    }
-  }, []);
+  const inputRef = useFocus([], autofocus);
 
   return (
     <label

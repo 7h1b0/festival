@@ -4,9 +4,9 @@ import { navigate, RouteComponentProps } from '@reach/router';
 
 import CloseIcon from 'components/icons/CloseIcon';
 import Change from 'components/steps/Change';
-import Stepper from 'components/Stepper';
-import Button from 'components/Button';
-import Divider from 'components/Divider';
+import Stepper from 'components/stepper';
+import Button from 'src/components/button';
+import Divider from 'components/divider';
 import CurrencyName from 'components/steps/CurrencyName';
 import FestivalName from 'components/steps/FestivalName';
 import { useCurrenciesDispatch } from 'context/currenciesContext';

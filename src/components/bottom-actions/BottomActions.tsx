@@ -9,7 +9,7 @@ import {
   useCurrencyState,
   useCurrenciesDispatch,
 } from 'src/context/currenciesContext';
-import BottomButton from './BottomButton';
+import BottomButton from '../bottom-button';
 
 const IconStyle = {
   fill: colorSubtitle,

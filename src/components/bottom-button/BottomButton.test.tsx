@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import BottomButton from './BottomButton';
-import { ShareIcon } from './icons';
+import { ShareIcon } from '../icons';
 
 describe('BottomButton', () => {
   it('should render correctly', () => {
