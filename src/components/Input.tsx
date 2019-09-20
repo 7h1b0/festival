@@ -12,6 +12,7 @@ import {
 } from 'modules/theme';
 
 type Props = {
+  autofocus?: boolean;
   name: string;
   label: string;
   value: string | number;
@@ -29,40 +30,52 @@ const Input: React.FC<Props> = ({
   type = 'text',
   required = false,
   placeholder = '',
-}) => (
-  <label
-    htmlFor={name}
-    css={css`
-      color: ${colorSubtitle};
-      font-size: ${sizeLabel};
-    `}
-  >
-    {label}
-    <input
+  autofocus = false,
+}) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (inputRef.current && autofocus) {
+      inputRef.current.focus();
+    }
+  }, []);
+
+  return (
+    <label
+      htmlFor={name}
       css={css`
-        display: block;
-        width: 100%;
-        padding: ${spaceS};
-        margin-top: 5px;
-        border: 1px solid ${colorDivider};
-        background-color: #fff;
-        border-radius: ${borderRadius};
-        color: ${colorTitle};
-        font-size: ${sizeText};
-        &:focus {
-          border: 1px solid ${colorPrimary};
-          outline: none;
-        }
+        color: ${colorSubtitle};
+        font-size: ${sizeLabel};
       `}
-      id={name}
-      name={name}
-      type={type}
-      value={value}
-      onChange={onChange}
-      required={required}
-      placeholder={placeholder}
-    />
-  </label>
-);
+    >
+      {label}
+      <input
+        ref={inputRef}
+        css={css`
+          display: block;
+          width: 100%;
+          padding: ${spaceS};
+          margin-top: 5px;
+          border: 1px solid ${colorDivider};
+          background-color: #fff;
+          border-radius: ${borderRadius};
+          color: ${colorTitle};
+          font-size: ${sizeText};
+          &:focus {
+            border: 1px solid ${colorPrimary};
+            outline: none;
+          }
+        `}
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        required={required}
+        placeholder={placeholder}
+      />
+    </label>
+  );
+};
 
 export default Input;

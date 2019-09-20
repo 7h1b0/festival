@@ -13,6 +13,7 @@ const FestivalName: React.FC<Props> = ({ value, onChange, isValid }) => {
 
   return (
     <Input
+      autofocus
       name="festival"
       label="Enter the name of your festival"
       placeholder="Example: Tomorrowland"

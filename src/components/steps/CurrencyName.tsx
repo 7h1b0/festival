@@ -19,6 +19,7 @@ const CurrencyName: React.FC<Props> = ({
 
   return (
     <Input
+      autofocus
       label={`Enter the currency name used by ${festival}:`}
       name="name"
       placeholder="Example: Pearl"

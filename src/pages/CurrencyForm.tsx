@@ -135,7 +135,7 @@ const CurrencyForm: React.FC<RouteComponentProps> = () => {
         <Stepper steps={STEPS.length} currentStep={currentStep} />
       </div>
       <Divider />
-      <div
+      <form
         css={css`
           width: 90%;
           margin: ${spaceH} auto;
@@ -150,7 +150,12 @@ const CurrencyForm: React.FC<RouteComponentProps> = () => {
             margin: ${spaceL} 0;
           `}
         >
-          <Button uiStyle="raised" onClick={handleNext} disabled={!isValidStep}>
+          <Button
+            uiStyle="raised"
+            onClick={handleNext}
+            disabled={!isValidStep}
+            type="submit"
+          >
             {isLastStep(currentStep, STEPS) ? 'Add' : 'Continue'}
           </Button>
           {currentStep > 0 && (
@@ -159,7 +164,7 @@ const CurrencyForm: React.FC<RouteComponentProps> = () => {
             </Button>
           )}
         </div>
-      </div>
+      </form>
     </>
   );
 };

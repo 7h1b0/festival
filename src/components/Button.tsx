@@ -46,6 +46,7 @@ type Props = {
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
 };
 
 const Button: React.FC<Props> = ({
@@ -54,6 +55,7 @@ const Button: React.FC<Props> = ({
   className,
   uiStyle,
   disabled = false,
+  type = 'button',
 }) => (
   <button
     css={css`
@@ -64,6 +66,7 @@ const Button: React.FC<Props> = ({
     onClick={onClick}
     className={className}
     disabled={disabled}
+    type={type}
   >
     {children}
   </button>
