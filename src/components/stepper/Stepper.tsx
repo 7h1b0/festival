@@ -1,40 +1,37 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import { colorPrimary } from 'modules/theme';
-
-function generateRange(steps: number) {
-  return Array.from({ length: steps }, (_, i) => i);
-}
+import { colorPrimary, colorDisabled, spaceM } from 'modules/theme';
 
 type Props = { steps: number; currentStep: number };
 
 const Stepper: React.FC<Props> = ({ steps, currentStep }) => {
-  const range = generateRange(steps);
   return (
     <div
       css={css`
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60%;
-        margin: 0 auto;
+        position: relative;
+        height: 8px;
+        margin: ${spaceM} 0;
       `}
     >
-      {range.map((_, step) => {
-        const background = step === currentStep ? colorPrimary : '#dbe3f4';
-        return (
-          <div
-            key={step}
-            css={css`
-              width: 10px;
-              height: 10px;
-              border-radius: 50%;
-              margin: 0 4px;
-              background: ${background};
-            `}
-          />
-        );
-      })}
+      <div
+        css={css`
+          position: absolute;
+          bottom: 0px;
+          height: 2px;
+          width: 100%;
+          background: ${colorDisabled};
+        `}
+      />
+      <div
+        css={css`
+          width: ${((currentStep + 1) / steps) * 100}%;
+          position: absolute;
+          bottom: 0px;
+          height: 8px;
+          background: ${colorPrimary};
+          transition: width 0.8s ease-in-out;
+        `}
+      />
     </div>
   );
 };

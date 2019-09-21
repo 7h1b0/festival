@@ -6,11 +6,16 @@ import CloseIcon from 'components/icons/CloseIcon';
 import Change from 'components/steps/Change';
 import Stepper from 'components/stepper';
 import Button from 'src/components/button';
-import Divider from 'components/divider';
 import CurrencyName from 'components/steps/CurrencyName';
 import FestivalName from 'components/steps/FestivalName';
 import { useCurrenciesDispatch } from 'context/currenciesContext';
-import { spaceH, spaceL, colorTitle, sizeLabel, spaceM } from 'modules/theme';
+import {
+  spaceH,
+  spaceL,
+  colorTitle,
+  sizeLabel,
+  sizeHeadline,
+} from 'modules/theme';
 
 function isLastStep(step: number, steps: unknown[]) {
   return step === steps.length - 1;
@@ -101,41 +106,42 @@ const CurrencyForm: React.FC<RouteComponentProps> = () => {
     <>
       <div
         css={css`
-          background: #fff;
-          padding: ${spaceL};
+          position: relative;
+          padding: ${spaceL} ${spaceL} 0;
+          text-align: center;
         `}
       >
-        <div
+        <CloseIcon
           css={css`
-            display: flex;
-            align-items: center;
-            margin-bottom: ${spaceM};
+            position: absolute;
+            top: ${spaceL};
+            left: ${spaceL};
+            width: 15px;
+            fill: ${colorTitle};
+            cursor: pointer;
           `}
-        >
-          <CloseIcon
+          onClick={redirectToConvert}
+        />
+        <div>
+          <span
             css={css`
-              width: 15px;
-              fill: ${colorTitle};
-              cursor: pointer;
-            `}
-            onClick={redirectToConvert}
-          />
-          <h1
-            css={css`
-              width: calc(100% - 30px);
               color: ${colorTitle};
-              font-size: ${sizeLabel};
+              font-size: ${sizeHeadline};
               font-weight: bold;
-              text-align: center;
             `}
           >
-            Add a currency
-          </h1>
+            {currentStep + 1}
+          </span>
+          <span
+            css={css`
+              color: ${colorTitle};
+              font-size: ${sizeLabel};
+            `}
+          >{` / ${STEPS.length}`}</span>
         </div>
 
         <Stepper steps={STEPS.length} currentStep={currentStep} />
       </div>
-      <Divider />
       <form
         css={css`
           width: 90%;
