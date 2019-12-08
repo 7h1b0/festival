@@ -37,7 +37,6 @@ const Input: React.FC<Props> = ({
 
   return (
     <label
-      htmlFor={name}
       css={css`
         color: ${colorSubtitle};
         font-size: ${sizeLabel};
@@ -61,7 +60,6 @@ const Input: React.FC<Props> = ({
             outline: none;
           }
         `}
-        id={name}
         name={name}
         type={type}
         value={value}

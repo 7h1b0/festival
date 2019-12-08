@@ -6,17 +6,20 @@ type Props = { icon: React.ReactNode; onClick: () => void; label: string };
 const BottomButton: React.FC<Props> = ({ icon, onClick, label }) => {
   return (
     <div
-      onClick={onClick}
       css={css`
         flex: 1;
         text-align: center;
       `}
     >
-      <div
+      <button
+        onClick={onClick}
+        type="button"
         css={css`
           min-width: 50px;
           display: inline-block;
           cursor: pointer;
+          background: none;
+          border: none;
         `}
       >
         {icon}
@@ -29,7 +32,7 @@ const BottomButton: React.FC<Props> = ({ icon, onClick, label }) => {
         >
           {label}
         </p>
-      </div>
+      </button>
     </div>
   );
 };
