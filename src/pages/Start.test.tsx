@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { navigate } from '@reach/router';
 
-import GetStarted from './GetStarted';
+import GetStarted from './Start';
 
 jest.mock('@reach/router', () => ({
   navigate: jest.fn(),

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Router } from '@reach/router';
 
-import Convert from 'pages/Convert';
-import CurrencyForm from 'pages/CurrencyForm';
-import GetStarted from 'pages/GetStarted';
+import Root from 'pages/Root';
+import Add from 'pages/Add';
+import Start from 'pages/Start';
 
 const App = () => {
   return (
     <Router>
-      <CurrencyForm path="/add" />
-      <Convert path="/" />
-      <GetStarted path="/start" />
+      <Add path="/add" />
+      <Root path="/" />
+      <Start path="/start" />
     </Router>
   );
 };
