@@ -29,9 +29,7 @@ const Converter: React.FC<{}> = () => {
         ref={inputEl}
         id={festival.name}
         value={value}
-        onChange={e => {
-          dispatch({ type: 'TO_EUROS', data: Number(e.target.value) });
-        }}
+        onChange={value => dispatch({ type: 'TO_EUROS', data: value })}
       />
 
       <div className="h-px my-6 bg-blue-500" />
@@ -42,9 +40,7 @@ const Converter: React.FC<{}> = () => {
       <Input
         id="euros"
         value={euros}
-        onChange={e => {
-          dispatch({ type: 'TO_CURRENCY', data: Number(e.target.value) });
-        }}
+        onChange={value => dispatch({ type: 'TO_CURRENCY', data: value })}
       />
     </section>
   );

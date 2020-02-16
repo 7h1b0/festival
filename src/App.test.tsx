@@ -1,0 +1,40 @@
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+
+import App from './App';
+
+jest.mock('festivals.json', () => ({
+  festivals: [
+    {
+      id: 1,
+      name: 'JS Festival',
+      currency: 'Closure',
+      year: 2019,
+      rate: 3,
+    },
+    {
+      id: 2,
+      name: 'Test Festival',
+      currency: 'TDD',
+      year: 2020,
+      rate: 5,
+    },
+  ],
+}));
+
+describe('App', () => {
+  it('should display the first festival by default', () => {
+    const { getByText } = render(<App />);
+
+    expect(getByText('Closure')).toBeVisible();
+    expect(getByText('1 Closure = 3 EUR')).toBeVisible();
+  });
+
+  it('should change festival', () => {
+    const { getByText } = render(<App />);
+
+    fireEvent.click(getByText('Test Festival 2020'));
+    expect(getByText('TDD')).toBeVisible();
+    expect(getByText('1 TDD = 5 EUR')).toBeVisible();
+  });
+});

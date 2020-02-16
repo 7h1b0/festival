@@ -34,7 +34,7 @@ describe('Festivals', () => {
   it('should all festivals and handle click', () => {
     const mockedDispatch = jest.fn();
     const closeDrawer = jest.fn();
-    const { getByText, debug } = render(
+    const { getByText } = render(
       <Context
         festivals={festivals}
         festival={festival}
@@ -43,8 +43,6 @@ describe('Festivals', () => {
         <Festivals display={true} closeDrawer={closeDrawer} />
       </Context>,
     );
-
-    debug();
 
     expect(getByText('Rock Werchter 2019')).toBeVisible();
     expect(getByText('Tomorrowland 2019')).toBeVisible();

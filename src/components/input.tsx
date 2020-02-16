@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {
   id: string;
   value: number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: number) => void;
 };
 
 const Input = React.forwardRef(
@@ -16,7 +16,7 @@ const Input = React.forwardRef(
         step="0.01"
         value={value || ''}
         min={0}
-        onChange={onChange}
+        onChange={e => onChange(Number(e.target.value))}
         className="mt-3 block w-full text-3xl rounded border border-gray-400 focus:border-blue-500"
       />
     );
