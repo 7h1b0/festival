@@ -14,7 +14,7 @@ const App = () => {
     <FestivalsProvider>
       <FestivalProvider>
         <Festivals display={isOpen} closeDrawer={() => openDrawer(false)} />
-        <div className="flex flex-col lg:justify-center lg:h-full max-w-lg mx-auto px-4">
+        <div className="flex flex-col lg:justify-center lg:h-full lg:max-w-lg mx-auto">
           <Header openDrawer={() => openDrawer(true)} />
           <Converter />
         </div>

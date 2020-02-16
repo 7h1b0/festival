@@ -17,12 +17,12 @@ export const useFestivalDispatch = () =>
   React.useContext(FestivalDispatchContext);
 
 const findById = (festivals: Festival[], festivalId: number) =>
-  festivals.find(({ id }) => id === festivalId) || null;
+  festivals.find(({ id }) => id === festivalId);
 
 export const FestivalProvider: React.FC<{}> = ({ children }) => {
   const festivals = useFestivals();
-  const [festival, setFestival] = React.useState(() =>
-    findById(festivals, getLastUsed()),
+  const [festival, setFestival] = React.useState(
+    () => findById(festivals, getLastUsed()) ?? festivals[0],
   );
 
   const handleSelectFestival = (festivalId: number) => {

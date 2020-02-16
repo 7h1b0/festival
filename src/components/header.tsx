@@ -8,7 +8,7 @@ type Props = {
 const Header: React.FC<Props> = ({ openDrawer }) => {
   const festival = useFestivalState();
   return (
-    <header className="flex lg:hidden my-8 text-gray-800 font-bold">
+    <header className="flex lg:hidden p-8 text-gray-800 font-bold">
       <button onClick={openDrawer}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
