@@ -2,10 +2,9 @@ module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   moduleDirectories: ['node_modules'],
   modulePaths: ['<rootDir>/src/'],
-  setupFilesAfterEnv: ['<rootDir>/test/setup.ts'],
-  snapshotSerializers: ['jest-emotion'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   automock: false,
   clearMocks: true,
   errorOnDeprecated: true,
-  coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
+  coveragePathIgnorePatterns: ['/node_modules/'],
 };

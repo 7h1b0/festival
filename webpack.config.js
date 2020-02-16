@@ -3,6 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const purgecss = require('@fullhuman/postcss-purgecss')({
+  content: ['./src/**/*.tsx', './public/index.html'],
+
+  defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+});
+const cssnano = require('cssnano')({
+  preset: [
+    'default',
+    {
+      discardComments: {
+        removeAll: true,
+      },
+    },
+  ],
+});
+const tailwindcss = require('tailwindcss')('./tailwindcss-config.js');
 
 module.exports = ({ prod } = {}) => {
   const plugins = prod
@@ -32,7 +50,7 @@ module.exports = ({ prod } = {}) => {
   return {
     mode: prod ? 'production' : 'development',
     entry: {
-      app: './src',
+      app: ['./src', './src/styles.css'],
     },
     output: {
       path: path.join(__dirname, 'dist'),
@@ -47,6 +65,21 @@ module.exports = ({ prod } = {}) => {
           test: /\.tsx?$/,
           loader: 'babel-loader',
           exclude: /node_modules/,
+        },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+            { loader: 'css-loader', options: { importLoaders: 1 } },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [tailwindcss, ...(prod ? [purgecss, cssnano] : [])],
+              },
+            },
+          ],
         },
       ],
     },
@@ -69,6 +102,11 @@ module.exports = ({ prod } = {}) => {
           : undefined,
       }),
       new CleanWebpackPlugin({ verbose: false }),
+      new MiniCssExtractPlugin({
+        filename: 'styles.[contenthash].css',
+        chunkFilename: '[id].css',
+        ignoreOrder: false,
+      }),
       ...plugins,
     ],
     resolve: {

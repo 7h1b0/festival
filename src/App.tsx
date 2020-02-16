@@ -1,17 +1,25 @@
 import React from 'react';
-import { Router } from '@reach/router';
 
-import Root from 'pages/Root';
-import Add from 'pages/Add';
-import Start from 'pages/Start';
+import { FestivalsProvider } from 'context/festivals-context';
+import { FestivalProvider } from 'context/festival-context';
+
+import Converter from 'components/converter';
+import Festivals from 'components/festivals';
+import Header from 'components/header';
 
 const App = () => {
+  const [isOpen, openDrawer] = React.useState(false);
+
   return (
-    <Router>
-      <Add path="/add" />
-      <Root path="/" />
-      <Start path="/start" />
-    </Router>
+    <FestivalsProvider>
+      <FestivalProvider>
+        <Festivals display={isOpen} closeDrawer={() => openDrawer(false)} />
+        <div className="flex flex-col lg:justify-center lg:h-full max-w-lg mx-auto px-4">
+          <Header openDrawer={() => openDrawer(true)} />
+          <Converter />
+        </div>
+      </FestivalProvider>
+    </FestivalsProvider>
   );
 };
 

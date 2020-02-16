@@ -7,17 +7,14 @@ module.exports = api => {
         '@babel/preset-env',
         {
           targets: {
-            firefox: 60,
+            firefox: 68,
           },
         },
       ],
-      [
-        '@emotion/babel-preset-css-prop',
-        {
-          autoLabel: false,
-        },
-      ],
     ],
-    plugins: ['@babel/plugin-proposal-class-properties'],
+    plugins: [
+      '@babel/plugin-proposal-class-properties',
+      '@babel/plugin-transform-react-jsx',
+    ],
   };
 };

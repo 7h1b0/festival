@@ -1,0 +1,13 @@
+/* purgecss start ignore */
+@tailwind base;
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+@tailwind components;
+/* purgecss end ignore */
+
+@tailwind utilities;
