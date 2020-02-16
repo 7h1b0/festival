@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom'; // fix TS issues
 
 import Festivals from './festivals';
 import Context from '__factory__/context';
