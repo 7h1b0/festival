@@ -1,17 +1,18 @@
 /** @jsx h */
 import { h, FunctionComponent } from 'preact';
+import { useState, useEffect } from 'preact/hooks';
 import Rate from 'components/rate';
 import Input from 'components/input';
-import useConverter from 'hooks/useConverter';
 import useFocus from 'hooks/useFocus';
 import { useFestivalState } from 'context/festival-context';
+import { round } from '../modules/formatter';
 
 const Converter: FunctionComponent<{}> = () => {
   const festival = useFestivalState();
   const inputEl = useFocus([festival]);
-  const [{ value, euros }, dispatch] = useConverter(
-    festival ? festival.rate : 0,
-  );
+  const [value, setValue] = useState(0);
+
+  useEffect(() => setValue(0), [festival]);
 
   if (festival === null) {
     return null;
@@ -32,8 +33,8 @@ const Converter: FunctionComponent<{}> = () => {
       <Input
         forwardRef={inputEl}
         id={festival.name}
-        value={value}
-        onChange={value => dispatch({ type: 'TO_EUROS', data: value })}
+        value={round(value)}
+        onChange={setValue}
       />
 
       <div class="h-px my-6 bg-blue-500" />
@@ -47,8 +48,8 @@ const Converter: FunctionComponent<{}> = () => {
       </label>
       <Input
         id="euros"
-        value={euros}
-        onChange={value => dispatch({ type: 'TO_CURRENCY', data: value })}
+        value={round(value * festival.rate)}
+        onChange={value => setValue(value / festival.rate)}
       />
     </section>
   );

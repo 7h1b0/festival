@@ -41,7 +41,7 @@ describe('Festivals', () => {
         festival={festival}
         dispatch={mockedDispatch}
       >
-        <Festivals display={true} closeDrawer={closeDrawer} />
+        <Festivals closeDrawer={closeDrawer} />
       </Context>,
     );
 

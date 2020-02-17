@@ -9,7 +9,6 @@ import { useFestivals } from './festivals-context';
 export type CurrencyDispatch = (value: number) => void;
 
 export const FestivalStateContext = createContext<Festival | null>(null);
-
 export const FestivalDispatchContext = createContext<CurrencyDispatch>(
   () => {},
 );
