@@ -1,4 +1,5 @@
-import React from 'react';
+/** @jsx h */
+import { h, FunctionComponent } from 'preact';
 import { Festival } from 'modules/festival';
 
 import {
@@ -13,7 +14,7 @@ type Props = {
   dispatch: (id: number) => void;
 };
 
-const Context: React.FC<Props> = ({
+const Context: FunctionComponent<Props> = ({
   festivals,
   festival,
   dispatch,

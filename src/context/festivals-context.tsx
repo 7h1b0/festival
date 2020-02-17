@@ -1,15 +1,18 @@
-import React from 'react';
+/** @jsx h */
+import { h, createContext, FunctionComponent } from 'preact';
+import { useContext } from 'preact/hooks';
+
 import festivals from '../festivals.json';
 
 import { Festival } from 'src/modules/festival';
 
-export const FestivalsStateContext = React.createContext<Festival[]>(
+export const FestivalsStateContext = createContext<Festival[]>(
   festivals.festivals,
 );
 
-export const useFestivals = () => React.useContext(FestivalsStateContext);
+export const useFestivals = () => useContext(FestivalsStateContext);
 
-export const FestivalsProvider: React.FC<{}> = ({ children }) => {
+export const FestivalsProvider: FunctionComponent<{}> = ({ children }) => {
   return (
     <FestivalsStateContext.Provider value={festivals.festivals}>
       {children}

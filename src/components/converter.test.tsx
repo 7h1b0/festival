@@ -1,5 +1,6 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+/** @jsx h */
+import { h } from 'preact';
+import { render, fireEvent } from '@testing-library/preact';
 
 import Converter from './converter';
 import Context from '__factory__/context';
@@ -23,10 +24,10 @@ describe('Converter', () => {
       </Context>,
     );
 
-    fireEvent.change(getByLabelText(festival.currency), payload);
+    fireEvent.input(getByLabelText(festival.currency), payload);
     expect(getByDisplayValue('9')).toBeVisible();
 
-    fireEvent.change(getByLabelText('EUR'), payload);
+    fireEvent.input(getByLabelText('EUR'), payload);
     expect(getByDisplayValue('1')).toBeVisible();
   });
 });

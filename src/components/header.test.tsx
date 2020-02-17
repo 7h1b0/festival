@@ -1,5 +1,6 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+/** @jsx h */
+import { h } from 'preact';
+import { render } from '@testing-library/preact';
 
 import Header from './header';
 import { FestivalStateContext } from 'context/festival-context';

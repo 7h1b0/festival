@@ -1,27 +1,29 @@
-import React from 'react';
+/** @jsx h */
+import { h, createContext, FunctionComponent } from 'preact';
+import { useState, useContext } from 'preact/hooks';
+
 import { setAsLastUsed, getLastUsed } from 'modules/database';
 import { Festival } from 'src/modules/festival';
 import { useFestivals } from './festivals-context';
 
 export type CurrencyDispatch = (value: number) => void;
 
-export const FestivalStateContext = React.createContext<Festival | null>(null);
+export const FestivalStateContext = createContext<Festival | null>(null);
 
-export const FestivalDispatchContext = React.createContext<CurrencyDispatch>(
+export const FestivalDispatchContext = createContext<CurrencyDispatch>(
   () => {},
 );
 
-export const useFestivalState = () => React.useContext(FestivalStateContext);
+export const useFestivalState = () => useContext(FestivalStateContext);
 
-export const useFestivalDispatch = () =>
-  React.useContext(FestivalDispatchContext);
+export const useFestivalDispatch = () => useContext(FestivalDispatchContext);
 
 const findById = (festivals: Festival[], festivalId: number) =>
   festivals.find(({ id }) => id === festivalId);
 
-export const FestivalProvider: React.FC<{}> = ({ children }) => {
+export const FestivalProvider: FunctionComponent<{}> = ({ children }) => {
   const festivals = useFestivals();
-  const [festival, setFestival] = React.useState(
+  const [festival, setFestival] = useState(
     () => findById(festivals, getLastUsed()) ?? festivals[0],
   );
 

@@ -1,4 +1,5 @@
-import React from 'react';
+/** @jsx h */
+import { h, FunctionComponent } from 'preact';
 import { formatRate } from 'modules/formatter';
 
 type Props = {
@@ -8,8 +9,13 @@ type Props = {
   amount?: number;
 };
 
-const Rate: React.FC<Props> = ({ rate, origin, target, amount = 1 }) => (
-  <p className="text-xs text-gray-600">
+const Rate: FunctionComponent<Props> = ({
+  rate,
+  origin,
+  target,
+  amount = 1,
+}) => (
+  <p class="text-xs text-gray-600">
     {formatRate(rate, origin, target, amount)}
   </p>
 );

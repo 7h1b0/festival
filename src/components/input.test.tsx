@@ -1,5 +1,6 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+/** @jsx h */
+import { h } from 'preact';
+import { render, fireEvent } from '@testing-library/preact';
 
 import Input from './input';
 
@@ -10,7 +11,7 @@ describe('Input', () => {
       <Input onChange={handleChange} id="test" value={1} />,
     );
 
-    fireEvent.change(getByDisplayValue('1'), { target: { value: 2 } });
+    fireEvent.input(getByDisplayValue('1'), { target: { value: 2 } });
 
     expect(handleChange).toBeCalledWith(2);
   });

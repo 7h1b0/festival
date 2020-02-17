@@ -16,9 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "preact": "^10.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -29,10 +27,8 @@
     "@babel/preset-typescript": "^7.8.3",
     "@fullhuman/postcss-purgecss": "^2.0.6",
     "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^9.4.0",
+    "@testing-library/preact": "^1.0.2",
     "@types/jest": "^25.1.2",
-    "@types/react": "^16.9.19",
-    "@types/react-dom": "^16.9.5",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "babel-eslint": "^10.0.2",

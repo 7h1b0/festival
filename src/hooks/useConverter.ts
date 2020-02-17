@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useReducer } from 'preact/hooks';
 import { round } from '../modules/formatter';
 
 type Action =
@@ -45,10 +45,10 @@ function reducer(rate: number) {
   };
 }
 
-function useConverter(rate: number): [Converter, React.Dispatch<Action>] {
-  const [state, dispatch] = React.useReducer(reducer(rate), initialState);
+function useConverter(rate: number): [Converter, (action: Action) => void] {
+  const [state, dispatch] = useReducer(reducer(rate), initialState);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch({ type: 'RESET' });
   }, [rate]);
 

@@ -1,4 +1,6 @@
-import React from 'react';
+/** @jsx h */
+import { h } from 'preact';
+import { useState } from 'preact/hooks';
 
 import { FestivalsProvider } from 'context/festivals-context';
 import { FestivalProvider } from 'context/festival-context';
@@ -8,13 +10,13 @@ import Festivals from 'components/festivals';
 import Header from 'components/header';
 
 const App = () => {
-  const [isOpen, openDrawer] = React.useState(false);
+  const [isOpen, openDrawer] = useState(false);
 
   return (
     <FestivalsProvider>
       <FestivalProvider>
         <Festivals display={isOpen} closeDrawer={() => openDrawer(false)} />
-        <div className="flex flex-col lg:justify-center lg:h-full lg:max-w-lg mx-auto">
+        <div class="flex flex-col lg:justify-center lg:h-full lg:max-w-lg mx-auto">
           <Header openDrawer={() => openDrawer(true)} />
           <Converter />
         </div>
