@@ -24,10 +24,10 @@ describe('Converter', () => {
       </Context>,
     );
 
-    fireEvent.input(getByLabelText(festival.currency), payload);
+    fireEvent.input(getByLabelText(/^Closure/), payload);
     expect(getByDisplayValue('9')).toBeVisible();
 
-    fireEvent.input(getByLabelText('EUR'), payload);
+    fireEvent.input(getByLabelText(/^EUR/), payload);
     expect(getByDisplayValue('1')).toBeVisible();
   });
 });

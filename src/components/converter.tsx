@@ -21,11 +21,14 @@ const Converter: FunctionComponent<{}> = () => {
     <section class="bg-white rounded shadow uppercase p-8">
       <label
         htmlFor={festival.name}
-        class="text-gray-800 font-bold tracking-wider"
+        class="flex justify-between items-baseline"
       >
-        {festival.currency}
+        <p class="text-gray-800 font-bold tracking-wider">
+          {festival.currency}
+        </p>
+        <Rate rate={festival.rate} target="EUR" origin={festival.currency} />
       </label>
-      <Rate rate={festival.rate} target="EUR" origin={festival.currency} />
+
       <Input
         forwardRef={inputEl}
         id={festival.name}
@@ -34,10 +37,14 @@ const Converter: FunctionComponent<{}> = () => {
       />
 
       <div class="h-px my-6 bg-blue-500" />
-      <label htmlFor="euros" class="text-gray-800 font-bold tracking-wider">
-        EUR
+      <label htmlFor="euros" class="flex justify-between items-baseline">
+        <p class="text-gray-800 font-bold tracking-wider">EUR</p>
+        <Rate
+          rate={1 / festival.rate}
+          origin="EUR"
+          target={festival.currency}
+        />
       </label>
-      <Rate rate={1 / festival.rate} origin="EUR" target={festival.currency} />
       <Input
         id="euros"
         value={euros}

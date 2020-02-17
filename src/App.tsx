@@ -15,7 +15,7 @@ const App = () => {
   return (
     <FestivalsProvider>
       <FestivalProvider>
-        <Festivals display={isOpen} closeDrawer={() => openDrawer(false)} />
+        {isOpen && <Festivals closeDrawer={() => openDrawer(false)} />}
         <div class="flex flex-col lg:justify-center lg:h-full lg:max-w-lg mx-auto">
           <Header openDrawer={() => openDrawer(true)} />
           <Converter />

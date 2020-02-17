@@ -7,16 +7,13 @@ import {
 } from 'context/festival-context';
 
 type Props = {
-  display?: boolean;
   closeDrawer: () => void;
 };
 
-const Festivals: FunctionComponent<Props> = ({ display, closeDrawer }) => {
+const Festivals: FunctionComponent<Props> = ({ closeDrawer }) => {
   const festival = useFestivalState();
   const dispatch = useFestivalDispatch();
   const festivals = useFestivals();
-
-  const visibility = display ? 'block ' : 'hidden';
 
   const handleClick = (id: number) => {
     dispatch(id);
@@ -24,10 +21,8 @@ const Festivals: FunctionComponent<Props> = ({ display, closeDrawer }) => {
   };
 
   return (
-    <nav
-      class={`${visibility} w-full bg-gray-800 lg:block lg:bg-transparent h-full fixed top-0 left-0 p-8`}
-    >
-      <button onClick={closeDrawer} class="lg:hidden">
+    <nav class="w-full bg-gray-800 h-full fixed top-0 left-0 p-8">
+      <button onClick={closeDrawer}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -38,7 +33,7 @@ const Festivals: FunctionComponent<Props> = ({ display, closeDrawer }) => {
       </button>
       <ul
         title="festivals"
-        class="block h-full lg:w-64 bg-gray-800 lg:rounded-lg py-8 lg:shadow lg:px-4"
+        class="flex flex-col h-full lg:justify-center lg:text-center bg-gray-800 py-8"
       >
         {festivals.map(({ name, id, year }) => (
           <li

@@ -32,9 +32,11 @@ describe('App', () => {
   });
 
   it('should change festival', () => {
-    const { getByText } = render(<App />);
+    const { getByText, getByLabelText } = render(<App />);
 
+    fireEvent.click(getByLabelText('menu'));
     fireEvent.click(getByText('Test Festival 2020'));
+
     expect(getByText('TDD')).toBeVisible();
     expect(getByText('1 TDD = 5 EUR')).toBeVisible();
   });

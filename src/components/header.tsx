@@ -9,8 +9,8 @@ type Props = {
 const Header: FunctionComponent<Props> = ({ openDrawer }) => {
   const festival = useFestivalState();
   return (
-    <header class="flex lg:hidden p-8 text-gray-800 font-bold">
-      <button onClick={openDrawer}>
+    <header class="flex p-8 text-gray-800 font-bold">
+      <button onClick={openDrawer} aria-label="menu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
