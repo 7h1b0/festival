@@ -1,5 +1,4 @@
-/** @jsx h */
-import { h, createContext, FunctionComponent } from 'preact';
+import { createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 
 import festivals from '../festivals.json';
@@ -11,11 +10,3 @@ export const FestivalsStateContext = createContext<Festival[]>(
 );
 
 export const useFestivals = () => useContext(FestivalsStateContext);
-
-export const FestivalsProvider: FunctionComponent<{}> = ({ children }) => {
-  return (
-    <FestivalsStateContext.Provider value={festivals.festivals}>
-      {children}
-    </FestivalsStateContext.Provider>
-  );
-};

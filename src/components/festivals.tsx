@@ -32,20 +32,27 @@ const Festivals: FunctionComponent<Props> = ({ closeDrawer }) => {
         </svg>
       </button>
       <ul
+        role="tablist"
         title="festivals"
         class="flex flex-col h-full lg:justify-center lg:text-center bg-gray-800 py-8"
       >
-        {festivals.map(({ name, id, year }) => (
-          <li
-            key={id}
-            onClick={() => handleClick(id)}
-            class={`cursor-pointer py-3 hover:text-white ${
-              festival?.id === id ? 'text-white' : 'text-gray-500'
-            }`}
-          >
-            {`${name} ${year}`}
-          </li>
-        ))}
+        {festivals.map(({ name, id, year }) => {
+          const isSelected = festival.id === id;
+          return (
+            <li
+              key={id}
+              role="tab"
+              tabIndex={0}
+              onClick={() => handleClick(id)}
+              aria-selected={isSelected}
+              class={`cursor-pointer py-3 hover:text-white ${
+                isSelected ? 'text-white' : 'text-gray-500'
+              }`}
+            >
+              {`${name} ${year}`}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

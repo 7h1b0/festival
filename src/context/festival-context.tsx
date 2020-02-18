@@ -13,7 +13,14 @@ export const FestivalDispatchContext = createContext<CurrencyDispatch>(
   () => {},
 );
 
-export const useFestivalState = () => useContext(FestivalStateContext);
+export const useFestivalState = () => {
+  const festival = useContext(FestivalStateContext);
+
+  if (festival === null) {
+    throw new Error('useFestivalState must be within FestivalProvider');
+  }
+  return festival;
+};
 
 export const useFestivalDispatch = () => useContext(FestivalDispatchContext);
 

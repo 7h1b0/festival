@@ -9,14 +9,10 @@ import { round } from '../modules/formatter';
 
 const Converter: FunctionComponent<{}> = () => {
   const festival = useFestivalState();
-  const inputEl = useFocus([festival]);
+  const inputEl = useFocus([festival.id]);
   const [value, setValue] = useState(0);
 
-  useEffect(() => setValue(0), [festival]);
-
-  if (festival === null) {
-    return null;
-  }
+  useEffect(() => setValue(0), [festival.id]);
 
   return (
     <section class="bg-white rounded shadow uppercase p-8">
