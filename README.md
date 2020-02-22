@@ -1,26 +1,39 @@
-# :repeat: Festival Converter [![Build Status](https://travis-ci.com/7h1b0/festival.svg?branch=master)](https://travis-ci.com/7h1b0/festival)
+# Festival [![Build Status](https://travis-ci.com/7h1b0/festival.svg?branch=master)](https://travis-ci.com/7h1b0/festival)
 
-## Quick Start
+## What it does
 
-```bash
-npm i
+https://festival-converter.netlify.com/ is a sleek and modern currency converter for festivals
+
+---
+
+## Requirements
+
+- [Node.js 10.x](https://nodejs.org/)
+
+---
+
+## Development
+
+To start an ephemeral development server run:
+
+```sh
+npm install
 npm start
 ```
 
-### `npm start` or `yarn start`
+Then browse to http://localhost:3000
 
-Runs the project in development mode.  
-You can view your application at `http://localhost:3000`
+---
 
-The page will reload if you make edits.
+## Commands
 
-### `npm run build` or `yarn build`
+| Command                | Description                      |
+| ---------------------- | -------------------------------- |
+| `npm run format:check` | Formats the code using prettier. |
+| `npm run type:check`   | Checks types using Typescript    |
+| `npm run lint:check`   | Lints the JavaScript code.       |
+| `npm test`             | Runs tests.                      |
+| `npm start`            | Runs the website in development. |
+| `npm run build`        | Builds the production assets.    |
 
-Builds the app for production to the dist folder.
-
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
-
-### `npm t` or `yarn test`
-
-Runs the test watcher (Jest) in an interactive mode.
+---
