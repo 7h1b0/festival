@@ -1,10 +1,13 @@
-export function formatPrice(number: number, separator = ' '): string {
+const numberFormat = new Intl.NumberFormat(navigator.language ?? 'en-US', {
+  style: 'decimal',
+  maximumFractionDigits: 2,
+});
+
+export function formatPrice(number: number): string {
   if (isNaN(number)) {
     return '-';
   }
-  return `${round(number)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, () => separator)}`;
+  return numberFormat.format(number);
 }
 
 export function formatRate(

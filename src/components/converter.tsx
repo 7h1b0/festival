@@ -15,7 +15,7 @@ const Converter: FunctionComponent<{}> = () => {
   useEffect(() => setValue(0), [festival.id]);
 
   return (
-    <section class="bg-white rounded shadow uppercase p-8">
+    <main class="bg-white rounded shadow uppercase p-8">
       <label
         htmlFor={festival.name}
         class="flex justify-between items-baseline"
@@ -47,7 +47,7 @@ const Converter: FunctionComponent<{}> = () => {
         value={round(value * festival.rate)}
         onChange={value => setValue(value / festival.rate)}
       />
-    </section>
+    </main>
   );
 };
 

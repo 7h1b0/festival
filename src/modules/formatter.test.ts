@@ -12,9 +12,9 @@ describe.each([
 });
 
 describe.each([
-  [1000, '1 000'],
+  [1000, '1,000'],
   [3.9, '3.9'],
-  [12345.6789, '12 345.68'],
+  [12345.6789, '12,345.68'],
 ])('formatPrice', (given, expected) => {
   it(`should return ${expected}`, () => {
     expect(formatPrice(given)).toBe(expected);
