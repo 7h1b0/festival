@@ -2,8 +2,8 @@
 import { h, createContext, FunctionComponent } from 'preact';
 import { useState, useContext } from 'preact/hooks';
 
-import { setAsLastUsed, getLastUsed } from 'src/modules/preferences';
-import { Festival } from 'src/modules/festival';
+import { setAsLastUsed, getLastUsed } from 'modules/preferences';
+import { Festival } from 'modules/festival';
 import { useFestivals } from './festivals-context';
 
 export type CurrencyDispatch = (value: number) => void;
