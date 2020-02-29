@@ -21,7 +21,7 @@ const Festivals: FunctionComponent<Props> = ({ closeDrawer }) => {
   };
 
   return (
-    <nav class="w-full bg-gray-800 h-full fixed top-0 left-0 p-8">
+    <nav class="w-full bg-gray-800 fixed inset-0 p-8 ">
       <button onClick={closeDrawer}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ const Festivals: FunctionComponent<Props> = ({ closeDrawer }) => {
               tabIndex={0}
               onClick={() => handleClick(id)}
               aria-selected={isSelected}
-              class={`cursor-pointer py-3 hover:text-white ${
+              class={`cursor-pointer py-3 hover:text-white text-xl ${
                 isSelected ? 'text-white' : 'text-gray-500'
               }`}
             >
