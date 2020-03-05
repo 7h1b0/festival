@@ -1,8 +1,4 @@
 describe('Festival website', () => {
-  beforeEach(() => {
-    cy.clearLocalStorage();
-  });
-
   it('allows user to choose between festivals', () => {
     cy.visit('/');
 
@@ -45,20 +41,10 @@ describe('Festival website', () => {
     cy.visit('/');
     cy.queryByText('Rock Werchter 2019').should('be.visible');
 
-    cy.window()
-      .its('localStorage')
-      .then(localStorage => {
-        localStorage.setItem('lastUsedFestival', '2');
-      });
+    cy.queryByLabelText('menu').click();
+    cy.queryByText('Mysteryland 2019').click();
 
     cy.reload();
-    cy.queryByText('Tomorrowland 2019').should('be.visible');
-
-    cy.queryByLabelText('menu').click();
-    cy.queryByText('Mysteryland 2019')
-      .click()
-      .should(() => {
-        expect(localStorage.getItem('lastUsedFestival')).to.equal('3');
-      });
+    cy.queryByText('Mysteryland 2019').should('be.visible');
   });
 });
