@@ -28,7 +28,7 @@ module.exports = {
 
   parser: 'babel-eslint',
 
-  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks'],
+  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'cypress'],
 
   env: {
     browser: true,
@@ -36,6 +36,7 @@ module.exports = {
     es6: true,
     jest: true,
     node: true,
+    'cypress/globals': true,
   },
 
   parserOptions: {
