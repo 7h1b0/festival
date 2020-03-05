@@ -7,22 +7,22 @@ import {
 } from 'context/festival-context';
 
 type Props = {
-  closeDrawer: () => void;
+  onClose: () => void;
 };
 
-const Festivals: FunctionComponent<Props> = ({ closeDrawer }) => {
+const Drawer: FunctionComponent<Props> = ({ onClose }) => {
   const festival = useFestivalState();
   const dispatch = useFestivalDispatch();
   const festivals = useFestivals();
 
   const handleClick = (id: number) => {
     dispatch(id);
-    closeDrawer();
+    onClose();
   };
 
   return (
     <nav class="w-full bg-gray-800 fixed inset-0 p-8 ">
-      <button onClick={closeDrawer} aria-label="Close">
+      <button onClick={onClose} aria-label="Close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -58,4 +58,4 @@ const Festivals: FunctionComponent<Props> = ({ closeDrawer }) => {
   );
 };
 
-export default Festivals;
+export default Drawer;

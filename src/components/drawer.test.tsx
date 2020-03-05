@@ -3,10 +3,10 @@ import { h } from 'preact';
 import { render, fireEvent } from '@testing-library/preact';
 import '@testing-library/jest-dom'; // fix TS issues
 
-import Festivals from './festivals';
+import Drawer from './drawer';
 import Context from '__factory__/context';
 
-describe('Festivals', () => {
+describe('Drawer', () => {
   const festival = {
     id: 1,
     name: 'Rock Werchter',
@@ -41,7 +41,7 @@ describe('Festivals', () => {
         festival={festival}
         dispatch={mockedDispatch}
       >
-        <Festivals closeDrawer={closeDrawer} />
+        <Drawer onClose={closeDrawer} />
       </Context>,
     );
 
