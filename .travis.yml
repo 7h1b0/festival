@@ -9,11 +9,16 @@ cache:
 install:
   - npm ci
 
+before_script:
+  - npm run build
+  - npx serve -s dist/ -l 3000 -n &
+
 script:
   - npm run lint:check
   - npm run format:check
   - npm run type:check
   - npm run coverage
+  - npm run test:e2e
 
 notifications:
   email: false
