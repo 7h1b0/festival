@@ -17,6 +17,12 @@ describe('Festival website', () => {
     cy.queryByText('1 Token = 3 EUR').should('exist');
     cy.queryByLabelText(/^Token/).type('3');
     cy.queryByLabelText(/^EUR/).should('have.value', '9');
+
+    cy.queryByLabelText('menu').click();
+    cy.queryByLabelText('Close').click();
+
+    cy.queryByLabelText(/^Token/).should('have.value', '3');
+    cy.queryByLabelText(/^EUR/).should('have.value', '9');
   });
 
   it('allows user to convert in both way', () => {

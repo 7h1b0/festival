@@ -22,7 +22,7 @@ const Festivals: FunctionComponent<Props> = ({ closeDrawer }) => {
 
   return (
     <nav class="w-full bg-gray-800 fixed inset-0 p-8 ">
-      <button onClick={closeDrawer}>
+      <button onClick={closeDrawer} aria-label="Close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
