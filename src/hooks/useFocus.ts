@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'preact/hooks';
 
-function useFocus(deps: ReadonlyArray<number>, activate = true) {
+function useFocus(deps: ReadonlyArray<number>) {
   const inputEl = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    if (inputEl.current !== null && activate) {
+    if (inputEl.current !== null) {
       inputEl.current.focus();
     }
   }, deps); // eslint-disable-line
