@@ -33,6 +33,7 @@ Then browse to http://localhost:3000
 | `npm run type:check`   | Checks types using Typescript    |
 | `npm run lint:check`   | Lints the JavaScript code.       |
 | `npm test`             | Runs tests.                      |
+| `npm run test:e2e`     | Runs e2e tests using Cypress.    |
 | `npm start`            | Runs the website in development. |
 | `npm run build`        | Builds the production assets.    |
 
