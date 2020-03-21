@@ -32,7 +32,7 @@ describe('Drawer', () => {
     },
   ];
 
-  it('should all festivals and handle click', () => {
+  it('should allow user to choose between festivals', () => {
     const mockedDispatch = jest.fn();
     const closeDrawer = jest.fn();
     const { getByText } = render(

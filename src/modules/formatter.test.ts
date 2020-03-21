@@ -15,6 +15,7 @@ describe.each([
   [1000, '1,000'],
   [3.9, '3.9'],
   [12345.6789, '12,345.68'],
+  [NaN, '-'],
 ])('formatPrice', (given, expected) => {
   it(`should return ${expected}`, () => {
     expect(formatPrice(given)).toBe(expected);
@@ -24,6 +25,7 @@ describe.each([
 describe.each([
   [1, 'EUR', 'USD', 2, '2 EUR = 2 USD'],
   [1.33, 'EUR', 'USD', 13, '13 EUR = 17.29 USD'],
+  [1.33, 'EUR', 'USD', undefined, '1 EUR = 1.33 USD'],
 ])('formatRate', (rate, currencyOrigin, currencyTarget, amount, expected) => {
   it(`should return ${expected}`, () => {
     expect(formatRate(rate, currencyOrigin, currencyTarget, amount)).toBe(
