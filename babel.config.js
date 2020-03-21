@@ -4,9 +4,8 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        targets: {
-          firefox: 68,
-        },
+        targets: { esmodules: true },
+        bugfixes: true,
       },
     ],
   ],
