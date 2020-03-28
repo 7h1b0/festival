@@ -45,7 +45,7 @@ const Converter: FunctionComponent<{}> = () => {
       <Input
         id="euros"
         value={round(value * festival.rate)}
-        onChange={value => setValue(value / festival.rate)}
+        onChange={(value) => setValue(value / festival.rate)}
       />
     </main>
   );

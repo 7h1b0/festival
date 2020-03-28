@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const purgecss = require('@fullhuman/postcss-purgecss')({
   content: ['./src/**/*.tsx', './public/index.html'],
 
-  defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+  defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
 });
 const cssnano = require('cssnano')({
   preset: [
@@ -86,20 +86,6 @@ module.exports = ({ prod } = {}) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './src/index.html',
-        minify: prod
-          ? {
-              removeComments: true,
-              collapseWhitespace: true,
-              removeRedundantAttributes: true,
-              useShortDoctype: true,
-              removeEmptyAttributes: true,
-              removeStyleLinkTypeAttributes: true,
-              keepClosingSlash: true,
-              minifyJS: true,
-              minifyCSS: true,
-              minifyURLs: true,
-            }
-          : undefined,
       }),
       new CleanWebpackPlugin({ verbose: false }),
       new MiniCssExtractPlugin({

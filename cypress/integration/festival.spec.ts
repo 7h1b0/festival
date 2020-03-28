@@ -30,10 +30,7 @@ describe('Festival website', () => {
     cy.findByText('Tomorrowland 2019').click();
 
     cy.findByLabelText(/^Pearl/).type('12');
-    cy.findByLabelText(/^EUR/)
-      .should('have.value', '19.2')
-      .clear()
-      .type('10');
+    cy.findByLabelText(/^EUR/).should('have.value', '19.2').clear().type('10');
     cy.findByLabelText(/^Pearl/).should('have.value', '6.25');
   });
 
