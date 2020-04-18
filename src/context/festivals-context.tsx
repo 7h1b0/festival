@@ -9,4 +9,6 @@ export const FestivalsStateContext = createContext<Festival[]>(
   festivals.festivals,
 );
 
-export const useFestivals = () => useContext(FestivalsStateContext);
+export function useFestivals() {
+  return useContext(FestivalsStateContext);
+}

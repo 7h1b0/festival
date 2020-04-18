@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, createContext, FunctionComponent } from 'preact';
+import { h, createContext, RenderableProps } from 'preact';
 import { useState, useContext } from 'preact/hooks';
 
 import { setAsLastUsed, getLastUsed } from 'modules/preferences';
@@ -13,21 +13,24 @@ export const FestivalDispatchContext = createContext<CurrencyDispatch>(
   () => {},
 );
 
-export const useFestivalState = () => {
+export function useFestivalState() {
   const festival = useContext(FestivalStateContext);
 
   if (festival === null) {
     throw new Error('useFestivalState must be within FestivalProvider');
   }
   return festival;
-};
+}
 
-export const useFestivalDispatch = () => useContext(FestivalDispatchContext);
+export function useFestivalDispatch() {
+  return useContext(FestivalDispatchContext);
+}
 
-const findById = (festivals: Festival[], festivalId: number) =>
-  festivals.find(({ id }) => id === festivalId);
+function findById(festivals: Festival[], festivalId: number) {
+  return festivals.find(({ id }) => id === festivalId);
+}
 
-export const FestivalProvider: FunctionComponent<{}> = ({ children }) => {
+export function FestivalProvider({ children }: RenderableProps<{}>) {
   const festivals = useFestivals();
   const [festival, setFestival] = useState(
     () => findById(festivals, getLastUsed()) ?? festivals[0],
@@ -49,4 +52,4 @@ export const FestivalProvider: FunctionComponent<{}> = ({ children }) => {
       </FestivalDispatchContext.Provider>
     </FestivalStateContext.Provider>
   );
-};
+}

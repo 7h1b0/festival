@@ -1,12 +1,12 @@
 /** @jsx h */
-import { h, FunctionComponent } from 'preact';
+import { h, RenderableProps } from 'preact';
 import { useFestivalState } from 'context/festival-context';
 
 type Props = {
   openDrawer: () => void;
 };
 
-const Header: FunctionComponent<Props> = ({ openDrawer }) => {
+function Header({ openDrawer }: RenderableProps<Props>) {
   const festival = useFestivalState();
   return (
     <header class="flex p-8 text-gray-800 font-bold">
@@ -22,6 +22,6 @@ const Header: FunctionComponent<Props> = ({ openDrawer }) => {
       <h1 class="ml-4">{`${festival?.name} ${festival?.year}`}</h1>
     </header>
   );
-};
+}
 
 export default Header;

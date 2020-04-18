@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, FunctionComponent } from 'preact';
+import { h } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import Rate from 'components/rate';
 import Input from 'components/input';
@@ -7,7 +7,7 @@ import useFocus from 'hooks/useFocus';
 import { useFestivalState } from 'context/festival-context';
 import { round } from '../modules/formatter';
 
-const Converter: FunctionComponent<{}> = () => {
+function Converter() {
   const festival = useFestivalState();
   const inputEl = useFocus([festival.id]);
   const [value, setValue] = useState(0);
@@ -49,6 +49,6 @@ const Converter: FunctionComponent<{}> = () => {
       />
     </main>
   );
-};
+}
 
 export default Converter;

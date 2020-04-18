@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, FunctionComponent } from 'preact';
+import { h, RenderableProps } from 'preact';
 import { formatRate } from 'modules/formatter';
 
 type Props = {
@@ -9,15 +9,12 @@ type Props = {
   amount?: number;
 };
 
-const Rate: FunctionComponent<Props> = ({
-  rate,
-  origin,
-  target,
-  amount = 1,
-}) => (
-  <p class="text-xs text-gray-600">
-    {formatRate(rate, origin, target, amount)}
-  </p>
-);
+function Rate({ rate, origin, target, amount = 1 }: RenderableProps<Props>) {
+  return (
+    <p class="text-xs text-gray-600">
+      {formatRate(rate, origin, target, amount)}
+    </p>
+  );
+}
 
 export default Rate;

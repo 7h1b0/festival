@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, FunctionComponent } from 'preact';
+import { h, RenderableProps } from 'preact';
 import { useFestivals } from 'context/festivals-context';
 import {
   useFestivalState,
@@ -10,7 +10,7 @@ type Props = {
   onClose: () => void;
 };
 
-const Drawer: FunctionComponent<Props> = ({ onClose }) => {
+function Drawer({ onClose }: RenderableProps<Props>) {
   const festival = useFestivalState();
   const dispatch = useFestivalDispatch();
   const festivals = useFestivals();
@@ -56,6 +56,6 @@ const Drawer: FunctionComponent<Props> = ({ onClose }) => {
       </ul>
     </nav>
   );
-};
+}
 
 export default Drawer;

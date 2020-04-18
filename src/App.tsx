@@ -8,7 +8,7 @@ import Converter from 'components/converter';
 import Drawer from 'components/drawer';
 import Header from 'components/header';
 
-const App = () => {
+function App() {
   const [isDrawerOpen, openDrawer] = useState(false);
 
   return (
@@ -20,6 +20,6 @@ const App = () => {
       </div>
     </FestivalProvider>
   );
-};
+}
 
 export default App;
