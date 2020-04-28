@@ -3,14 +3,14 @@ import { h, createContext, RenderableProps } from 'preact';
 import { useState, useContext } from 'preact/hooks';
 
 import { setAsLastUsed, getLastUsed } from 'modules/preferences';
-import { Festival } from 'modules/festival';
 import { useFestivals } from './festivals-context';
+import type { Festival } from 'festivals';
 
 export type CurrencyDispatch = (value: number) => void;
 
 export const FestivalStateContext = createContext<Festival | null>(null);
-export const FestivalDispatchContext = createContext<CurrencyDispatch>(
-  () => {},
+export const FestivalDispatchContext = createContext<CurrencyDispatch | null>(
+  null,
 );
 
 export function useFestivalState() {
@@ -23,7 +23,11 @@ export function useFestivalState() {
 }
 
 export function useFestivalDispatch() {
-  return useContext(FestivalDispatchContext);
+  const dispatch = useContext(FestivalDispatchContext);
+  if (dispatch === null) {
+    throw new Error('useFestivalDispatch must be within FestivalProvider');
+  }
+  return dispatch;
 }
 
 function findById(festivals: Festival[], festivalId: number) {

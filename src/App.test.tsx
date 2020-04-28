@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/preact';
 
 import App from './App';
 
-jest.mock('festivals.json', () => ({
+jest.mock('festivals.ts', () => ({
   festivals: [
     {
       id: 1,

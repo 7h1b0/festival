@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h, FunctionComponent } from 'preact';
-import { Festival } from 'modules/festival';
+import type { Festival } from 'festivals';
 
 import {
   FestivalStateContext,

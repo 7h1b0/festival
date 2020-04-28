@@ -30,10 +30,4 @@ describe('Converter', () => {
     fireEvent.input(getByLabelText(/^EUR/), payload);
     expect(getByDisplayValue('1')).toBeVisible();
   });
-
-  it('should throw when Converter is not a child of FestivalProvider', () => {
-    expect(() => render(<Converter />)).toThrow(
-      'useFestivalState must be within FestivalProvider',
-    );
-  });
 });

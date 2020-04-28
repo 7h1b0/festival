@@ -7,14 +7,6 @@ import Drawer from './drawer';
 import Context from '__factory__/context';
 
 describe('Drawer', () => {
-  const festival = {
-    id: 1,
-    name: 'Rock Werchter',
-    currency: 'Voucher',
-    year: 2019,
-    rate: 2.75,
-  };
-
   const festivals = [
     {
       id: 1,
@@ -38,7 +30,7 @@ describe('Drawer', () => {
     const { getByText } = render(
       <Context
         festivals={festivals}
-        festival={festival}
+        festival={festivals[0]}
         dispatch={mockedDispatch}
       >
         <Drawer onClose={closeDrawer} />
