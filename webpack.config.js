@@ -5,11 +5,6 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const purgecss = require('@fullhuman/postcss-purgecss')({
-  content: ['./src/**/*.tsx', './public/index.html'],
-
-  defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
-});
 const cssnano = require('cssnano')({
   preset: [
     'default',
@@ -20,7 +15,7 @@ const cssnano = require('cssnano')({
     },
   ],
 });
-const tailwindcss = require('tailwindcss')('./tailwindcss-config.js');
+const tailwindcss = require('tailwindcss')('./tailwindcss.config.js');
 
 module.exports = ({ prod } = {}) => {
   const plugins = prod
@@ -76,7 +71,7 @@ module.exports = ({ prod } = {}) => {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: [tailwindcss, ...(prod ? [purgecss, cssnano] : [])],
+                plugins: [tailwindcss, ...(prod ? [cssnano] : [])],
               },
             },
           ],
