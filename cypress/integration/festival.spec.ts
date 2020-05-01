@@ -1,9 +1,17 @@
 describe('Festival website', () => {
-  it('allows user to choose between festivals', () => {
+  it('redirect user to the first festival or the last festival used', () => {
     cy.visit('/');
+    cy.findByText('Rock Werchter 2019').should('be.visible');
 
     cy.findByLabelText('menu').click();
-    cy.findByText('Tomorrowland 2019').click();
+    cy.findByText('Mysteryland 2019').click();
+
+    cy.visit('/');
+    cy.findByText('Mysteryland 2019').should('be.visible');
+  });
+
+  it('allows user to choose between festivals', () => {
+    cy.visit('/tomorrowland-2019');
 
     cy.findByText('1 Pearl = 1.6 EUR').should('be.visible');
     cy.findByLabelText(/^Pearl/).type('12');
@@ -24,24 +32,10 @@ describe('Festival website', () => {
   });
 
   it('allows user to convert currencies in both way', () => {
-    cy.visit('/');
-
-    cy.findByLabelText('menu').click();
-    cy.findByText('Tomorrowland 2019').click();
+    cy.visit('/tomorrowland-2019');
 
     cy.findByLabelText(/^Pearl/).type('12');
     cy.findByLabelText(/^EUR/).should('have.value', '19.2').clear().type('10');
     cy.findByLabelText(/^Pearl/).should('have.value', '6.25');
-  });
-
-  it('remembers the last Festival used', () => {
-    cy.visit('/');
-    cy.findByText('Rock Werchter 2019').should('be.visible');
-
-    cy.findByLabelText('menu').click();
-    cy.findByText('Mysteryland 2019').click();
-
-    cy.reload();
-    cy.findByText('Mysteryland 2019').should('be.visible');
   });
 });

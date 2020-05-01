@@ -1,38 +1,33 @@
 export type Festival = {
-  id: number;
+  slug: string;
   rate: number;
   currency: string;
   name: string;
-  year: number;
 };
 
 export const festivals: Festival[] = [
   {
-    id: 1,
-    name: 'Rock Werchter',
+    slug: 'rock-werchter-2019',
+    name: 'Rock Werchter 2019',
     currency: 'Voucher',
-    year: 2019,
     rate: 2.75,
   },
   {
-    id: 2,
-    name: 'Tomorrowland',
+    slug: 'tomorrowland-2019',
+    name: 'Tomorrowland 2019',
     currency: 'Pearl',
-    year: 2019,
     rate: 1.6,
   },
   {
-    id: 3,
-    name: 'Mysteryland',
+    slug: 'mysteryland-2019',
+    name: 'Mysteryland 2019',
     currency: 'Token',
-    year: 2019,
     rate: 3,
   },
   {
-    id: 4,
-    name: 'Rock Werchter',
+    slug: 'rock-werchter-2021',
+    name: 'Rock Werchter 2021',
     currency: 'Token',
-    year: 2021,
     rate: 2.75,
   },
 ];

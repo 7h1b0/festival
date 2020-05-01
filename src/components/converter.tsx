@@ -4,15 +4,17 @@ import { useState, useEffect } from 'preact/hooks';
 import Rate from 'components/rate';
 import Input from 'components/input';
 import useFocus from 'hooks/useFocus';
-import { useFestivalState } from 'context/festival-context';
 import { round } from '../modules/formatter';
+import type { Festival } from 'src/festivals';
 
-function Converter() {
-  const festival = useFestivalState();
-  const inputEl = useFocus([festival.id]);
+type Props = {
+  festival: Festival;
+};
+function Converter({ festival }: Props) {
+  const inputEl = useFocus([festival.slug]);
   const [value, setValue] = useState(0);
 
-  useEffect(() => setValue(0), [festival.id]);
+  useEffect(() => setValue(0), [festival.slug]);
 
   return (
     <main class="bg-white rounded shadow uppercase p-8">

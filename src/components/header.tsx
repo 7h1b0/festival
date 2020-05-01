@@ -1,13 +1,12 @@
 /** @jsx h */
 import { h, RenderableProps } from 'preact';
-import { useFestivalState } from 'context/festival-context';
 
 type Props = {
   openDrawer: () => void;
+  title: string;
 };
 
-function Header({ openDrawer }: RenderableProps<Props>) {
-  const festival = useFestivalState();
+function Header({ openDrawer, title }: RenderableProps<Props>) {
   return (
     <header class="flex p-8 text-gray-800 font-bold">
       <button onClick={openDrawer} aria-label="menu">
@@ -19,7 +18,7 @@ function Header({ openDrawer }: RenderableProps<Props>) {
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
         </svg>
       </button>
-      <h1 class="ml-4">{`${festival?.name} ${festival?.year}`}</h1>
+      <h1 class="ml-4">{title}</h1>
     </header>
   );
 }
