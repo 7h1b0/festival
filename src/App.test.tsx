@@ -8,16 +8,14 @@ jest.mock('festivals.ts', () => ({
   festivals: [
     {
       id: 1,
-      name: 'JS Festival',
+      name: 'JS Festival 2019',
       currency: 'Closure',
-      year: 2019,
       rate: 3,
     },
     {
       id: 2,
-      name: 'Test Festival',
+      name: 'Test Festival 2020',
       currency: 'TDD',
-      year: 2020,
       rate: 5,
     },
   ],

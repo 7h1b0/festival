@@ -8,9 +8,8 @@ import Context from '__factory__/context';
 describe('Converter', () => {
   const festival = {
     id: 1,
-    name: 'JS festival',
+    name: 'JS festival 2019',
     currency: 'Closure',
-    year: 2019,
     rate: 3,
   };
 
@@ -19,8 +18,8 @@ describe('Converter', () => {
       target: { value: 3 },
     };
     const { getByDisplayValue, getByLabelText } = render(
-      <Context festivals={[]} festival={festival} dispatch={jest.fn()}>
-        <Converter />
+      <Context festivals={[]}>
+        <Converter festival={festival} />
       </Context>,
     );
 
