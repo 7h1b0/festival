@@ -3,13 +3,13 @@ import { h } from 'preact';
 import Router from 'preact-router';
 
 import Home from 'pages/home';
-import Form from 'pages/form';
+import Redirect from './pages/redirect';
 
 function App() {
   return (
     <Router>
-      <Home path="/:id?" />
-      <Form path="/add" />
+      <Home path="/:slug" slug="" />
+      <Redirect path="/" />
     </Router>
   );
 }

@@ -7,13 +7,13 @@ import App from './App';
 jest.mock('festivals.ts', () => ({
   festivals: [
     {
-      id: 1,
+      slug: 'js-festival-2019',
       name: 'JS Festival 2019',
       currency: 'Closure',
       rate: 3,
     },
     {
-      id: 2,
+      slug: 'test-festival-2020',
       name: 'Test Festival 2020',
       currency: 'TDD',
       rate: 5,

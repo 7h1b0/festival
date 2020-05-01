@@ -19,26 +19,19 @@ describe('preferences', () => {
 
   describe('setAsLastUsed', () => {
     it('should set a given festival Id in localStorage', () => {
-      setAsLastUsed(2);
+      setAsLastUsed('test');
       expect(localStorageMock.setItem).toHaveBeenCalledWith(
         'lastUsedFestival',
-        '2',
+        'test',
       );
     });
   });
 
   describe('getLastUsed', () => {
     it('should fetch the value in localStorage', () => {
-      localStorageMock.getItem.mockReturnValueOnce('0');
+      localStorageMock.getItem.mockReturnValueOnce('test-js');
 
-      expect(getLastUsed()).toBe(0);
-      expect(localStorageMock.getItem).toBeCalledWith('lastUsedFestival');
-    });
-
-    it('should return -1 if nothing is found in localstorage', () => {
-      localStorageMock.getItem.mockReturnValueOnce('');
-
-      expect(getLastUsed()).toBe(-1);
+      expect(getLastUsed()).toBe('test-js');
       expect(localStorageMock.getItem).toBeCalledWith('lastUsedFestival');
     });
   });

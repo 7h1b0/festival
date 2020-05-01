@@ -11,10 +11,10 @@ type Props = {
   festival: Festival;
 };
 function Converter({ festival }: Props) {
-  const inputEl = useFocus([festival.id]);
+  const inputEl = useFocus([festival.slug]);
   const [value, setValue] = useState(0);
 
-  useEffect(() => setValue(0), [festival.id]);
+  useEffect(() => setValue(0), [festival.slug]);
 
   return (
     <main class="bg-white rounded shadow uppercase p-8">

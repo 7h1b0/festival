@@ -7,7 +7,7 @@ import Context from '__factory__/context';
 
 describe('Converter', () => {
   const festival = {
-    id: 1,
+    slug: 'js-festival',
     name: 'JS festival 2019',
     currency: 'Closure',
     rate: 3,

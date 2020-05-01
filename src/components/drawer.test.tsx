@@ -1,7 +1,5 @@
 /** @jsx h */
 import { h } from 'preact';
-import Router from 'preact-router';
-import { createMemoryHistory } from 'history';
 import { render, fireEvent } from '@testing-library/preact';
 import '@testing-library/jest-dom'; // fix TS issues
 
@@ -11,43 +9,70 @@ import Context from '__factory__/context';
 describe('Drawer', () => {
   const festivals = [
     {
-      id: 1,
+      slug: 'rock-werchter',
       name: 'Rock Werchter 2019',
       currency: 'Voucher',
       rate: 2.75,
     },
     {
-      id: 2,
+      slug: 'tomorrowland',
       name: 'Tomorrowland 2019',
       currency: 'Pearl',
       rate: 1.6,
     },
   ];
 
-  xit('should allow user to choose between festivals', async () => {
-    const closeDrawer = jest.fn();
-    const history = createMemoryHistory({ initialEntries: ['/'] });
+  it('should display all festivals when drawer if open', async () => {
     const { getByText } = render(
-      <Router history={history} url="/">
-        <Context festivals={festivals}>
-          <Drawer
-            onClose={closeDrawer}
-            open={true}
-            selectedFestivalId={festivals[0].id}
-          />
-        </Context>
-      </Router>,
+      <Context festivals={festivals}>
+        <Drawer
+          onClose={jest.fn()}
+          open={true}
+          selectedFestivalSlug={festivals[0].slug}
+        />
+      </Context>,
     );
 
     expect(getByText('Rock Werchter 2019')).toBeVisible();
+    expect(getByText('Rock Werchter 2019')).toHaveProperty(
+      'href',
+      'https://festival-converter.app/rock-werchter',
+    );
+
     expect(getByText('Tomorrowland 2019')).toBeVisible();
+    expect(getByText('Tomorrowland 2019')).toHaveProperty(
+      'href',
+      'https://festival-converter.app/tomorrowland',
+    );
+  });
 
-    fireEvent.click(getByText('Tomorrowland 2019'));
-    expect(closeDrawer).toHaveBeenCalledTimes(1);
+  it('should return nothing when drawer is closed', async () => {
+    const { container } = render(
+      <Context festivals={festivals}>
+        <Drawer
+          onClose={jest.fn()}
+          open={false}
+          selectedFestivalSlug={festivals[0].slug}
+        />
+      </Context>,
+    );
 
-    console.log(history.location);
-    // await wait(() => expect(window.location.pathname).toBe('/2'));
-    // console.log(window.location.pathname, window.location.href);
-    // expect(mockedDispatch).toHaveBeenCalledWith(2);
+    expect(container).toBeEmpty();
+  });
+
+  it('should call onClose callback on close', async () => {
+    const handleClose = jest.fn();
+    const { getByLabelText } = render(
+      <Context festivals={festivals}>
+        <Drawer
+          onClose={handleClose}
+          open={true}
+          selectedFestivalSlug={festivals[0].slug}
+        />
+      </Context>,
+    );
+
+    fireEvent.click(getByLabelText('Close'));
+    expect(handleClose).toHaveBeenCalled();
   });
 });

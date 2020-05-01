@@ -1,21 +1,20 @@
 /** @jsx h */
 import { h, RenderableProps } from 'preact';
-import { route } from 'preact-router';
+import { Link } from 'preact-router';
 import { useFestivals } from 'context/festivals-context';
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  selectedFestivalId: number;
+  selectedFestivalSlug: string;
 };
 
-function Drawer({ open, onClose, selectedFestivalId }: RenderableProps<Props>) {
+function Drawer({
+  open,
+  onClose,
+  selectedFestivalSlug,
+}: RenderableProps<Props>) {
   const festivals = useFestivals();
-
-  const handleClick = (path: string) => {
-    route(`/${path}`);
-    onClose();
-  };
 
   if (open) {
     return (
@@ -29,37 +28,22 @@ function Drawer({ open, onClose, selectedFestivalId }: RenderableProps<Props>) {
             <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
           </svg>
         </button>
-        <ul
-          role="tablist"
-          title="festivals"
-          class="flex flex-col h-full lg:justify-center lg:text-center bg-gray-800 py-8"
-        >
-          {festivals.map(({ name, id }) => {
-            const isSelected = selectedFestivalId === id;
+        <div class="flex flex-col h-full lg:justify-center text-center bg-gray-800 py-8">
+          {festivals.map(({ name, slug }) => {
+            const isSelected = selectedFestivalSlug === slug;
             return (
-              <li
-                key={id}
-                role="tab"
-                tabIndex={0}
-                onClick={() => handleClick(`${id}`)}
-                aria-selected={isSelected}
+              <Link
+                key={slug}
+                href={`/${slug}`}
                 class={`cursor-pointer py-3 hover:text-white text-xl ${
                   isSelected ? 'text-white' : 'text-gray-500'
                 }`}
               >
                 {name}
-              </li>
+              </Link>
             );
           })}
-          <li
-            role="tab"
-            tabIndex={0}
-            onClick={() => handleClick('add')}
-            class="cursor-pointer py-3 hover:text-white text-xl text-gray-500"
-          >
-            Add a festival
-          </li>
-        </ul>
+        </div>
       </nav>
     );
   }
