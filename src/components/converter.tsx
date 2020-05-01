@@ -4,11 +4,13 @@ import { useState, useEffect } from 'preact/hooks';
 import Rate from 'components/rate';
 import Input from 'components/input';
 import useFocus from 'hooks/useFocus';
-import { useFestivalState } from 'context/festival-context';
 import { round } from '../modules/formatter';
+import type { Festival } from 'src/festivals';
 
-function Converter() {
-  const festival = useFestivalState();
+type Props = {
+  festival: Festival;
+};
+function Converter({ festival }: Props) {
   const inputEl = useFocus([festival.id]);
   const [value, setValue] = useState(0);
 

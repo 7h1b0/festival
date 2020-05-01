@@ -1,13 +1,13 @@
 /** @jsx h */
 import { h, RenderableProps } from 'preact';
-import { useFestivalState } from 'context/festival-context';
+import type { Festival } from 'src/festivals';
 
 type Props = {
   openDrawer: () => void;
+  festival: Festival;
 };
 
-function Header({ openDrawer }: RenderableProps<Props>) {
-  const festival = useFestivalState();
+function Header({ openDrawer, festival }: RenderableProps<Props>) {
   return (
     <header class="flex p-8 text-gray-800 font-bold">
       <button onClick={openDrawer} aria-label="menu">

@@ -1,22 +1,18 @@
 /** @jsx h */
 import { h, RenderableProps } from 'preact';
+import { route } from 'preact-router';
 import { useFestivals } from 'context/festivals-context';
-import {
-  useFestivalState,
-  useFestivalDispatch,
-} from 'context/festival-context';
 
 type Props = {
   onClose: () => void;
+  selectedFestivalId: number;
 };
 
-function Drawer({ onClose }: RenderableProps<Props>) {
-  const festival = useFestivalState();
-  const dispatch = useFestivalDispatch();
+function Drawer({ onClose, selectedFestivalId }: RenderableProps<Props>) {
   const festivals = useFestivals();
 
-  const handleClick = (id: number) => {
-    dispatch(id);
+  const handleClick = (path: string) => {
+    route(`/${path}`);
     onClose();
   };
 
@@ -37,13 +33,13 @@ function Drawer({ onClose }: RenderableProps<Props>) {
         class="flex flex-col h-full lg:justify-center lg:text-center bg-gray-800 py-8"
       >
         {festivals.map(({ name, id, year }) => {
-          const isSelected = festival.id === id;
+          const isSelected = selectedFestivalId === id;
           return (
             <li
               key={id}
               role="tab"
               tabIndex={0}
-              onClick={() => handleClick(id)}
+              onClick={() => handleClick(`${id}`)}
               aria-selected={isSelected}
               class={`cursor-pointer py-3 hover:text-white text-xl ${
                 isSelected ? 'text-white' : 'text-gray-500'
@@ -53,6 +49,14 @@ function Drawer({ onClose }: RenderableProps<Props>) {
             </li>
           );
         })}
+        <li
+          role="tab"
+          tabIndex={0}
+          onClick={() => handleClick('add')}
+          class="cursor-pointer py-3 hover:text-white text-xl text-gray-500"
+        >
+          Add a festival
+        </li>
       </ul>
     </nav>
   );
