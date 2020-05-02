@@ -22,7 +22,7 @@ describe('Drawer', () => {
     },
   ];
 
-  it('should display all festivals when drawer if open', async () => {
+  it('should display all festivals when drawer is open', async () => {
     const { getByText } = render(
       <Context festivals={festivals}>
         <Drawer

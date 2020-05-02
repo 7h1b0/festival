@@ -7,7 +7,7 @@ import Rate from './rate';
 describe('Rate', () => {
   it('should render correctly', () => {
     const { queryByText } = render(
-      <Rate rate={2} origin="Jest" target="React" />,
+      <Rate rate={2} source="Jest" target="React" />,
     );
 
     expect(queryByText('1 Jest = 2 React')).toBeVisible();
@@ -15,7 +15,7 @@ describe('Rate', () => {
 
   it('should format nicely', () => {
     const { queryByText } = render(
-      <Rate rate={1 / 3} origin="Jest" target="React" />,
+      <Rate rate={1 / 3} source="Jest" target="React" />,
     );
 
     expect(queryByText('1 Jest = 0.33 React')).toBeVisible();

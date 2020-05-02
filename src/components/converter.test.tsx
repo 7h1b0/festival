@@ -3,7 +3,6 @@ import { h } from 'preact';
 import { render, fireEvent } from '@testing-library/preact';
 
 import Converter from './converter';
-import Context from '__factory__/context';
 
 describe('Converter', () => {
   const festival = {
@@ -18,9 +17,7 @@ describe('Converter', () => {
       target: { value: 3 },
     };
     const { getByDisplayValue, getByLabelText } = render(
-      <Context festivals={[]}>
-        <Converter festival={festival} />
-      </Context>,
+      <Converter festival={festival} />,
     );
 
     fireEvent.input(getByLabelText(/^Closure/), payload);

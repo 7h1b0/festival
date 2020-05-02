@@ -3,15 +3,14 @@ import { h, RenderableProps } from 'preact';
 import { formatRate } from 'modules/formatter';
 
 type Props = {
-  rate: number;
-  origin: string;
+  source: string;
   target: string;
-  amount?: number;
+  rate: number;
 };
 
-function Rate({ rate, origin, target }: RenderableProps<Props>) {
+function Rate({ rate, source, target }: RenderableProps<Props>) {
   return (
-    <p class="text-xs text-gray-600">{formatRate(rate, origin, target)}</p>
+    <p class="text-xs text-gray-600">{formatRate(source, target, rate)}</p>
   );
 }
 

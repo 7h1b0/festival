@@ -25,7 +25,7 @@ function Converter({ festival }: Props) {
         <p class="text-gray-800 font-bold tracking-wider">
           {festival.currency}
         </p>
-        <Rate rate={festival.rate} origin={festival.currency} target="EUR" />
+        <Rate source={festival.currency} target="EUR" rate={festival.rate} />
       </label>
 
       <Input
@@ -39,9 +39,9 @@ function Converter({ festival }: Props) {
       <label htmlFor="euros" class="flex justify-between items-baseline">
         <p class="text-gray-800 font-bold tracking-wider">EUR</p>
         <Rate
-          rate={1 / festival.rate}
-          origin="EUR"
+          source="EUR"
           target={festival.currency}
+          rate={1 / festival.rate}
         />
       </label>
       <Input

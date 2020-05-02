@@ -26,7 +26,7 @@ describe('Home', () => {
     expect(getByText('JS Festival 2019')).toBeVisible();
   });
 
-  it('should display the festival according to the slug', () => {
+  it('should redirect to the Not Found page when slug is unknow', () => {
     const { container } = render(<Home slug="unknow" />);
     expect(container).toBeEmpty();
     expect(route).toHaveBeenCalledWith('/404', true);

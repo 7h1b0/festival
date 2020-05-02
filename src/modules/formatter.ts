@@ -11,11 +11,11 @@ export function formatPrice(number: number): string {
 }
 
 export function formatRate(
-  rate: number,
-  currencyOrigin: string,
+  currencySource: string,
   currencyTarget: string,
+  rate: number,
 ): string {
-  return `1 ${currencyOrigin} = ${formatPrice(rate)} ${currencyTarget}`;
+  return `1 ${currencySource} = ${formatPrice(rate)} ${currencyTarget}`;
 }
 
 export function round(value: number): number {
