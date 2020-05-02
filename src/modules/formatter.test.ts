@@ -23,13 +23,10 @@ describe.each([
 });
 
 describe.each([
-  [1, 'EUR', 'USD', 2, '2 EUR = 2 USD'],
-  [1.33, 'EUR', 'USD', 13, '13 EUR = 17.29 USD'],
-  [1.33, 'EUR', 'USD', undefined, '1 EUR = 1.33 USD'],
-])('formatRate', (rate, currencyOrigin, currencyTarget, amount, expected) => {
+  [1, 'EUR', 'USD', '1 EUR = 1 USD'],
+  [1.33, 'EUR', 'USD', '1 EUR = 1.33 USD'],
+])('formatRate', (rate, currencyOrigin, currencyTarget, expected) => {
   it(`should return ${expected}`, () => {
-    expect(formatRate(rate, currencyOrigin, currencyTarget, amount)).toBe(
-      expected,
-    );
+    expect(formatRate(rate, currencyOrigin, currencyTarget)).toBe(expected);
   });
 });

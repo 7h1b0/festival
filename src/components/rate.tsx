@@ -9,11 +9,9 @@ type Props = {
   amount?: number;
 };
 
-function Rate({ rate, origin, target, amount = 1 }: RenderableProps<Props>) {
+function Rate({ rate, origin, target }: RenderableProps<Props>) {
   return (
-    <p class="text-xs text-gray-600">
-      {formatRate(rate, origin, target, amount)}
-    </p>
+    <p class="text-xs text-gray-600">{formatRate(rate, origin, target)}</p>
   );
 }
 

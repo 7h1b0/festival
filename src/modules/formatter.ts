@@ -14,11 +14,8 @@ export function formatRate(
   rate: number,
   currencyOrigin: string,
   currencyTarget: string,
-  amount = 1,
 ): string {
-  return `${amount} ${currencyOrigin} = ${formatPrice(
-    amount * rate,
-  )} ${currencyTarget}`;
+  return `1 ${currencyOrigin} = ${formatPrice(rate)} ${currencyTarget}`;
 }
 
 export function round(value: number): number {
