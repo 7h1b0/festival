@@ -1,8 +1,9 @@
-import { setAsLastUsed, getLastUsed } from './preferences';
+import { setAsLastUsed, getLastUsed, removeLastUsed } from './preferences';
 
 const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
+  removeItem: jest.fn(),
 };
 
 describe('preferences', () => {
@@ -18,7 +19,7 @@ describe('preferences', () => {
   });
 
   describe('setAsLastUsed', () => {
-    it('should set a given festival Id in localStorage', () => {
+    it('should set a given festival slug in localStorage', () => {
       setAsLastUsed('test');
       expect(localStorageMock.setItem).toHaveBeenCalledWith(
         'lastUsedFestival',
@@ -32,7 +33,16 @@ describe('preferences', () => {
       localStorageMock.getItem.mockReturnValueOnce('test-js');
 
       expect(getLastUsed()).toBe('test-js');
-      expect(localStorageMock.getItem).toBeCalledWith('lastUsedFestival');
+      expect(localStorageMock.getItem).toHaveBeenCalledWith('lastUsedFestival');
+    });
+  });
+
+  describe('removeLastUsed', () => {
+    it('should remove last festival data in localStorage', () => {
+      removeLastUsed();
+      expect(localStorageMock.removeItem).toHaveBeenCalledWith(
+        'lastUsedFestival',
+      );
     });
   });
 });

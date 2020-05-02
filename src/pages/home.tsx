@@ -21,7 +21,7 @@ function Home({ slug }: Props) {
   }, [slug]);
 
   if (!festival) {
-    route('/', true);
+    route('/404', true);
     return null;
   }
 

@@ -8,7 +8,7 @@ type Props = {
 
 function Header({ openDrawer, title }: RenderableProps<Props>) {
   return (
-    <header class="flex p-8 text-gray-800 font-bold">
+    <header class="flex p-8">
       <button onClick={openDrawer} aria-label="menu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@ function Header({ openDrawer, title }: RenderableProps<Props>) {
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
         </svg>
       </button>
-      <h1 class="ml-4">{title}</h1>
+      <h1 class="ml-4 text-gray-800 font-bold text-lg">{title}</h1>
     </header>
   );
 }

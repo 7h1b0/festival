@@ -10,6 +10,17 @@ describe('Festival website', () => {
     cy.findByText('Mysteryland 2019').should('be.visible');
   });
 
+  it('redirect user to Not-found page when a slug is unknow', () => {
+    localStorage.setItem('lastUsedFestival', 'fake-festival');
+    cy.visit('/');
+    cy.findByText('Festival not found').should('be.visible');
+    cy.findByText('Return home').click();
+    cy.findByText('Rock Werchter 2019').should('be.visible');
+
+    cy.visit('/fake-festival');
+    cy.findByText('Festival not found').should('be.visible');
+  });
+
   it('allows user to choose between festivals', () => {
     cy.visit('/tomorrowland-2019');
 

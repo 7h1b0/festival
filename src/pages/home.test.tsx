@@ -29,6 +29,6 @@ describe('Home', () => {
   it('should display the festival according to the slug', () => {
     const { container } = render(<Home slug="unknow" />);
     expect(container).toBeEmpty();
-    expect(route).toHaveBeenCalledWith('/', true);
+    expect(route).toHaveBeenCalledWith('/404', true);
   });
 });

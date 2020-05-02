@@ -6,7 +6,7 @@ import { useFestivals } from 'context/festivals-context';
 type Props = {
   open: boolean;
   onClose: () => void;
-  selectedFestivalSlug: string;
+  selectedFestivalSlug?: string;
 };
 
 function Drawer({
