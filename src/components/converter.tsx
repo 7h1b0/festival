@@ -4,7 +4,7 @@ import { useState, useEffect } from 'preact/hooks';
 import Rate from 'components/rate';
 import Input from 'components/input';
 import useFocus from 'hooks/useFocus';
-import { round } from '../modules/formatter';
+import { round } from 'modules/formatter';
 import type { Festival } from 'src/festivals';
 
 type Props = {
@@ -19,18 +19,18 @@ function Converter({ festival }: Props) {
   return (
     <main class="bg-white rounded shadow uppercase p-8">
       <label
-        htmlFor={festival.name}
+        htmlFor={festival.slug}
         class="flex justify-between items-baseline"
       >
         <p class="text-gray-800 font-bold tracking-wider">
           {festival.currency}
         </p>
-        <Rate rate={festival.rate} target="EUR" origin={festival.currency} />
+        <Rate rate={festival.rate} origin={festival.currency} target="EUR" />
       </label>
 
       <Input
         forwardRef={inputEl}
-        id={festival.name}
+        id={festival.slug}
         value={round(value)}
         onChange={setValue}
       />
