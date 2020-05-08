@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -33,11 +33,11 @@ module.exports = ({ prod } = {}) => {
             },
           ],
         }),
-        new SWPrecacheWebpackPlugin({
-          filename: 'service-worker.js',
-          dontCacheBustUrlsMatching: /\.\w{8}\./,
-          minify: true,
-          staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+        new WorkboxWebpackPlugin.GenerateSW({
+          clientsClaim: true,
+          mode: 'production',
+          exclude: [/\.map$/, /asset-manifest\.json$/],
+          navigateFallback: 'index.html',
         }),
       ]
     : [];
