@@ -1,10 +1,9 @@
 import { RoutableProps, route } from 'preact-router';
 
 import { getLastUsed } from 'modules/preferences';
-import { useFestivals } from 'context/festivals-context';
+import { festivals } from 'festivals';
 
 function Redirect(_: RoutableProps) {
-  const festivals = useFestivals();
   const lastSlug = getLastUsed() ?? festivals[0].slug;
 
   route(`/${lastSlug}`, true);

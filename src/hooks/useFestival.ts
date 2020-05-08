@@ -1,5 +1,5 @@
 import { setAsLastUsed } from 'modules/preferences';
-import { useFestivals } from 'context/festivals-context';
+import { festivals } from 'festivals';
 import type { Festival } from 'festivals';
 
 function findBySlug(festivals: Festival[], festivalSlug: string) {
@@ -7,8 +7,6 @@ function findBySlug(festivals: Festival[], festivalSlug: string) {
 }
 
 function useFestival(festivalSlug: string) {
-  const festivals = useFestivals();
-
   const festival = findBySlug(festivals, festivalSlug);
   if (festival) {
     setAsLastUsed(festival.slug);

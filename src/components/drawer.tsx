@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h, RenderableProps } from 'preact';
 import { Link } from 'preact-router';
-import { useFestivals } from 'context/festivals-context';
+import { festivals } from 'festivals';
 
 type Props = {
   open: boolean;
@@ -14,8 +14,6 @@ function Drawer({
   onClose,
   selectedFestivalSlug,
 }: RenderableProps<Props>) {
-  const festivals = useFestivals();
-
   if (open) {
     return (
       <nav class="w-full bg-gray-800 fixed inset-0 p-8 ">

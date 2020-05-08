@@ -4,10 +4,10 @@ import { render, fireEvent } from '@testing-library/preact';
 import '@testing-library/jest-dom'; // fix TS issues
 
 import Drawer from './drawer';
-import Context from '__factory__/context';
 
-describe('Drawer', () => {
-  const festivals = [
+const defaultSelectedFestivalSlug = 'rock-werchter';
+jest.mock('festivals.ts', () => ({
+  festivals: [
     {
       slug: 'rock-werchter',
       name: 'Rock Werchter 2019',
@@ -20,17 +20,17 @@ describe('Drawer', () => {
       currency: 'Pearl',
       rate: 1.6,
     },
-  ];
+  ],
+}));
 
+describe('Drawer', () => {
   it('should display all festivals when drawer is open', async () => {
     const { getByText } = render(
-      <Context festivals={festivals}>
-        <Drawer
-          onClose={jest.fn()}
-          open={true}
-          selectedFestivalSlug={festivals[0].slug}
-        />
-      </Context>,
+      <Drawer
+        onClose={jest.fn()}
+        open={true}
+        selectedFestivalSlug={defaultSelectedFestivalSlug}
+      />,
     );
 
     expect(getByText('Rock Werchter 2019')).toBeVisible();
@@ -48,13 +48,11 @@ describe('Drawer', () => {
 
   it('should return nothing when drawer is closed', async () => {
     const { container } = render(
-      <Context festivals={festivals}>
-        <Drawer
-          onClose={jest.fn()}
-          open={false}
-          selectedFestivalSlug={festivals[0].slug}
-        />
-      </Context>,
+      <Drawer
+        onClose={jest.fn()}
+        open={false}
+        selectedFestivalSlug={defaultSelectedFestivalSlug}
+      />,
     );
 
     expect(container).toBeEmpty();
@@ -63,13 +61,11 @@ describe('Drawer', () => {
   it('should call onClose callback on close', async () => {
     const handleClose = jest.fn();
     const { getByLabelText } = render(
-      <Context festivals={festivals}>
-        <Drawer
-          onClose={handleClose}
-          open={true}
-          selectedFestivalSlug={festivals[0].slug}
-        />
-      </Context>,
+      <Drawer
+        onClose={handleClose}
+        open={true}
+        selectedFestivalSlug={defaultSelectedFestivalSlug}
+      />,
     );
 
     fireEvent.click(getByLabelText('Close'));
