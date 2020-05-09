@@ -1,5 +1,5 @@
 describe('Festival website', () => {
-  it('redirect user to the first festival or the last festival used', () => {
+  it('redirects user to the first festival or the last festival used', () => {
     cy.visit('/');
     cy.findByText('Rock Werchter 2019').should('be.visible');
 
@@ -10,7 +10,7 @@ describe('Festival website', () => {
     cy.findByText('Mysteryland 2019').should('be.visible');
   });
 
-  it('redirect user to Not-found page when a slug is unknow', () => {
+  it('redirects user to Not-found page when a slug is unknow', () => {
     localStorage.setItem('lastUsedFestival', 'fake-festival');
     cy.visit('/');
     cy.findByText('Festival not found').should('be.visible');
