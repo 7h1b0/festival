@@ -3,11 +3,12 @@ node_js:
   - 'node'
 
 cache:
+  npm: true
   directories:
-    - '$HOME/.npm'
+    - ~/.cache
 
 install:
-  - npm ci
+  - npm ci --prefer-offline --no-audit
 
 before_script:
   - npm run build
