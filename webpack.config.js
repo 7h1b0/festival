@@ -26,10 +26,16 @@ module.exports = ({ prod } = {}) => {
           description: 'Convert festival currency',
           background_color: '#eeeeee',
           theme_color: '#5c8df6',
+          ios: true,
           icons: [
             {
               src: path.resolve('src/assets/icon.png'),
-              sizes: [192, 512],
+              sizes: [192],
+              ios: true,
+            },
+            {
+              src: path.resolve('src/assets/icon.png'),
+              sizes: [512],
             },
           ],
         }),
