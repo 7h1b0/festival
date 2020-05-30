@@ -55,7 +55,7 @@ describe('Drawer', () => {
       />,
     );
 
-    expect(container).toBeEmpty();
+    expect(container).toBeEmptyDOMElement();
   });
 
   it('should call onClose callback on close', async () => {

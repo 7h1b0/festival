@@ -28,7 +28,7 @@ describe('Home', () => {
 
   it('should redirect to the Not Found page when slug is unknow', () => {
     const { container } = render(<Home slug="unknow" />);
-    expect(container).toBeEmpty();
+    expect(container).toBeEmptyDOMElement();
     expect(route).toHaveBeenCalledWith('/404', true);
   });
 });
