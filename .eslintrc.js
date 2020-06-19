@@ -21,7 +21,7 @@ module.exports = {
     'cypress/globals': true,
   },
   rules: {
-    'react/no-unknown-property': 'off', // prevents error with class vs className
+    'react/no-unknown-property': ['error', { ignore: ['class'] }],
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
