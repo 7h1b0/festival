@@ -24,5 +24,6 @@ module.exports = {
     'react/no-unknown-property': ['error', { ignore: ['class'] }],
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'react/prop-types': 'off',
   },
 };
