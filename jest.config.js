@@ -3,7 +3,7 @@ module.exports = {
   roots: ['<rootDir>/src/'],
   moduleDirectories: ['node_modules'],
   modulePaths: ['<rootDir>/src/'],
-  coveragePathIgnorePatterns: ['/node_modules/'],
+  collectCoverageFrom: ['**/*.{tsx,ts}'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironmentOptions: {
     url: 'https://festival-converter.app/',
