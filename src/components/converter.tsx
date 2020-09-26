@@ -1,8 +1,8 @@
 /** @jsx h */
 import { h } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
-import Rate from 'components/rate';
-import Input from 'components/input';
+import Label from 'components/label';
+import Input from 'components/input-controlled';
 import useFocus from 'hooks/useFocus';
 import { round } from 'modules/formatter';
 import type { Festival } from 'src/festivals';
@@ -11,39 +11,35 @@ type Props = {
   festival: Festival;
 };
 function Converter({ festival }: Props) {
-  const inputEl = useFocus([festival.slug]);
+  const inputEl = useFocus();
   const [value, setValue] = useState(0);
 
-  useEffect(() => setValue(0), [festival.slug]);
+  useEffect(() => setValue(0), [festival.rate]);
 
   return (
     <main class="bg-white rounded shadow uppercase p-8">
-      <label
-        htmlFor={festival.slug}
-        class="flex justify-between items-baseline"
-      >
-        <p class="text-gray-800 font-bold tracking-wider">
-          {festival.currency}
-        </p>
-        <Rate source={festival.currency} target="EUR" rate={festival.rate} />
-      </label>
+      <Label
+        htmlFor={`${festival.rate}`}
+        source={festival.currency}
+        target="EUR"
+        rate={festival.rate}
+      />
 
       <Input
         forwardRef={inputEl}
-        id={festival.slug}
+        id={`${festival.rate}`}
         value={round(value)}
         onChange={setValue}
       />
 
       <div class="h-px my-6 bg-blue-500" />
-      <label htmlFor="euros" class="flex justify-between items-baseline">
-        <p class="text-gray-800 font-bold tracking-wider">EUR</p>
-        <Rate
-          source="EUR"
-          target={festival.currency}
-          rate={1 / festival.rate}
-        />
-      </label>
+
+      <Label
+        htmlFor="euros"
+        source="EUR"
+        target={festival.currency}
+        rate={1 / festival.rate}
+      />
       <Input
         id="euros"
         value={round(value * festival.rate)}

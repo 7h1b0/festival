@@ -1,19 +1,18 @@
 /** @jsx h */
 import { h } from 'preact';
-import Router from 'preact-router';
 
 import Home from 'pages/home';
-import Redirect from 'pages/redirect';
-import NotFound from 'pages/not-found';
+import Form from 'pages/form';
+
+import getFestivalFromSearchLocation from 'modules/useFestival';
 
 function App() {
-  return (
-    <Router>
-      <NotFound path="/404" />
-      <Home path="/:slug" slug="" />
-      <Redirect path="/" />
-    </Router>
-  );
+  try {
+    const festival = getFestivalFromSearchLocation(window.location.search);
+    return <Home festival={festival} />;
+  } catch (err) {
+    return <Form />;
+  }
 }
 
 export default App;
