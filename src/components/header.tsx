@@ -2,23 +2,49 @@
 import { h, RenderableProps } from 'preact';
 
 type Props = {
-  openDrawer: () => void;
   title: string;
 };
 
-function Header({ openDrawer, title }: RenderableProps<Props>) {
+function Header({ title }: RenderableProps<Props>) {
+  const canShare = !!navigator.share;
+
+  function handleClick() {
+    if (canShare) {
+      navigator.share({
+        text: title,
+        url: window.location.toString(),
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.toString());
+    }
+  }
   return (
-    <header class="flex p-8">
-      <button onClick={openDrawer} aria-label="menu">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          class="w-6 h-6"
-        >
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-        </svg>
+    <header class="flex justify-between p-8 ">
+      <h1 class="font-bold text-lg text-gray-800 capitalize flex-grow-0 truncate">
+        {title}
+      </h1>
+      <button onClick={handleClick} class="w-6 text-gray-600 flex-shrink-0">
+        {canShare ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <title>Share</title>
+            <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <title>Copy URL</title>
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
+            <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
+          </svg>
+        )}
       </button>
-      <h1 class="ml-4 text-gray-800 font-bold text-lg">{title}</h1>
     </header>
   );
 }

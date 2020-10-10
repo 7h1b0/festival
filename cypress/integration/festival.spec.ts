@@ -1,52 +1,26 @@
 describe('Festival website', () => {
-  it('redirects user to the first festival or the last festival used', () => {
-    cy.visit('/');
-    cy.findByText('Rock Werchter 2019').should('be.visible');
-
-    cy.findByLabelText('menu').click();
-    cy.findByText('Mysteryland 2019').click();
-
-    cy.visit('/');
-    cy.findByText('Mysteryland 2019').should('be.visible');
-  });
-
-  it('redirects user to Not-found page when a slug is unknow', () => {
-    localStorage.setItem('lastUsedFestival', 'fake-festival');
-    cy.visit('/');
-    cy.findByText('Festival not found').should('be.visible');
-    cy.findByText('Return home').click();
-    cy.findByText('Rock Werchter 2019').should('be.visible');
-
-    cy.visit('/fake-festival');
-    cy.findByText('Festival not found').should('be.visible');
-  });
-
-  it('allows user to choose between festivals', () => {
-    cy.visit('/tomorrowland-2019');
-
-    cy.findByText('1 Pearl = 1.6 EUR').should('be.visible');
-    cy.findByLabelText(/^Pearl/).type('12');
-    cy.findByLabelText(/^EUR/).should('have.value', '19.2');
-
-    cy.findByLabelText('menu').click();
-    cy.findByText('Mysteryland 2019').click();
-
-    cy.findByText('1 Token = 3 EUR').should('be.visible');
-    cy.findByLabelText(/^Token/).type('3');
-    cy.findByLabelText(/^EUR/).should('have.value', '9');
-
-    cy.findByLabelText('menu').click();
-    cy.findByLabelText('Close').click();
-
-    cy.findByLabelText(/^Token/).should('have.value', '3');
-    cy.findByLabelText(/^EUR/).should('have.value', '9');
-  });
-
   it('allows user to convert currencies in both way', () => {
-    cy.visit('/tomorrowland-2019');
+    cy.visit('/?name=Cypress&rate=1.6&currency=Test');
 
-    cy.findByLabelText(/^Pearl/).type('12');
+    cy.findByText('Cypress').should('be.visible');
+    cy.findByLabelText(/^Test/).type('12');
     cy.findByLabelText(/^EUR/).should('have.value', '19.2').clear().type('10');
-    cy.findByLabelText(/^Pearl/).should('have.value', '6.25');
+    cy.findByLabelText(/^Test/).should('have.value', '6.25');
+  });
+
+  it('allows user to create a festival', () => {
+    cy.visit('/');
+
+    cy.findByText('Create a festival').should('be.visible');
+    cy.findByLabelText(/^Name/i).type('Javascript');
+    cy.findByLabelText(/^Currency/i).type('test');
+    cy.findByLabelText(/^rate/i).type('1.5');
+    cy.findByText('Submit').click();
+
+    cy.url().should(
+      'eq',
+      'http://localhost:3000/?name=Javascript&currency=test&rate=1.5',
+    );
+    cy.findByText('Javascript').should('be.visible');
   });
 });

@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h } from 'preact';
-import { render, fireEvent } from '@testing-library/preact';
+import { render, fireEvent, screen } from '@testing-library/preact';
 
 import Converter from './converter';
 
@@ -16,14 +16,12 @@ describe('Converter', () => {
     const payload = {
       target: { value: 3 },
     };
-    const { getByDisplayValue, getByLabelText } = render(
-      <Converter festival={festival} />,
-    );
+    render(<Converter festival={festival} />);
 
-    fireEvent.input(getByLabelText(/^Closure/), payload);
-    expect(getByDisplayValue('9')).toBeVisible();
+    fireEvent.input(screen.getByLabelText(/^Closure/), payload);
+    expect(screen.getByDisplayValue('9')).toBeVisible();
 
-    fireEvent.input(getByLabelText(/^EUR/), payload);
-    expect(getByDisplayValue('1')).toBeVisible();
+    fireEvent.input(screen.getByLabelText(/^EUR/), payload);
+    expect(screen.getByDisplayValue('1')).toBeVisible();
   });
 });

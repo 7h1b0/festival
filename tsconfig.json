@@ -4,7 +4,7 @@
     "paths": {
       "*": ["*", "src/*"]
     },
-    "types": ["jest"],
+    "types": ["jest", "node"],
     "target": "esnext",
     "module": "commonjs",
     "jsx": "react",

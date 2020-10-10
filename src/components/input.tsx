@@ -1,28 +1,25 @@
 /** @jsx h */
-import { h, Ref, RenderableProps } from 'preact';
+import { h, Ref } from 'preact';
 
 type Props = {
-  id: string;
-  value: number;
-  onChange: (value: number) => void;
+  label: string;
+  type?: string;
   forwardRef?: Ref<HTMLInputElement>;
+  placeholder?: string;
 };
 
-function Input({ id, value, onChange, forwardRef }: RenderableProps<Props>) {
+function Input({ label, type = 'text', forwardRef, placeholder = '' }: Props) {
   return (
-    <input
-      ref={forwardRef}
-      id={id}
-      type="number"
-      step={0.01}
-      value={value || ''}
-      onInput={({
-        currentTarget,
-      }: h.JSX.TargetedEvent<HTMLInputElement, Event>) => {
-        onChange(Number(currentTarget.value));
-      }}
-      class="mt-3 block w-full text-3xl rounded border border-gray-400 focus:border-blue-500"
-    />
+    <label class="pb-4 block text-gray-800 font-bold text-sm tracking-wider">
+      {label}
+      <input
+        ref={forwardRef}
+        type={type}
+        step={0.01}
+        class="mt-1 block w-full text-3xl rounded border border-gray-400 focus:border-blue-500"
+        placeholder={placeholder}
+      />
+    </label>
   );
 }
 

@@ -1,25 +1,41 @@
 /** @jsx h */
 import { h } from 'preact';
-import { render, fireEvent } from '@testing-library/preact';
+import { render, screen, fireEvent } from '@testing-library/preact';
 
 import Header from './header';
 
 describe('Header', () => {
   it('should display the festival name', () => {
-    const { getByText } = render(
-      <Header openDrawer={jest.fn} title="Rock Werchter 2019" />,
-    );
-
-    expect(getByText('Rock Werchter 2019')).toBeVisible();
+    render(<Header title="Rock Werchter 2019" />);
+    expect(screen.getByText('Rock Werchter 2019')).toBeVisible();
   });
 
-  it('should call openDrawer callback when user click on menu', () => {
-    const handleDrawer = jest.fn();
-    const { getByLabelText } = render(
-      <Header openDrawer={handleDrawer} title="Rock Werchter 2019" />,
-    );
+  it('should be able to share the URL through Share API', () => {
+    global.navigator.share = jest.fn();
 
-    fireEvent.click(getByLabelText('menu'));
-    expect(handleDrawer).toHaveBeenCalled();
+    const title = 'Share';
+    render(<Header title={title} />);
+    fireEvent.click(screen.getByTitle('Share'));
+    expect(global.navigator.share).toHaveBeenCalledWith({
+      text: title,
+      url: 'https://festival-converter.app/',
+    });
+
+    // @ts-expect-error
+    global.navigator.share = null;
+  });
+
+  it('should display a copy URL helper when browser does not support share API', () => {
+    // @ts-expect-error
+    global.navigator.clipboard = {
+      writeText: jest.fn(),
+    };
+
+    render(<Header title="Copy" />);
+
+    fireEvent.click(screen.getByTitle('Copy URL'));
+    expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith(
+      'https://festival-converter.app/',
+    );
   });
 });
