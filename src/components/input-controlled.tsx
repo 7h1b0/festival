@@ -21,7 +21,7 @@ function Input({ id, value, onChange, forwardRef }: RenderableProps<Props>) {
       }: h.JSX.TargetedEvent<HTMLInputElement, Event>) => {
         onChange(Number(currentTarget.value));
       }}
-      class="mt-3 block w-full text-3xl rounded border border-gray-400 focus:border-blue-500"
+      class="mt-3 block w-full text-3xl rounded border border-gray-400 focus:border-blue-500 focus:outline-none"
     />
   );
 }
