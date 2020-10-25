@@ -38,3 +38,9 @@ Then browse to http://localhost:3000
 | `npm run build`        | Builds the production assets.    |
 
 ---
+
+## Examples
+
+- [Tomorrowland 2019](https://festival-converter.netlify.app/?name=Tomorrowland+2019&currency=Pearl&rate=1.6)
+- [Mysteryland 2019](https://festival-converter.netlify.app/?name=Mysteryland&currency=Token&rate=3)
+- [Rock Werchter 2019](https://festival-converter.netlify.app/?name=Rock+Werchter&currency=Voucher&rate=2.75)
