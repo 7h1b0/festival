@@ -15,7 +15,7 @@ describe('Header', () => {
 
     const title = 'Share';
     render(<Header title={title} />);
-    fireEvent.click(screen.getByTitle('Share'));
+    fireEvent.click(screen.getByLabelText('Share'));
     expect(global.navigator.share).toHaveBeenCalledWith({
       text: title,
       url: 'https://festival-converter.app/',
@@ -33,7 +33,7 @@ describe('Header', () => {
 
     render(<Header title="Copy" />);
 
-    fireEvent.click(screen.getByTitle('Copy URL'));
+    fireEvent.click(screen.getByLabelText('Share'));
     expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith(
       'https://festival-converter.app/',
     );

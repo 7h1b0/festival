@@ -12,9 +12,16 @@ describe('Festival website', () => {
     cy.visit('/');
 
     cy.findByText('Create a festival').should('be.visible');
-    cy.findByLabelText(/^Name/i).type('Javascript');
+    cy.findByLabelText(/^Name/i).type('$$');
     cy.findByLabelText(/^Currency/i).type('test');
     cy.findByLabelText(/^rate/i).type('1.5');
+    cy.findByText('Submit').click();
+
+    cy.findByText('Form is invalid').should('be.visible');
+    cy.findAllByLabelText('close').click();
+    cy.findByText('Form is invalid').should('not.be.visible');
+
+    cy.findByLabelText(/^Name/i).clear().type('Javascript');
     cy.findByText('Submit').click();
 
     cy.url().should(
@@ -22,5 +29,19 @@ describe('Festival website', () => {
       'http://localhost:3000/?name=Javascript&currency=test&rate=1.5',
     );
     cy.findByText('Javascript').should('be.visible');
+  });
+
+  it('allows user to copy url', () => {
+    cy.visit('/?name=Cypress&rate=1.6&currency=TS');
+    cy.findByLabelText('Share').click();
+    cy.window()
+      .then((window) => window.navigator.clipboard.readText())
+      .should('eq', 'http://localhost:3000/?name=Cypress&rate=1.6&currency=TS');
+
+    cy.visit('/?name=Clipboard&rate=3&currency=JS');
+    cy.findByLabelText('Share').click();
+    cy.window()
+      .then((window) => window.navigator.clipboard.readText())
+      .should('eq', 'http://localhost:3000/?name=Clipboard&rate=3&currency=JS');
   });
 });
