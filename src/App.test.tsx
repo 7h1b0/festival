@@ -17,4 +17,15 @@ describe('App', () => {
     expect(screen.getByText('Javascript')).toBeVisible();
     expect(screen.getByText('1 Closure = 3 EUR')).toBeVisible();
   });
+
+  it('should redirect to a form is festival is invalid', () => {
+    window.history.replaceState(
+      {},
+      'Test',
+      '/?name=___&rate=3&currency=Closure',
+    );
+    render(<App />);
+
+    expect(screen.getByText('Submit')).toBeVisible();
+  });
 });
