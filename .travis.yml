@@ -9,6 +9,7 @@ cache:
 
 install:
   - npm ci --prefer-offline --no-audit
+  - npm install codecov -g
 
 before_script:
   - npm run build
@@ -20,6 +21,9 @@ script:
   - npm run type:check
   - npm run coverage
   - npm run test:e2e
+
+after_success:
+  - codecov
 
 notifications:
   email: false
