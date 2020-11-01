@@ -38,16 +38,12 @@ function Form() {
         class="bg-white rounded shadow uppercase p-8"
         onSubmit={handleSubmit}
       >
-        <Input forwardRef={nameRef} label={'name'} placeholder="Tomorrowland" />
-        <Input
-          forwardRef={currencyRef}
-          label={'currency'}
-          placeholder="Pearl"
-        />
+        <Input forwardRef={nameRef} label="name" placeholder="Tomorrowland" />
+        <Input forwardRef={currencyRef} label="currency" placeholder="Pearl" />
         <Input
           forwardRef={rateRef}
-          type={'number'}
-          label={'rate'}
+          type="number"
+          label="rate"
           placeholder="1.6"
         />
         <button class="bg-blue-500 text-white rounded px-5 py-3 m-auto block">

@@ -3,8 +3,8 @@ import { h, Ref } from 'preact';
 
 type Props = {
   label: string;
+  forwardRef: Ref<HTMLInputElement>;
   type?: string;
-  forwardRef?: Ref<HTMLInputElement>;
   placeholder?: string;
 };
 
