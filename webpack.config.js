@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const cssnano = require('cssnano')({
   preset: [
@@ -20,25 +20,6 @@ const tailwindcss = require('tailwindcss')('./tailwindcss.config.js');
 module.exports = ({ prod } = {}) => {
   const plugins = prod
     ? [
-        new WebpackPwaManifest({
-          name: 'Festival Converter',
-          short_name: 'Converter',
-          description: 'Convert festival currency',
-          background_color: '#eeeeee',
-          theme_color: '#5c8df6',
-          ios: true,
-          icons: [
-            {
-              src: path.resolve('src/assets/icon.png'),
-              sizes: [192],
-              ios: true,
-            },
-            {
-              src: path.resolve('src/assets/icon.png'),
-              sizes: [512],
-            },
-          ],
-        }),
         new WorkboxWebpackPlugin.GenerateSW({
           clientsClaim: true,
           mode: 'production',
@@ -95,6 +76,9 @@ module.exports = ({ prod } = {}) => {
         filename: 'styles.[contenthash].css',
         chunkFilename: '[id].css',
         ignoreOrder: false,
+      }),
+      new CopyPlugin({
+        patterns: [{ from: 'public' }],
       }),
       ...plugins,
     ],
