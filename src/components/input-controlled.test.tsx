@@ -1,6 +1,7 @@
 /** @jsx h */
 import { h } from 'preact';
-import { render, fireEvent, screen } from '@testing-library/preact';
+import { render, screen } from '@testing-library/preact';
+import userEvent from '@testing-library/user-event';
 
 import InputControlled from './input-controlled';
 
@@ -9,8 +10,8 @@ describe('InputControlled', () => {
     const handleChange = jest.fn();
     render(<InputControlled onChange={handleChange} id="test" value={1} />);
 
-    fireEvent.input(screen.getByDisplayValue('1'), { target: { value: 2 } });
+    userEvent.type(screen.getByDisplayValue('1'), '2');
 
-    expect(handleChange).toBeCalledWith(2);
+    expect(handleChange).toBeCalledWith(12);
   });
 });

@@ -1,4 +1,4 @@
-import getFestivalFromSearchLocation from './useFestival';
+import getFestivalFromSearchLocation from './festival';
 
 describe('getFestivalFromSearchLocation', () => {
   it('should return the festival containing in URL', () => {

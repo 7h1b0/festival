@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from 'preact';
-import { render, screen, fireEvent } from '@testing-library/preact';
-import '@testing-library/jest-dom'; // fix TS issues
+import { render, screen } from '@testing-library/preact';
+import userEvent from '@testing-library/user-event';
 
 import Form from './form';
 
@@ -9,19 +9,13 @@ describe('Form', () => {
   it('should display an alert when form is invalid', () => {
     render(<Form />);
 
-    fireEvent.input(screen.getByLabelText('name'), {
-      target: { value: '&&&&' },
-    });
-    fireEvent.input(screen.getByLabelText('currency'), {
-      target: { value: 'jest' },
-    });
-    fireEvent.input(screen.getByLabelText('rate'), {
-      target: { value: '1.8' },
-    });
-    fireEvent.click(screen.getByText('Submit'));
+    userEvent.type(screen.getByLabelText('name'), '&&&&');
+    userEvent.type(screen.getByLabelText('currency'), 'jest');
+    userEvent.type(screen.getByLabelText('rate'), '1.8');
+    userEvent.click(screen.getByText('Submit'));
 
     expect(screen.getByText('Form is invalid')).toBeVisible();
-    fireEvent.click(screen.getByLabelText('close'));
+    userEvent.click(screen.getByLabelText('close'));
     expect(screen.queryByText('Form is invalid')).not.toBeInTheDocument();
   });
 
@@ -30,16 +24,10 @@ describe('Form', () => {
 
     render(<Form />);
 
-    fireEvent.input(screen.getByLabelText('name'), {
-      target: { value: 'test' },
-    });
-    fireEvent.input(screen.getByLabelText('currency'), {
-      target: { value: 'jest' },
-    });
-    fireEvent.input(screen.getByLabelText('rate'), {
-      target: { value: '1.8' },
-    });
-    fireEvent.click(screen.getByText('Submit'));
+    userEvent.type(screen.getByLabelText('name'), 'test');
+    userEvent.type(screen.getByLabelText('currency'), 'jest');
+    userEvent.type(screen.getByLabelText('rate'), '1.8');
+    userEvent.click(screen.getByText('Submit'));
 
     expect(window.history.replaceState).toHaveBeenCalledWith(
       { page: 3 },

@@ -3,7 +3,7 @@ import { h } from 'preact';
 import { useRef, useState } from 'preact/hooks';
 
 import Input from 'components/input';
-import { isValidFestival } from 'modules/useFestival';
+import { isValidFestival } from 'modules/festival';
 
 function Form() {
   const [hasError, setError] = useState<boolean>(false);

@@ -1,6 +1,7 @@
 /** @jsx h */
 import { h, RefCallback } from 'preact';
-import { render, fireEvent, screen } from '@testing-library/preact';
+import { render, screen } from '@testing-library/preact';
+import userEvent from '@testing-library/user-event';
 
 import Input from './input';
 
@@ -13,9 +14,7 @@ describe('Input', () => {
 
     render(<Input label="test" forwardRef={forwardRef} />);
 
-    fireEvent.input(screen.getByLabelText('test'), {
-      target: { value: 'hello!' },
-    });
+    userEvent.type(screen.getByLabelText('test'), 'hello!');
 
     expect(holdRef).not.toBe(null);
     // @ts-ignore holdRef is not null anymore

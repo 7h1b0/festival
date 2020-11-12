@@ -4,7 +4,7 @@ import { h } from 'preact';
 import Home from 'pages/home';
 import Form from 'pages/form';
 
-import getFestivalFromSearchLocation from 'modules/useFestival';
+import getFestivalFromSearchLocation from 'modules/festival';
 
 function App() {
   try {

@@ -1,6 +1,7 @@
 /** @jsx h */
 import { h } from 'preact';
-import { render, screen, fireEvent } from '@testing-library/preact';
+import { render, screen } from '@testing-library/preact';
+import userEvent from '@testing-library/user-event';
 
 import Header from './header';
 
@@ -15,7 +16,7 @@ describe('Header', () => {
 
     const title = 'Share';
     render(<Header title={title} />);
-    fireEvent.click(screen.getByLabelText('Share'));
+    userEvent.click(screen.getByLabelText('Share'));
     expect(global.navigator.share).toHaveBeenCalledWith({
       text: title,
       url: 'https://festival-converter.app/',
@@ -33,7 +34,7 @@ describe('Header', () => {
 
     render(<Header title="Copy" />);
 
-    fireEvent.click(screen.getByLabelText('Share'));
+    userEvent.click(screen.getByLabelText('Share'));
     expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith(
       'https://festival-converter.app/',
     );

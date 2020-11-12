@@ -1,6 +1,7 @@
 /** @jsx h */
 import { h } from 'preact';
-import { render, fireEvent, screen } from '@testing-library/preact';
+import { render, screen } from '@testing-library/preact';
+import userEvent from '@testing-library/user-event';
 
 import Converter from './converter';
 
@@ -13,15 +14,13 @@ describe('Converter', () => {
   };
 
   it('should converter festival currency to euros and vice versa', () => {
-    const payload = {
-      target: { value: 3 },
-    };
     render(<Converter festival={festival} />);
 
-    fireEvent.input(screen.getByLabelText(/^Closure/), payload);
+    userEvent.type(screen.getByLabelText(/^Closure/), '3');
     expect(screen.getByDisplayValue('9')).toBeVisible();
 
-    fireEvent.input(screen.getByLabelText(/^EUR/), payload);
+    userEvent.clear(screen.getByLabelText(/^EUR/));
+    userEvent.type(screen.getByLabelText(/^EUR/), '3');
     expect(screen.getByDisplayValue('1')).toBeVisible();
   });
 });
