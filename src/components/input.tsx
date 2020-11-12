@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, Ref } from 'preact';
+import { h, Ref, RenderableProps } from 'preact';
 
 type Props = {
   label: string;
@@ -8,7 +8,12 @@ type Props = {
   placeholder?: string;
 };
 
-function Input({ label, type = 'text', forwardRef, placeholder = '' }: Props) {
+function Input({
+  label,
+  type = 'text',
+  forwardRef,
+  placeholder = '',
+}: RenderableProps<Props>) {
   return (
     <label class="pb-4 block text-gray-800 font-bold text-sm tracking-wider">
       {label}

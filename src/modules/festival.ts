@@ -1,4 +1,4 @@
-import { Festival } from 'src/festivals';
+import type { Festival } from 'src/festivals';
 
 export default function getFestivalFromSearchLocation(
   search: string,

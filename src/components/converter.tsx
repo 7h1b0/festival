@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h } from 'preact';
+import { h, RenderableProps } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import Label from 'components/label';
 import Input from 'components/input-controlled';
@@ -10,7 +10,7 @@ import type { Festival } from 'src/festivals';
 type Props = {
   festival: Festival;
 };
-function Converter({ festival }: Props) {
+function Converter({ festival }: RenderableProps<Props>) {
   const inputEl = useFocus();
   const [value, setValue] = useState(0);
 
