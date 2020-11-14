@@ -46,7 +46,7 @@ function Form() {
           label="rate"
           placeholder="1.6"
         />
-        <button class="bg-blue-500 text-white rounded px-5 py-3 m-auto block">
+        <button class="bg-indigo-600 text-white rounded w-full py-3 mt-3 m-auto block">
           Submit
         </button>
       </form>
