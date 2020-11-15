@@ -1,4 +1,4 @@
-# Festival [![Build Status](https://travis-ci.com/7h1b0/festival.svg?branch=master)](https://travis-ci.com/7h1b0/festival) [![codecov](https://codecov.io/gh/7h1b0/festival/branch/master/graph/badge.svg?token=INA97QXW5D)](https://codecov.io/gh/7h1b0/festival) [![Netlify Status](https://api.netlify.com/api/v1/badges/32191849-dfc5-4285-b75d-4cbd831cfc2b/deploy-status)](https://app.netlify.com/sites/festival-converter/deploys)
+# Festival ![Validate](https://github.com/7h1b0/festival/workflows/Validate/badge.svg) [![codecov](https://codecov.io/gh/7h1b0/festival/branch/master/graph/badge.svg?token=INA97QXW5D)](https://codecov.io/gh/7h1b0/festival) [![Netlify Status](https://api.netlify.com/api/v1/badges/32191849-dfc5-4285-b75d-4cbd831cfc2b/deploy-status)](https://app.netlify.com/sites/festival-converter/deploys)
 
 ## What it does
 
