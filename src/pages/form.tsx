@@ -32,12 +32,9 @@ function Form() {
   }
 
   return (
-    <div class="flex flex-col lg:justify-center lg:h-full lg:max-w-lg mx-auto">
+    <div class="container">
       <h1 class="font-bold text-lg text-gray-800 p-8 ">Create a festival</h1>
-      <form
-        class="bg-white rounded shadow uppercase p-8"
-        onSubmit={handleSubmit}
-      >
+      <form class="card" onSubmit={handleSubmit}>
         <Input forwardRef={nameRef} label="name" placeholder="Tomorrowland" />
         <Input forwardRef={currencyRef} label="currency" placeholder="Pearl" />
         <Input

@@ -10,7 +10,7 @@ type Props = {
 };
 function Home({ festival }: RenderableProps<Props>) {
   return (
-    <div class="flex flex-col lg:justify-center lg:h-full lg:max-w-lg mx-auto">
+    <div class="container">
       <Header title={festival.name} />
       <Converter festival={festival} />
     </div>

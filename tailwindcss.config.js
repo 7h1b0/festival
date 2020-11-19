@@ -1,6 +1,8 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   purge: {
-    content: ['./src/**/*.html', './src/**/*.tsx'],
+    content: ['./src/**/*.tsx'],
   },
   corePlugins: {
     container: false,
@@ -12,6 +14,11 @@ module.exports = {
   theme: {
     screens: {
       lg: '1024px',
+    },
+    colors: {
+      indigo: colors.indigo,
+      white: '#fff',
+      gray: colors.blueGray,
     },
   },
 };

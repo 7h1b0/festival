@@ -17,7 +17,7 @@ function Converter({ festival }: RenderableProps<Props>) {
   useEffect(() => setValue(0), [festival.rate]);
 
   return (
-    <main class="bg-white rounded shadow uppercase p-8">
+    <main class="card">
       <Label
         htmlFor={`${festival.rate}`}
         source={festival.currency}

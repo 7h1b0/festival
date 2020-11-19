@@ -21,7 +21,7 @@ function Input({
         ref={forwardRef}
         type={type}
         step={0.01}
-        class="mt-1 block w-full text-3xl rounded border border-gray-400 focus:border-indigo-600"
+        class="mt-1 input"
         placeholder={placeholder}
       />
     </label>
