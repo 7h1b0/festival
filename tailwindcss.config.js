@@ -10,6 +10,7 @@ module.exports = {
     textOpacity: false,
     backgroundOpacity: false,
     borderOpacity: false,
+    ringOpacity: false,
   },
   theme: {
     screens: {
