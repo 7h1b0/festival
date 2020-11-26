@@ -19,7 +19,7 @@ describe('Festival website', () => {
 
     cy.findByText('Form is invalid').should('be.visible');
     cy.findAllByLabelText('close').click();
-    cy.findByText('Form is invalid').should('not.be.visible');
+    cy.findByText('Form is invalid').should('not.exist');
 
     cy.findByLabelText(/^Name/i).clear().type('Javascript');
     cy.findByText('Submit').click();

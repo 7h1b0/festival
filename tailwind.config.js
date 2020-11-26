@@ -16,10 +16,10 @@ module.exports = {
     screens: {
       lg: '1024px',
     },
-    colors: {
-      indigo: colors.indigo,
-      white: '#fff',
-      gray: colors.blueGray,
+    extend: {
+      colors: {
+        gray: colors.blueGray,
+      },
     },
   },
 };
