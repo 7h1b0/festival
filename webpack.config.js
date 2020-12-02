@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const tailwindcss = require('tailwindcss');
 
 const cssnano = require('cssnano')({
   preset: [
@@ -15,7 +16,6 @@ const cssnano = require('cssnano')({
     },
   ],
 });
-const tailwindcss = require('tailwindcss')();
 
 module.exports = ({ prod } = {}) => {
   const plugins = prod
@@ -23,7 +23,7 @@ module.exports = ({ prod } = {}) => {
         new WorkboxWebpackPlugin.GenerateSW({
           clientsClaim: true,
           mode: 'production',
-          exclude: [/\.map$/, /asset-manifest\.json$/],
+          exclude: [/\.map$/, /\.txt$/],
           navigateFallback: 'index.html',
         }),
       ]
