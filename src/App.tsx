@@ -7,12 +7,11 @@ import Form from 'pages/form';
 import getFestivalFromSearchLocation from 'modules/festival';
 
 function App() {
-  try {
-    const festival = getFestivalFromSearchLocation(window.location.search);
+  const festival = getFestivalFromSearchLocation(window.location.search);
+  if (festival !== null) {
     return <Home festival={festival} />;
-  } catch (err) {
-    return <Form />;
   }
+  return <Form />;
 }
 
 export default App;

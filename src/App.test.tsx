@@ -22,7 +22,7 @@ describe('App', () => {
     window.history.replaceState(
       {},
       'Test',
-      '/?name=___&rate=3&currency=Closure',
+      '/?name=$$$&rate=3&currency=Closure',
     );
     render(<App />);
 

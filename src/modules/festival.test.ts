@@ -11,10 +11,10 @@ describe('getFestivalFromSearchLocation', () => {
     });
   });
 
-  it('should throw if there is property', () => {
-    expect(() =>
+  it('should return null if properties are missing', () => {
+    expect(
       getFestivalFromSearchLocation('?rate=3&currency=Closure'),
-    ).toThrow();
+    ).toBeNull();
   });
 
   it('should ignore additional property', () => {

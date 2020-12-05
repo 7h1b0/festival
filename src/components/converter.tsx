@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h, RenderableProps } from 'preact';
-import { useState, useEffect } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 import Label from 'components/label';
 import Input from 'components/input-controlled';
 import useFocus from 'hooks/useFocus';
@@ -13,8 +13,6 @@ type Props = {
 function Converter({ festival }: RenderableProps<Props>) {
   const inputEl = useFocus();
   const [value, setValue] = useState(0);
-
-  useEffect(() => setValue(0), [festival.rate]);
 
   return (
     <main class="card">

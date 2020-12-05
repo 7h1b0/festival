@@ -2,7 +2,7 @@ import type { Festival } from 'src/festivals';
 
 export default function getFestivalFromSearchLocation(
   search: string,
-): Festival {
+): Festival | null {
   const searchParams = new URLSearchParams(search);
   const name = searchParams.get('name');
   const currency = searchParams.get('currency');
@@ -12,7 +12,7 @@ export default function getFestivalFromSearchLocation(
     // @ts-ignore name and currency are string here
     return { name, currency, rate: Number(rate) };
   }
-  throw new Error('No enough information to create a festival');
+  return null;
 }
 
 export function isValidFestival(
@@ -20,9 +20,10 @@ export function isValidFestival(
   currency: string | null,
   rate: string | null,
 ) {
+  const regexStr = /[\w\s]{1,20}/;
   const isPositiveInteger = Number(rate) > 0;
-  const isValidName = /[a-zA-Z0-9\s]{1,20}/.test(name || '');
-  const isValidCurrency = /[a-zA-Z0-9\s]{1,20}/.test(currency || '');
+  const isValidName = regexStr.test(name || '');
+  const isValidCurrency = regexStr.test(currency || '');
 
   return isPositiveInteger && isValidName && isValidCurrency;
 }
