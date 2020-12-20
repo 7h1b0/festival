@@ -18,7 +18,7 @@ const cssnano = require('cssnano')({
 });
 
 module.exports = ({ prod } = {}) => {
-  const plugins = prod
+  const additionalPlugins = prod
     ? [
         new WorkboxWebpackPlugin.GenerateSW({
           clientsClaim: true,
@@ -40,7 +40,7 @@ module.exports = ({ prod } = {}) => {
       pathinfo: !prod,
       publicPath: '/',
     },
-    devtool: prod ? 'none' : 'source-map',
+    devtool: prod ? false : 'source-map',
     module: {
       rules: [
         {
@@ -80,18 +80,18 @@ module.exports = ({ prod } = {}) => {
       new CopyPlugin({
         patterns: [{ from: 'public' }],
       }),
-      ...plugins,
+      ...additionalPlugins,
     ],
     resolve: {
       extensions: ['.js', '.ts', '.tsx'],
       modules: ['node_modules', '.'],
     },
     devServer: {
+      open: true,
       contentBase: path.join(__dirname, 'src'),
-      compress: true,
       historyApiFallback: true,
-      noInfo: true,
       port: 3000,
+      stats: 'errors-only',
     },
     bail: true,
     node: false,
