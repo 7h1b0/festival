@@ -14,16 +14,32 @@ jobs:
         with:
           node-version: '14.x'
       - run: npm ci --prefer-offline --no-audit
-      - run: npm run build
       - run: npm run lint:check
       - run: npm run format:check
       - run: npm run type:check
       - name: unit tests
         run: npm run coverage
+      - name: upload coverage
+        uses: codecov/codecov-action@v1
+
+  test:
+    name: Cypress run
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: ['firefox', 'electron']
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: npm ci --prefer-offline --no-audit
+      - run: npm run build
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          browser: ${{ matrix.browser }}
           start: npx serve -s dist/ -l 3000 -n
           wait-on: 'http://localhost:3000'
-      - name: upload coverage
-        uses: codecov/codecov-action@v1

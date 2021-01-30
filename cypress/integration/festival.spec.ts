@@ -31,7 +31,8 @@ describe('Festival website', () => {
     cy.findByText('Javascript').should('be.visible');
   });
 
-  it('allows user to copy url', () => {
+  // Only Electron allows to read clipboard
+  it('allows user to copy url', { browser: 'Electron' }, () => {
     cy.visit('/?name=Cypress&rate=1.6&currency=TS');
     cy.findByLabelText('Share').click();
     cy.window()
