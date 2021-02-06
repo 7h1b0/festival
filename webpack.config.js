@@ -17,8 +17,9 @@ const cssnano = require('cssnano')({
   ],
 });
 
-module.exports = ({ prod } = {}) => {
-  const additionalPlugins = prod
+module.exports = () => {
+  const isProd = process.env.NODE_ENV === 'production';
+  const additionalPlugins = isProd
     ? [
         new WorkboxWebpackPlugin.GenerateSW({
           clientsClaim: true,
@@ -30,17 +31,17 @@ module.exports = ({ prod } = {}) => {
     : [];
 
   return {
-    mode: prod ? 'production' : 'development',
+    mode: isProd ? 'production' : 'development',
     entry: {
       app: ['./src', './src/styles.css'],
     },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].[contenthash].js',
-      pathinfo: !prod,
+      pathinfo: !isProd,
       publicPath: '/',
     },
-    devtool: prod ? false : 'source-map',
+    devtool: isProd ? false : 'source-map',
     module: {
       rules: [
         {
@@ -59,7 +60,7 @@ module.exports = ({ prod } = {}) => {
               loader: 'postcss-loader',
               options: {
                 postcssOptions: {
-                  plugins: [tailwindcss, ...(prod ? [cssnano] : [])],
+                  plugins: [tailwindcss, ...(isProd ? [cssnano] : [])],
                 },
               },
             },
