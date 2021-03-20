@@ -17,7 +17,7 @@ function Converter({ festival }: RenderableProps<Props>) {
   return (
     <main class="card">
       <Label
-        htmlFor={`${festival.rate}`}
+        htmlFor={festival.currency}
         source={festival.currency}
         target="EUR"
         rate={festival.rate}
@@ -25,7 +25,7 @@ function Converter({ festival }: RenderableProps<Props>) {
 
       <Input
         forwardRef={inputEl}
-        id={`${festival.rate}`}
+        id={festival.currency}
         value={round(value)}
         onChange={setValue}
       />
