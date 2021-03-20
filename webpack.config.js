@@ -5,6 +5,7 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const tailwindcss = require('tailwindcss');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const cssnano = require('cssnano')({
   preset: [
@@ -66,6 +67,26 @@ module.exports = () => {
             },
           ],
         },
+      ],
+    },
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              pure_getters: true,
+              unsafe: true,
+              booleans_as_integers: false,
+              drop_console: true,
+              passes: 3,
+            },
+            mangle: {
+              properties: {
+                regex: /^(_|(handle)([A-Za-z]+))/,
+              },
+            },
+          },
+        }),
       ],
     },
     plugins: [
