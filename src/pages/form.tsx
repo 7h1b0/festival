@@ -54,6 +54,7 @@ function Form() {
             viewBox="0 0 20 20"
             fill="currentColor"
             class="w-8 h-8"
+            aria-hidden="true"
           >
             <path
               fill-rule="evenodd"
@@ -73,6 +74,7 @@ function Form() {
               viewBox="0 0 24 24"
               stroke="currentColor"
               class="w-8 h-8"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"

@@ -15,7 +15,7 @@ function Converter({ festival }: RenderableProps<Props>) {
   const [value, setValue] = useState(0);
 
   return (
-    <main class="card">
+    <main class="card" aria-live="polite">
       <Label
         htmlFor={festival.currency}
         source={festival.currency}
