@@ -21,9 +21,9 @@ export function isValidFestival(
   rate: string | null,
 ) {
   const regexStr = /[\w\s]{1,20}/;
-  const isPositiveInteger = Number(rate) > 0;
+  const isPositiveNumber = Number(rate) > 0;
   const isValidName = regexStr.test(name || '');
   const isValidCurrency = regexStr.test(currency || '');
 
-  return isPositiveInteger && isValidName && isValidCurrency;
+  return isPositiveNumber && isValidName && isValidCurrency;
 }
