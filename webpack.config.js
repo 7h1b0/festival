@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -41,6 +40,7 @@ module.exports = () => {
       filename: '[name].[contenthash].js',
       pathinfo: !isProd,
       publicPath: '/',
+      clean: true,
     },
     devtool: isProd ? false : 'source-map',
     module: {
@@ -93,7 +93,6 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: './src/index.html',
       }),
-      new CleanWebpackPlugin({ verbose: false }),
       new MiniCssExtractPlugin({
         filename: 'styles.[contenthash].css',
         chunkFilename: '[id].css',
