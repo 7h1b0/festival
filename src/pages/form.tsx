@@ -14,9 +14,9 @@ function Form() {
   function handleSubmit(e: h.JSX.TargetedEvent<HTMLFormElement, Event>) {
     e.preventDefault();
 
-    const name = nameRef.current.value;
-    const currency = currencyRef.current.value;
-    const rate = rateRef.current.value;
+    const name = nameRef.current ? nameRef.current.value : '';
+    const currency = currencyRef.current ? currencyRef.current.value : '';
+    const rate = rateRef.current ? rateRef.current.value : '';
 
     if (isValidFestival(name, currency, rate)) {
       const search = new URLSearchParams({
