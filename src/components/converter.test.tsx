@@ -16,11 +16,12 @@ describe('Converter', () => {
   it('should converter festival currency to euros and vice versa', () => {
     render(<Converter festival={festival} />);
 
-    userEvent.type(screen.getByLabelText(/^Closure/), '3');
-    expect(screen.getByDisplayValue('9')).toBeVisible();
+    userEvent.type(screen.getByRole('spinbutton', { name: /^Closure/ }), '3');
+    expect(screen.getByRole('spinbutton', { name: /^EUR/ })).toHaveValue(9);
 
-    userEvent.clear(screen.getByLabelText(/^EUR/));
-    userEvent.type(screen.getByLabelText(/^EUR/), '3');
-    expect(screen.getByDisplayValue('1')).toBeVisible();
+    userEvent.clear(screen.getByRole('spinbutton', { name: /^EUR/ }));
+
+    userEvent.type(screen.getByRole('spinbutton', { name: /^EUR/ }), '3');
+    expect(screen.getByRole('spinbutton', { name: /^Closure/ })).toHaveValue(1);
   });
 });

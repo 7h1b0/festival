@@ -9,25 +9,26 @@ describe('Form', () => {
   it('should display an alert when form is invalid', () => {
     render(<Form />);
 
-    userEvent.type(screen.getByLabelText('name'), '&&&&');
-    userEvent.type(screen.getByLabelText('currency'), 'jest');
-    userEvent.type(screen.getByLabelText('rate'), '1.8');
-    userEvent.click(screen.getByText('Submit'));
+    userEvent.type(screen.getByRole('textbox', { name: 'name' }), '&&&&');
+    userEvent.type(screen.getByRole('textbox', { name: 'currency' }), 'jest');
+    userEvent.type(screen.getByRole('spinbutton', { name: 'rate' }), '1.8');
+    userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(screen.getByText('Form is invalid')).toBeVisible();
-    userEvent.click(screen.getByLabelText('close'));
+
+    userEvent.click(screen.getByRole('button', { name: 'close' }));
     expect(screen.queryByText('Form is invalid')).not.toBeInTheDocument();
   });
 
-  it('should display an alert when form is invalid', () => {
+  it('should redirect the user when form is valid', () => {
     window.history.replaceState = jest.fn();
 
     render(<Form />);
 
-    userEvent.type(screen.getByLabelText('name'), 'test');
-    userEvent.type(screen.getByLabelText('currency'), 'jest');
-    userEvent.type(screen.getByLabelText('rate'), '1.8');
-    userEvent.click(screen.getByText('Submit'));
+    userEvent.type(screen.getByRole('textbox', { name: 'name' }), 'test');
+    userEvent.type(screen.getByRole('textbox', { name: 'currency' }), 'jest');
+    userEvent.type(screen.getByRole('spinbutton', { name: 'rate' }), '1.8');
+    userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(window.history.replaceState).toHaveBeenCalledWith(
       { page: 3 },

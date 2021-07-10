@@ -48,7 +48,10 @@ function Form() {
         </button>
       </form>
       {hasError && (
-        <div class="bg-red-700 rounded py-3 px-3 mt-3 text-white flex items-center">
+        <div
+          role="alert"
+          class="bg-red-700 rounded py-3 px-3 mt-3 text-white flex items-center"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
