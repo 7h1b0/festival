@@ -50,6 +50,7 @@ function Form() {
       {hasError && (
         <div
           role="alert"
+          aria-labelledby="alert-0"
           class="bg-red-700 rounded py-3 px-3 mt-3 text-white flex items-center"
         >
           <svg
@@ -65,7 +66,9 @@ function Form() {
               clip-rule="evenodd"
             />
           </svg>
-          <p class="normal-case px-3 flex-grow">Form is invalid</p>
+          <p id="alert-0" class="normal-case px-3 flex-grow">
+            Form is invalid
+          </p>
           <button
             type="button"
             aria-label="close"
