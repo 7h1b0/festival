@@ -13,7 +13,7 @@ describe('App', () => {
     );
     render(<App />);
 
-    expect(screen.getByText('Javascript')).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Javascript' })).toBeVisible();
     expect(screen.getByText('1 Closure = 3 EUR')).toBeVisible();
   });
 
@@ -25,6 +25,6 @@ describe('App', () => {
     );
     render(<App />);
 
-    expect(screen.getByText('Submit')).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Submit' })).toBeVisible();
   });
 });

@@ -8,7 +8,9 @@ import Header from './header';
 describe('Header', () => {
   it('should display the festival name', () => {
     render(<Header title="Rock Werchter 2019" />);
-    expect(screen.getByText('Rock Werchter 2019')).toBeVisible();
+    expect(
+      screen.getByRole('heading', { name: 'Rock Werchter 2019' }),
+    ).toBeVisible();
   });
 
   it('should be able to share the URL through Share API', () => {

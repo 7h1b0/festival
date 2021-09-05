@@ -14,7 +14,7 @@ describe('Input', () => {
 
     render(<Input label="test" forwardRef={forwardRef} />);
 
-    userEvent.type(screen.getByLabelText('test'), 'hello!');
+    userEvent.type(screen.getByRole('textbox', { name: 'test' }), 'hello!');
 
     expect(holdRef).not.toBe(null);
     // @ts-ignore holdRef is not null anymore

@@ -14,10 +14,14 @@ describe('Form', () => {
     userEvent.type(screen.getByRole('spinbutton', { name: 'rate' }), '1.8');
     userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
-    expect(screen.getByText('Form is invalid')).toBeVisible();
+    expect(
+      screen.getByRole('alert', { name: 'Form is invalid' }),
+    ).toBeVisible();
 
     userEvent.click(screen.getByRole('button', { name: 'close' }));
-    expect(screen.queryByText('Form is invalid')).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('alert', { name: 'Form is invalid' }),
+    ).not.toBeInTheDocument();
   });
 
   it('should redirect the user when form is valid', () => {

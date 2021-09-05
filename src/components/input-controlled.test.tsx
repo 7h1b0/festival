@@ -10,7 +10,7 @@ describe('InputControlled', () => {
     const handleChange = jest.fn();
     render(<InputControlled onChange={handleChange} id="test" value={1} />);
 
-    userEvent.type(screen.getByDisplayValue('1'), '2');
+    userEvent.type(screen.getByRole('spinbutton'), '2');
 
     expect(handleChange).toBeCalledWith(12);
   });
