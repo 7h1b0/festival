@@ -30,7 +30,7 @@ function Converter({ festival }: RenderableProps<Props>) {
         onChange={setValue}
       />
 
-      <div class="h-px my-6 bg-indigo-600" />
+      <hr class="h-px my-6 border-indigo-600" />
 
       <Label
         htmlFor="euros"
