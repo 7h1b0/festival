@@ -33,7 +33,7 @@ function Form() {
 
   return (
     <div class="container">
-      <h1 class="font-bold text-lg text-gray-800 p-8 ">Create a festival</h1>
+      <h1 class="font-bold text-lg text-slate-800 p-8 ">Create a festival</h1>
       <form class="card" onSubmit={handleSubmit}>
         <Input forwardRef={nameRef} label="name" placeholder="Tomorrowland" />
         <Input forwardRef={currencyRef} label="currency" placeholder="Pearl" />

@@ -15,7 +15,7 @@ function Input({
   placeholder = '',
 }: RenderableProps<Props>) {
   return (
-    <label class="pb-4 block text-gray-800 font-bold text-sm tracking-wider">
+    <label class="pb-4 block text-slate-800 font-bold text-sm tracking-wider">
       {label}
       <input
         ref={forwardRef}

@@ -1,9 +1,7 @@
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-  purge: {
-    content: ['./src/**/*.tsx'],
-  },
+  content: ['./src/**/*.tsx'],
   corePlugins: {
     container: false,
     animation: false,
@@ -18,7 +16,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        gray: colors.blueGray,
+        slate: colors.slate,
       },
     },
   },

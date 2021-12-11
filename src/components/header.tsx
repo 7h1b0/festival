@@ -20,12 +20,12 @@ function Header({ title }: RenderableProps<Props>) {
   }
   return (
     <header class="flex justify-between p-8 ">
-      <h1 class="font-bold text-lg text-gray-800 capitalize flex-grow-0 truncate">
+      <h1 class="font-bold text-lg text-slate-800 capitalize flex-grow-0 truncate">
         {title}
       </h1>
       <button
         onClick={handleClick}
-        class="w-6 text-gray-600 flex-shrink-0"
+        class="w-6 text-slate-600 flex-shrink-0"
         aria-label="Share"
       >
         {canShare ? (
