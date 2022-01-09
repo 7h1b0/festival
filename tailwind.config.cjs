@@ -1,7 +1,7 @@
-const colors = require('tailwindcss/colors');
+const colors = require("tailwindcss/colors");
 
 module.exports = {
-  content: ['./src/**/*.tsx'],
+  content: ["./src/**/*.{html,js,svelte}"],
   corePlugins: {
     container: false,
     animation: false,
@@ -12,7 +12,7 @@ module.exports = {
   },
   theme: {
     screens: {
-      lg: '1024px',
+      lg: "1024px",
     },
     extend: {
       colors: {
@@ -20,4 +20,5 @@ module.exports = {
       },
     },
   },
+  plugins: [],
 };

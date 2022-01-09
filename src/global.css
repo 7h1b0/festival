@@ -1,4 +1,6 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body,
@@ -13,14 +15,3 @@ body {
 .input {
   @apply block w-full py-1 text-3xl rounded border border-slate-300 focus:border-indigo-600 focus:outline-none focus:ring-4 focus:ring-indigo-300;
 }
-
-.container {
-  @apply flex flex-col lg:justify-center lg:h-full lg:max-w-lg m-auto;
-}
-
-.card {
-  @apply bg-white rounded shadow uppercase p-8;
-}
-
-@tailwind components;
-@tailwind utilities;
