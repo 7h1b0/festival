@@ -15,22 +15,19 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: Run lint check
-        run: npm run lint:check
-
       - name: Run format check
         run: npm run format:check
 
-      - name: Run type check
-        run: npm run type:check
+      - name: Run check
+        run: npm run check
 
       - name: unit tests
-        run: npm run coverage
+        run: npm run test
 
       - name: upload coverage
         uses: codecov/codecov-action@v1
@@ -40,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: ['firefox', 'electron']
+        browser: ["firefox", "electron"]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -50,7 +47,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
@@ -63,4 +60,4 @@ jobs:
         with:
           browser: ${{ matrix.browser }}
           start: npx serve -s dist/ -l 3000 -n
-          wait-on: 'http://localhost:3000'
+          wait-on: "http://localhost:3000"

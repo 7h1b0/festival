@@ -22,9 +22,12 @@ describe('Festival website', () => {
     cy.findByRole('spinbutton', { name: /^rate/i }).type('1.5');
     cy.findByRole('button', { name: 'Submit' }).click();
 
-    cy.findByRole('alert', { name: 'Form is invalid' }).should('be.visible');
-    cy.findByRole('button', { name: 'close' }).click();
-    cy.findByRole('alert', { name: 'Form is invalid' }).should('not.exist');
+    cy.findByRole('textbox', { name: /^Name/i })
+      .then(($el) => {
+        const nativeElement = $el.get(0) as HTMLInputElement;
+        return nativeElement.checkValidity();
+      })
+      .should('be.false');
 
     cy.findByRole('textbox', { name: /^Name/i }).clear().type('Javascript');
     cy.findByRole('button', { name: 'Submit' }).click();

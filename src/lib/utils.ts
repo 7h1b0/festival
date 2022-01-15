@@ -1,8 +1,6 @@
-import type { Festival } from 'src/festivals';
+import type { Festival } from '../festival';
 
-export default function getFestivalFromSearchLocation(
-  search: string,
-): Festival | null {
+export function getFestivalFromSearchLocation(search: string): Festival | null {
   const searchParams = new URLSearchParams(search);
   const name = searchParams.get('name');
   const currency = searchParams.get('currency');
@@ -15,7 +13,7 @@ export default function getFestivalFromSearchLocation(
   return null;
 }
 
-export function isValidFestival(
+function isValidFestival(
   name: string | null,
   currency: string | null,
   rate: string | null,
