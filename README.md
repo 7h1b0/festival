@@ -18,7 +18,7 @@ To start an ephemeral development server run:
 
 ```sh
 npm install
-npm run dev
+npm start
 ```
 
 Then browse to http://localhost:3000

@@ -3,18 +3,22 @@
   import Label from './Label.svelte';
 
   export let festival: Festival;
+  let value = 0;
+  let convertedValue = 0;
 
   function round(value: number): number {
     return Math.round(value * 100) / 100;
   }
 
-  function handleInput(e: Event) {
+  function handleEur(e: Event) {
     const target = e.target as HTMLInputElement;
-    value = target.valueAsNumber / festival.rate;
+    value = round(target.valueAsNumber / festival.rate);
   }
 
-  let value = 0;
-  $: convertedValue = round(value * festival.rate);
+  function handleCurrency(e: Event) {
+    const target = e.target as HTMLInputElement;
+    convertedValue = round(target.valueAsNumber * festival.rate);
+  }
 </script>
 
 <div class="bg-white rounded shadow uppercase p-8" aria-live="polite">
@@ -30,7 +34,8 @@
     type="number"
     step={0.01}
     class="mt-3 input"
-    bind:value
+    {value}
+    on:input={handleCurrency}
   />
   <hr class="h-px my-6 border-indigo-600" />
 
@@ -46,6 +51,6 @@
     step={0.01}
     class="mt-3 input"
     value={convertedValue}
-    on:input={handleInput}
+    on:input={handleEur}
   />
 </div>
