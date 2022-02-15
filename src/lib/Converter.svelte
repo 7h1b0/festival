@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Festival } from 'src/festival';
+  import type { Festival } from '../festival';
   import Label from './Label.svelte';
 
   export let festival: Festival;
