@@ -33,7 +33,7 @@
     id={festival.currency}
     type="number"
     step={0.01}
-    class="mt-3 input"
+    class="mt-2 input"
     {value}
     on:input={handleCurrency}
   />
@@ -49,7 +49,7 @@
     id="euros"
     type="number"
     step={0.01}
-    class="mt-3 input"
+    class="mt-2 input"
     value={convertedValue}
     on:input={handleEur}
   />

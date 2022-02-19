@@ -16,12 +16,15 @@
 </script>
 
 <h1 class="font-bold text-lg text-slate-800 p-8 ">Create a festival</h1>
-<form class="bg-white rounded shadow uppercase p-8" on:submit={handleSubmit}>
-  <label class="pb-4 block text-slate-800 font-bold text-sm tracking-wider">
+<form
+  class="bg-white rounded shadow uppercase p-8 flex flex-col gap-6"
+  on:submit={handleSubmit}
+>
+  <label class="text-slate-800 font-bold text-sm tracking-wider">
     name
     <input
       step={0.01}
-      class="mt-1 input"
+      class="mt-2 input"
       placeholder="Tomorrowland"
       pattern={String.raw`[\w\s]{2,20}`}
       type="text"
@@ -29,11 +32,11 @@
       bind:value={name}
     />
   </label>
-  <label class="pb-4 block text-slate-800 font-bold text-sm tracking-wider">
+  <label class="text-slate-800 font-bold text-sm tracking-wider">
     currency
     <input
       step={0.01}
-      class="mt-1 input"
+      class="mt-2 input"
       placeholder="Pearl"
       pattern={String.raw`[\w\s]{2,20}`}
       type="text"
@@ -41,11 +44,11 @@
       bind:value={currency}
     />
   </label>
-  <label class="pb-4 block text-slate-800 font-bold text-sm tracking-wider">
+  <label class="text-slate-800 font-bold text-sm tracking-wider">
     rate
     <input
       step={0.01}
-      class="mt-1 input"
+      class="mt-2 input"
       placeholder="1.6"
       min={0}
       type="number"
@@ -53,9 +56,7 @@
       bind:value={rate}
     />
   </label>
-  <button
-    class="bg-indigo-600 text-white rounded w-full py-3 mt-3 m-auto block"
-  >
+  <button class="bg-indigo-600 text-white rounded w-full py-3 m-auto">
     Submit
   </button>
 </form>
