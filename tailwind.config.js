@@ -1,7 +1,7 @@
-const colors = require("tailwindcss/colors");
+import colors from 'tailwindcss/colors.js';
 
-module.exports = {
-  content: ["./src/**/*.{html,js,svelte}"],
+export default {
+  content: ['./src/**/*.{html,js,svelte}'],
   corePlugins: {
     container: false,
     animation: false,
@@ -12,7 +12,7 @@ module.exports = {
   },
   theme: {
     screens: {
-      lg: "1024px",
+      lg: '1024px',
     },
     extend: {
       colors: {
