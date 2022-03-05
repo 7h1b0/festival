@@ -8,7 +8,7 @@
   const festivalFromUrl = getFestivalFromSearchLocation(window.location.search);
 </script>
 
-<main class="flex flex-col lg:justify-center lg:h-full lg:max-w-lg m-auto">
+<main class="flex flex-col lg:justify-center lg:h-screen lg:max-w-lg m-auto">
   {#if festivalFromUrl}
     <Header title={festivalFromUrl.name} />
     <Converter festival={festivalFromUrl} />
