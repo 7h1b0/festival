@@ -3,6 +3,7 @@
   import Label from './Label.svelte';
 
   export let festival: Festival;
+
   let value = 0;
   let convertedValue = 0;
 
