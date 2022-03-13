@@ -39,9 +39,9 @@
     on:input={handleCurrency}
   />
 
-  <div class="flex items-center my-2">
-    <hr class="h-px my-6 border-indigo-600 grow" />
-    <div class="rounded-full bg-indigo-600 text-white p-2">
+  <div class="relative flex items-center justify-center my-2">
+    <hr class="absolute w-full h-px border-indigo-600" />
+    <div class="rounded-full bg-indigo-600 text-white p-2 z-10">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-4 w-4"
@@ -57,7 +57,6 @@
         />
       </svg>
     </div>
-    <hr class="h-px border-indigo-600 grow" />
   </div>
 
   <Label

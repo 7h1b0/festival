@@ -9,16 +9,14 @@
     maximumFractionDigits: 2,
   });
 
-  function formatPrice(number: number): string {
-    return numberFormat.format(number);
-  }
-
   function formatRate(
     currencySource: string,
     currencyTarget: string,
     rate: number,
   ) {
-    return `1 ${currencySource} = ${formatPrice(rate)} ${currencyTarget}`;
+    return `1 ${currencySource} = ${numberFormat.format(
+      rate,
+    )} ${currencyTarget}`;
   }
 </script>
 
