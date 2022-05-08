@@ -44,7 +44,7 @@
     <div class="rounded-full bg-indigo-600 text-white p-2 z-10">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4"
+        class="h-4 w-4 block"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

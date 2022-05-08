@@ -9,6 +9,13 @@ export default {
     backgroundOpacity: false,
     borderOpacity: false,
     ringOpacity: false,
+    preflight: false,
+    contrast: false,
+    grayscale: false,
+    blur: false,
+    sepia: false,
+    hueRotate: false,
+    skew: false,
   },
   theme: {
     screens: {
