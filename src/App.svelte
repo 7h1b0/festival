@@ -8,7 +8,7 @@
   const festivalFromUrl = getFestivalFromSearchLocation(window.location.search);
 </script>
 
-<main class="flex flex-col lg:justify-center lg:h-screen lg:max-w-lg m-auto">
+<main>
   {#if festivalFromUrl}
     <Header title={festivalFromUrl.name} />
     <Converter festival={festivalFromUrl} />
@@ -16,3 +16,16 @@
     <Form />
   {/if}
 </main>
+
+<style>
+  @media (min-width: 1024px) {
+    main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      max-width: 32rem;
+      margin: 0 auto;
+    }
+  }
+</style>

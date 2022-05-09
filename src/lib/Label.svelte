@@ -20,7 +20,25 @@
   }
 </script>
 
-<label for={htmlFor} class="flex justify-between items-baseline text-slate-800">
-  <p class="font-bold tracking-wider truncate flex-grow-0">{source}</p>
-  <p class="text-xs">{formatRate(source, target, rate)}</p>
+<label for={htmlFor}>
+  <p>{source}</p>
+  <small>{formatRate(source, target, rate)}</small>
 </label>
+
+<style>
+  label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--color-title);
+  }
+
+  p {
+    flex-grow: 0;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  small {
+    font-size: 0.75rem;
+  }
+</style>
