@@ -22,7 +22,7 @@
   }
 </script>
 
-<div class="bg-white rounded shadow uppercase p-8" aria-live="polite">
+<section aria-live="polite">
   <Label
     htmlFor={festival.currency}
     source={festival.currency}
@@ -34,29 +34,25 @@
     id={festival.currency}
     type="number"
     step={0.01}
-    class="mt-2 input"
     {value}
     on:input={handleCurrency}
   />
 
-  <div class="relative flex items-center justify-center my-2">
-    <hr class="absolute w-full h-px border-indigo-600" />
-    <div class="rounded-full bg-indigo-600 text-white p-2 z-10">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4 block"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-        />
-      </svg>
-    </div>
+  <div>
+    <hr />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="white"
+      stroke-width="2"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+      />
+    </svg>
   </div>
 
   <Label
@@ -69,8 +65,42 @@
     id="euros"
     type="number"
     step={0.01}
-    class="mt-2 input"
     value={convertedValue}
     on:input={handleEur}
   />
-</div>
+</section>
+
+<style>
+  section {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.1) 0px 4px 16px;
+    padding: 2rem;
+    text-transform: uppercase;
+  }
+
+  div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem 0;
+  }
+  hr {
+    position: absolute;
+    border: none;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-primary);
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+    background-color: var(--color-primary);
+    border-radius: 999px;
+    padding: 0.5rem;
+    z-index: 1;
+  }
+</style>
