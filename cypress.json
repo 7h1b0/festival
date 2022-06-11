@@ -1,6 +1,0 @@
-{
-  "baseUrl": "http://localhost:3030",
-  "video": false,
-  "pluginsFile": "cypress/plugins/index.cjs",
-  "chromeWebSecurity": false
-}
