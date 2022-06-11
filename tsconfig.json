@@ -4,7 +4,6 @@
     "target": "es2017",
     "importsNotUsedAsValues": "error",
     "module": "es6",
-    // "preserveValueImports": true,
     "isolatedModules": true,
     "sourceMap": true,
     "esModuleInterop": true,
