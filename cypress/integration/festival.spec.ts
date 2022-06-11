@@ -34,7 +34,7 @@ describe('Festival website', () => {
 
     cy.url().should(
       'eq',
-      'http://localhost:3000/?name=Javascript&currency=test&rate=1.5',
+      `${Cypress.config('baseUrl')}/?name=Javascript&currency=test&rate=1.5`,
     );
     cy.findByRole('heading', { name: 'Javascript' }).should('be.visible');
   });
@@ -45,12 +45,18 @@ describe('Festival website', () => {
     cy.findByRole('button', { name: 'Share' }).click();
     cy.window()
       .then((window) => window.navigator.clipboard.readText())
-      .should('eq', 'http://localhost:3000/?name=Cypress&rate=1.6&currency=TS');
+      .should(
+        'eq',
+        `${Cypress.config('baseUrl')}/?name=Cypress&rate=1.6&currency=TS`,
+      );
 
     cy.visit('/?name=Clipboard&rate=3&currency=JS');
     cy.findByRole('button', { name: 'Share' }).click();
     cy.window()
       .then((window) => window.navigator.clipboard.readText())
-      .should('eq', 'http://localhost:3000/?name=Clipboard&rate=3&currency=JS');
+      .should(
+        'eq',
+        `${Cypress.config('baseUrl')}/?name=Clipboard&rate=3&currency=JS`,
+      );
   });
 });

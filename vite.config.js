@@ -7,4 +7,10 @@ export default defineConfig({
     assetsInlineLimit: 0,
   },
   plugins: [svelte()],
+  server: {
+    port: 3030,
+  },
+  preview: {
+    port: 3030,
+  },
 });
