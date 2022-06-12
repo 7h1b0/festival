@@ -39,8 +39,8 @@
 <style>
   form {
     background: white;
-    border-radius: 1rem;
-    box-shadow: rgba(149, 157, 165, 0.1) 0px 4px 16px;
+    border-radius: var(--rounded);
+    box-shadow: var(--shadow);
     padding: 2rem;
     text-transform: uppercase;
     display: flex;
@@ -57,7 +57,7 @@
   button {
     background: var(--color-primary);
     color: white;
-    border-radius: 0.25rem;
+    border-radius: var(--rounded);
     padding: 0.75rem 0;
     border: none;
   }

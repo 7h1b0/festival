@@ -33,6 +33,8 @@ button {
 :root {
   --color-primary: #4f46e5;
   --color-title: #1e293b;
+  --shadow: rgb(149 157 165 / 0.1) 0px 4px 16px;
+  --rounded: 1rem;
 }
 
 body {
@@ -61,7 +63,7 @@ input {
   display: block;
   margin-top: 0.5rem;
   width: 100%;
-  border-radius: 0.25rem;
+  border-radius: calc(var(--rounded) / 4);
   border: 1px solid #cbd5e1;
   padding: 0.25rem 0;
   font-size: 1.875rem;

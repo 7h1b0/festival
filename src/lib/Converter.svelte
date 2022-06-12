@@ -73,8 +73,8 @@
 <style>
   section {
     background: white;
-    border-radius: 1rem;
-    box-shadow: rgba(149, 157, 165, 0.1) 0px 4px 16px;
+    border-radius: var(--rounded);
+    box-shadow: var(--shadow);
     padding: 2rem;
     text-transform: uppercase;
   }
