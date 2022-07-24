@@ -15,11 +15,11 @@
     "cypress": "cypress"
   },
   "dependencies": {
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
+    "@sveltejs/vite-plugin-svelte": "^1.0.1",
     "svelte": "^3.46.2",
     "svelte-preprocess": "^4.10.1",
     "typescript": "^4.5.4",
-    "vite": "^2.7.12"
+    "vite": "^3.0.2"
   },
   "devDependencies": {
     "@testing-library/cypress": "^8.0.2",
