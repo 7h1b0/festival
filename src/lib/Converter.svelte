@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Festival } from '../festival';
-  import Label from './Label.svelte';
+  import CurrencyInput from './CurrencyInput.svelte';
 
   export let festival: Festival;
 
@@ -23,19 +23,12 @@
 </script>
 
 <section aria-live="polite">
-  <Label
-    htmlFor={festival.currency}
+  <CurrencyInput
     source={festival.currency}
     target="EUR"
     rate={festival.rate}
-  />
-
-  <input
-    id={festival.currency}
-    type="number"
-    step={0.01}
     {value}
-    on:input={handleCurrency}
+    handleChange={handleCurrency}
   />
 
   <div>
@@ -55,18 +48,12 @@
     </svg>
   </div>
 
-  <Label
-    htmlFor="euros"
+  <CurrencyInput
     source="EUR"
     target={festival.currency}
     rate={1 / festival.rate}
-  />
-  <input
-    id="euros"
-    type="number"
-    step={0.01}
     value={convertedValue}
-    on:input={handleEur}
+    handleChange={handleEur}
   />
 </section>
 
