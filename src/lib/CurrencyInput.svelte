@@ -2,7 +2,8 @@
   export let source: string;
   export let target: string;
   export let rate: number;
-  export let htmlFor: string;
+  export let handleChange: (e: Event) => void;
+  export let value: number;
 
   const numberFormat = new Intl.NumberFormat(navigator.language, {
     style: 'decimal',
@@ -20,25 +21,30 @@
   }
 </script>
 
-<label for={htmlFor}>
+<label>
   <p>{source}</p>
   <small>{formatRate(source, target, rate)}</small>
+  <input type="number" step={0.01} {value} on:input={handleChange} />
 </label>
 
 <style>
   label {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template: auto / 1fr 1fr;
     align-items: baseline;
     color: var(--color-title);
   }
 
   p {
-    flex-grow: 0;
     font-weight: 700;
     letter-spacing: 0.05em;
   }
   small {
     font-size: 0.75rem;
+    text-align: end;
+  }
+
+  input {
+    grid-column: 1 / 3;
   }
 </style>
