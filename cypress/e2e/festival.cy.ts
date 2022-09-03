@@ -1,6 +1,6 @@
 describe('Festival website', () => {
   it('allows user to convert currencies in both way', () => {
-    cy.visit('/?name=Cypress&rate=1.6&currency=Test');
+    cy.visit('/?name=Cypress&euro=16&value=10&currency=Test');
 
     cy.findByRole('heading', { name: 'Cypress' }).should('be.visible');
     cy.findByRole('spinbutton', { name: /^Test/ }).type('12');
@@ -18,8 +18,9 @@ describe('Festival website', () => {
       'be.visible',
     );
     cy.findByRole('textbox', { name: /^Name/i }).type('$$');
-    cy.findByRole('textbox', { name: /^Currency/i }).type('test');
-    cy.findByRole('spinbutton', { name: /^rate/i }).type('1.5');
+    cy.findByRole('textbox', { name: /^Currency name/i }).type('test');
+    cy.findByRole('spinbutton', { name: /^euro/i }).type('15');
+    cy.findByRole('spinbutton', { name: /^currency/i }).type('10');
     cy.findByRole('button', { name: 'Submit' }).click();
 
     cy.findByRole('textbox', { name: /^Name/i })
@@ -34,29 +35,35 @@ describe('Festival website', () => {
 
     cy.url().should(
       'eq',
-      `${Cypress.config('baseUrl')}/?name=Javascript&currency=test&rate=1.5`,
+      `${Cypress.config(
+        'baseUrl',
+      )}/?name=Javascript&currency=test&euro=15&value=10`,
     );
     cy.findByRole('heading', { name: 'Javascript' }).should('be.visible');
   });
 
   // Only Electron allows to read clipboard
   it('allows user to copy url', { browser: 'Electron' }, () => {
-    cy.visit('/?name=Cypress&rate=1.6&currency=TS');
+    cy.visit('/?name=Cypress&euro=15&value=10&currency=TS');
     cy.findByRole('button', { name: 'Share' }).click();
     cy.window()
       .then((window) => window.navigator.clipboard.readText())
       .should(
         'eq',
-        `${Cypress.config('baseUrl')}/?name=Cypress&rate=1.6&currency=TS`,
+        `${Cypress.config(
+          'baseUrl',
+        )}/?name=Cypress&euro=15&value=10&currency=TS`,
       );
 
-    cy.visit('/?name=Clipboard&rate=3&currency=JS');
+    cy.visit('/?name=Clipboard&euro=30&value=10&currency=JS');
     cy.findByRole('button', { name: 'Share' }).click();
     cy.window()
       .then((window) => window.navigator.clipboard.readText())
       .should(
         'eq',
-        `${Cypress.config('baseUrl')}/?name=Clipboard&rate=3&currency=JS`,
+        `${Cypress.config(
+          'baseUrl',
+        )}/?name=Clipboard&euro=30&value=10&currency=JS`,
       );
   });
 });

@@ -12,7 +12,7 @@
     />
   </label>
   <label>
-    currency
+    currency name
     <input
       name="currency"
       step={0.01}
@@ -22,30 +22,57 @@
       required
     />
   </label>
-  <label>
-    rate
-    <input
-      name="rate"
-      step={0.01}
-      placeholder="1.6"
-      min={0}
-      type="number"
-      required
-    />
-  </label>
+  <fieldset>
+    <legend>Conversion</legend>
+    <label>
+      Euro
+      <input
+        name="euro"
+        step={0.01}
+        placeholder="20"
+        min={0}
+        type="number"
+        required
+      />
+    </label>
+    <label>
+      Currency
+      <input
+        name="value"
+        step={0.01}
+        placeholder="12"
+        min={0}
+        type="number"
+        required
+      />
+    </label>
+  </fieldset>
   <button> Submit </button>
 </form>
 
 <style>
   form {
     background: white;
-    border-radius: var(--rounded);
     box-shadow: var(--shadow);
     padding: 2rem;
     text-transform: uppercase;
+  }
+
+  fieldset,
+  form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    border-radius: var(--rounded);
+  }
+
+  fieldset {
+    border: 1px solid #cbd5e1;
+  }
+
+  legend {
+    font-size: 0.9rem;
+    color: var(--color-title);
   }
 
   label {
