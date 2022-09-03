@@ -4,11 +4,12 @@ export function getFestivalFromSearchLocation(search: string): Festival | null {
   const searchParams = new URLSearchParams(search);
   const name = searchParams.get('name');
   const currency = searchParams.get('currency');
-  const rate = searchParams.get('rate');
+  const euro = searchParams.get('euro');
+  const value = searchParams.get('value');
 
-  if (isValidFestival(name, currency, rate)) {
+  if (isValidFestival(name, currency, euro, value)) {
     // @ts-ignore name and currency are string here
-    return { name, currency, rate: Number(rate) };
+    return { name, currency, rate: Number(euro) / Number(value) };
   }
   return null;
 }
@@ -16,12 +17,14 @@ export function getFestivalFromSearchLocation(search: string): Festival | null {
 function isValidFestival(
   name: string | null,
   currency: string | null,
-  rate: string | null,
+  euro: string | null,
+  value: string | null,
 ) {
   const regexStr = /[\w\s]{1,20}/;
-  const isPositiveNumber = Number(rate) > 0;
+  const isValidEuro = Number(euro) > 0;
+  const isValidValue = Number(value) > 0;
   const isValidName = regexStr.test(name || '');
   const isValidCurrency = regexStr.test(currency || '');
 
-  return isPositiveNumber && isValidName && isValidCurrency;
+  return isValidEuro && isValidValue && isValidName && isValidCurrency;
 }

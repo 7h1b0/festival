@@ -41,8 +41,9 @@ Then browse to http://localhost:3000
 
 ## Examples
 
-- [Tomorrowland 2019](https://festival-converter.netlify.app/?name=Tomorrowland+2019&currency=Pearl&rate=1.6)
-- [Mysteryland 2019](https://festival-converter.netlify.app/?name=Mysteryland&currency=Token&rate=3)
-- [Rock Werchter 2019](https://festival-converter.netlify.app/?name=Rock+Werchter&currency=Voucher&rate=2.75)
-- [Rock Werchter 2022](https://festival-converter.netlify.app/?name=Rock+Werchter+2022&currency=Voucher&rate=3.5)
-- [Tomorrowland 2022](https://festival-converter.netlify.app/?name=Tomorrowland+2022&currency=Pearl&rate=1.67)
+- [Tomorrowland 2019](https://festival-converter.netlify.app/?name=Tomorrowland+2019&currency=Pearl&euro=16&value=10)
+- [Mysteryland 2019](https://festival-converter.netlify.app/?name=Mysteryland&currency=Token&euro=15&value=5)
+- [Rock Werchter 2019](https://festival-converter.netlify.app/?name=Rock+Werchter&currency=Voucher&euro=55&value=20)
+- [Rock Werchter 2022](https://festival-converter.netlify.app/?name=Rock+Werchter+2022&currency=Voucher&euro=35&value=10)
+- [Tomorrowland 2022](https://festival-converter.netlify.app/?name=Tomorrowland+2022&currency=Pearl&euro=20&value=12)
+- [Mysteryland 2022](https://festival-converter.netlify.app/?name=Tomorrowland+2022&currency=Pearl&euro=16&value=4.5)
