@@ -12,7 +12,7 @@
     />
   </label>
   <label>
-    currency
+    currency name
     <input
       name="currency"
       step={0.01}
