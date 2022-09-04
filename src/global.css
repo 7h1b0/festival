@@ -50,7 +50,6 @@ header {
 
 h1 {
   color: var(--color-title);
-  text-transform: capitalize;
   font-weight: 700;
   overflow: hidden;
   text-overflow: ellipsis;

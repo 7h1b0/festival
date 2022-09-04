@@ -1,28 +1,35 @@
-<header><h1>Create a festival</h1></header>
+<script lang="ts">
+  export let festivalName: string;
+  export let currencyName: string;
+</script>
+
+<header><h1>Enter conversion rate</h1></header>
 <form method="get" action="/">
+  <input name="name" type="hidden" value={festivalName} />
+  <input name="currency" type="hidden" value={currencyName} />
   <label>
-    festival name
+    Eur
     <input
-      name="name"
+      name="eur"
       step={0.01}
-      placeholder="Tomorrowland"
-      pattern={String.raw`[\w\s]{2,}`}
-      type="text"
+      placeholder="20"
+      min={0}
+      type="number"
       required
     />
   </label>
   <label>
-    currency name
+    {currencyName}
     <input
-      name="currency"
+      name="value"
       step={0.01}
-      placeholder="Pearl"
-      pattern={String.raw`[\w\s]{2,}`}
-      type="text"
+      placeholder="12"
+      min={0}
+      type="number"
       required
     />
   </label>
-  <button>Next</button>
+  <button>Submit</button>
 </form>
 
 <style>
