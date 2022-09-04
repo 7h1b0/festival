@@ -32,15 +32,11 @@
     display: grid;
     grid-template: auto / 1fr 1fr;
     align-items: baseline;
-    color: var(--color-title);
   }
 
-  p {
-    font-weight: 700;
-    letter-spacing: 0.05em;
-  }
   small {
     font-size: 0.75rem;
+    font-weight: initial;
     text-align: end;
   }
 

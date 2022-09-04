@@ -33,23 +33,6 @@
 </form>
 
 <style>
-  form {
-    background: white;
-    box-shadow: var(--shadow);
-    padding: 2rem;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    border-radius: var(--rounded);
-  }
-
-  label {
-    color: var(--color-title);
-    letter-spacing: 0.05em;
-    font-weight: 700;
-  }
-
   button {
     background: var(--color-primary);
     color: white;

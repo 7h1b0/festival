@@ -48,6 +48,17 @@ header {
   padding: 2rem;
 }
 
+form {
+  background: white;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-radius: var(--rounded);
+}
+
 h1 {
   color: var(--color-title);
   font-weight: 700;
@@ -57,6 +68,12 @@ h1 {
   flex-grow: 0;
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+label {
+  color: var(--color-title);
+  letter-spacing: 0.05em;
+  font-weight: 700;
 }
 
 input {
