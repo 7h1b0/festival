@@ -2,16 +2,19 @@
   import Header from './lib/Header.svelte';
   import Converter from './lib/Converter.svelte';
   import Form from './lib/Form.svelte';
+  import Rate from './lib/Rate.svelte';
   import { getFestivalFromSearchLocation } from './lib/utils';
   import './global.css';
 
-  const festivalFromUrl = getFestivalFromSearchLocation(window.location.search);
+  const output = getFestivalFromSearchLocation(window.location.search);
 </script>
 
 <main>
-  {#if festivalFromUrl}
-    <Header title={festivalFromUrl.name} />
-    <Converter festival={festivalFromUrl} />
+  {#if output.status === 'success'}
+    <Header title={output.data.name} />
+    <Converter festival={output.data} />
+  {:else if output.status === 'partial'}
+    <Rate festivalName={output.data.name} currencyName={output.data.currency} />
   {:else}
     <Form />
   {/if}
