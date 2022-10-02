@@ -3,8 +3,8 @@
   export let currencyName: string;
 </script>
 
-<header><h1>Enter conversion rate</h1></header>
-<form method="get" action="/">
+<header><h1 id="title">Enter conversion rate</h1></header>
+<form method="get" action="/" aria-labelledby="title">
   <input name="name" type="hidden" value={festivalName} />
   <input name="currency" type="hidden" value={currencyName} />
   <label>

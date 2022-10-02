@@ -1,5 +1,5 @@
-<header><h1>Create a festival</h1></header>
-<form method="get" action="/">
+<header><h1 id="title">Create a festival</h1></header>
+<form method="get" action="/" aria-labelledby="title">
   <label>
     festival name
     <input
