@@ -97,3 +97,14 @@ input:focus {
   outline: 4px solid #a5b4fc;
   border-color: var(--color-primary);
 }
+
+@media (min-width: 1024px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+}

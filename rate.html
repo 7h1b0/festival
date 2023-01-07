@@ -26,30 +26,34 @@
   </head>
   <body>
     <main>
-      <header><h1 id="title">Create a festival</h1></header>
-      <form method="get" action="rate.html" aria-labelledby="title">
+      <header><h1 id="title">Enter conversion rate</h1></header>
+      <form method="get" action="app.html" aria-labelledby="title">
+        <input name="name" type="hidden" value id="festivalName" />
+        <input name="currency" type="hidden" value id="currency" />
         <label>
-          festival name
+          Eur
           <input
-            name="name"
-            placeholder="Tomorrowland"
-            pattern="[\w\s]{2,}"
-            type="text"
+            name="eur"
+            step="0.01"
+            placeholder="20"
+            min="0"
+            type="number"
             required
           />
         </label>
-        <label>
-          currency name
+        <label id="value">
           <input
-            name="currency"
-            placeholder="Pearl"
-            pattern="[\w\s]{2,}"
-            type="text"
+            name="value"
+            step="0.01"
+            placeholder="12"
+            min="0"
+            type="number"
             required
           />
         </label>
-        <button id="submit">Next</button>
+        <button id="submit">Submit</button>
       </form>
     </main>
+    <script type="module" src="./src/lib/rate.js"></script>
   </body>
 </html>
