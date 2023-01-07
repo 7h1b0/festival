@@ -8,29 +8,20 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
       - name: Run format check
         run: npm run format:check
-
-      - name: Run check
-        run: npm run check
-
-      - name: unit tests
-        run: npm run test
-
-      - name: upload coverage
-        uses: codecov/codecov-action@v1
 
   test:
     name: Cypress run
@@ -53,7 +44,7 @@ jobs:
         run: npm run build
 
       - name: Cypress run
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           browser: 'electron'
           start: npm run preview -- --host

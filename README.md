@@ -8,7 +8,7 @@ https://festival-converter.netlify.app/ is a sleek and modern currency converter
 
 ## Requirements
 
-- [Node.js 14.x](https://nodejs.org/)
+- [Node.js 18.x](https://nodejs.org/)
 
 ---
 
@@ -30,9 +30,6 @@ Then browse to http://localhost:3000
 | Command                | Description                      |
 | ---------------------- | -------------------------------- |
 | `npm run format:check` | Formats the code using prettier. |
-| `npm run type:check`   | Checks types using Typescript    |
-| `npm run lint:check`   | Lints the JavaScript code.       |
-| `npm test`             | Runs tests.                      |
 | `npm run test:e2e`     | Runs e2e tests using Cypress.    |
 | `npm start`            | Runs the website in development. |
 | `npm run build`        | Builds the production assets.    |
@@ -41,9 +38,9 @@ Then browse to http://localhost:3000
 
 ## Examples
 
-- [Tomorrowland 2019](https://festival-converter.netlify.app/?name=Tomorrowland+2019&currency=Pearl&eur=16&value=10)
-- [Mysteryland 2019](https://festival-converter.netlify.app/?name=Mysteryland&currency=Token&eur=15&value=5)
-- [Rock Werchter 2019](https://festival-converter.netlify.app/?name=Rock+Werchter&currency=Voucher&eur=55&value=20)
-- [Rock Werchter 2022](https://festival-converter.netlify.app/?name=Rock+Werchter+2022&currency=Voucher&eur=35&value=10)
-- [Tomorrowland 2022](https://festival-converter.netlify.app/?name=Tomorrowland+2022&currency=Pearl&eur=20&value=12)
-- [Mysteryland 2022](https://festival-converter.netlify.app/?name=Tomorrowland+2022&currency=Pearl&eur=16&value=4.5)
+- [Tomorrowland 2019](https://festival-converter.netlify.app/app.html?name=Tomorrowland+2019&currency=Pearl&eur=16&value=10)
+- [Mysteryland 2019](https://festival-converter.netlify.app/app.html?name=Mysteryland&currency=Token&eur=15&value=5)
+- [Rock Werchter 2019](https://festival-converter.netlify.app/app.html?name=Rock+Werchter&currency=Voucher&eur=55&value=20)
+- [Rock Werchter 2022](https://festival-converter.netlify.app/app.html?name=Rock+Werchter+2022&currency=Voucher&eur=35&value=10)
+- [Tomorrowland 2022](https://festival-converter.netlify.app/app.html?name=Tomorrowland+2022&currency=Pearl&eur=20&value=12)
+- [Mysteryland 2022](https://festival-converter.netlify.app/app.html?name=Tomorrowland+2022&currency=Pearl&eur=16&value=4.5)
