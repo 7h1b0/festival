@@ -1,6 +1,6 @@
 describe('Festival website', () => {
   it('allows user to convert currencies in both way', () => {
-    cy.visit('/app.html?name=Cypress&eur=16&value=10&currency=Test');
+    cy.visit('/app/?name=Cypress&eur=16&value=10&currency=Test');
 
     cy.findByRole('heading', { name: 'Cypress' }).should('be.visible');
     cy.findByRole('spinbutton', { name: /^Test/ }).type('12');
@@ -45,14 +45,14 @@ describe('Festival website', () => {
       'eq',
       `${Cypress.config(
         'baseUrl',
-      )}/app.html?name=Javascript&currency=test&eur=15&value=10`,
+      )}/app/?name=Javascript&currency=test&eur=15&value=10`,
     );
     cy.findByRole('heading', { name: 'Javascript' }).should('be.visible');
   });
 
   // Only Electron allows to read clipboard
   it('allows user to copy url', { browser: 'Electron' }, () => {
-    cy.visit('/app.html?name=Cypress&eur=15&value=10&currency=TS');
+    cy.visit('/app/?name=Cypress&eur=15&value=10&currency=TS');
     cy.findByRole('button', { name: 'Share' }).click();
     cy.window()
       .then((window) => window.navigator.clipboard.readText())
@@ -60,10 +60,10 @@ describe('Festival website', () => {
         'eq',
         `${Cypress.config(
           'baseUrl',
-        )}/app.html?name=Cypress&eur=15&value=10&currency=TS`,
+        )}/app/?name=Cypress&eur=15&value=10&currency=TS`,
       );
 
-    cy.visit('/app.html?name=Clipboard&eur=30&value=10&currency=JS');
+    cy.visit('/app/?name=Clipboard&eur=30&value=10&currency=JS');
     cy.findByRole('button', { name: 'Share' }).click();
     cy.window()
       .then((window) => window.navigator.clipboard.readText())
@@ -71,7 +71,7 @@ describe('Festival website', () => {
         'eq',
         `${Cypress.config(
           'baseUrl',
-        )}/app.html?name=Clipboard&eur=30&value=10&currency=JS`,
+        )}/app/?name=Clipboard&eur=30&value=10&currency=JS`,
       );
   });
 });

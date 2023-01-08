@@ -2,20 +2,19 @@ import { defineConfig } from 'vite';
 import { minify } from 'html-minifier-terser';
 import path from 'node:path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
+  root: 'src',
   build: {
-    assetsInlineLimit: 0,
     rollupOptions: {
       input: {
-        index: path.resolve(__dirname, './index.html'),
-        rate: path.resolve(__dirname, './rate.html'),
-        app: path.resolve(__dirname, './app.html'),
+        index: path.resolve(__dirname, './src/index.html'),
+        rate: path.resolve(__dirname, './src/rate/index.html'),
+        app: path.resolve(__dirname, './src/app/index.html'),
       },
     },
-    modulePreload: {
-      polyfill: false,
-    },
+    modulePreload: false,
+    outDir: '../dist',
+    emptyOutDir: true,
   },
   plugins: [
     {
