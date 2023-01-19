@@ -2,7 +2,7 @@
 
 ## What it does
 
-https://festival-converter.netlify.app/ is a sleek and modern currency converter for festivals
+https://festival-converter.netlify.app/ is a sleek and very light currency converter for festivals
 
 ---
 
