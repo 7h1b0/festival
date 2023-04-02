@@ -29,6 +29,7 @@ button {
   --color-title: #1e293b;
   --shadow: rgb(149 157 165 / 0.1) 0px 4px 16px;
   --rounded: 1rem;
+  --space: 2rem;
 }
 
 body {
@@ -38,13 +39,13 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
+  padding: var(--space);
 }
 
 form {
   background: white;
   box-shadow: var(--shadow);
-  padding: 2rem;
+  padding: var(--space);
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
@@ -59,7 +60,7 @@ h1 {
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-grow: 0;
-  font-size: 1.125rem;
+  font-size: 1.12rem;
   line-height: 1.75rem;
 }
 
@@ -76,8 +77,8 @@ input {
   border-radius: calc(var(--rounded) / 4);
   border: 1px solid #cbd5e1;
   padding: 0.25rem 0;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+  font-size: 1.87rem;
+  line-height: 2.2rem;
   transition: outline 150ms ease-out;
 }
 
@@ -91,13 +92,13 @@ input:focus {
   border-color: var(--color-primary);
 }
 
-@media (min-width: 1024px) {
+@media (width > 1024px) {
   main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100vh;
-    max-width: 32rem;
+    max-width: 40vw;
     margin: 0 auto;
   }
 }
