@@ -35,7 +35,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
@@ -46,6 +46,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          browser: 'electron'
+          browser: 'firefox'
           start: npm run preview -- --host
           wait-on: 'http://localhost:3030'
