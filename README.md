@@ -8,7 +8,7 @@ https://festival-converter.netlify.app/ is a sleek and very light currency conve
 
 ## Requirements
 
-- [Node.js 20.x](https://nodejs.org/)
+- [Node.js 22.x](https://nodejs.org/)
 
 ---
 
