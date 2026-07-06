@@ -8,7 +8,7 @@ https://festival-converter.netlify.app/ is a sleek and very light currency conve
 
 ## Requirements
 
-- [Node.js 22.x](https://nodejs.org/)
+- [Node.js 26.x](https://nodejs.org/)
 
 ---
 
@@ -47,3 +47,4 @@ Then browse to http://localhost:3000
 - [Tomorrowland 2023](https://festival-converter.netlify.app/app/?name=Tomorrowland+2023&currency=Pearl&eur=20&value=11.5)
 - [Mysteryland 2023](https://festival-converter.netlify.app/app/?name=Mysteryland+2023&currency=Token&eur=19&value=5)
 - [Tomorrowland 2024](https://festival-converter.netlify.app/app/?name=Tomorrowland+2024&currency=Pearl&eur=20&value=11)
+- [Rock Werchter 2026](https://festival-converter.netlify.app/app/?name=Rock+Werchter+2026&currency=Voucher&eur=3.6&value=1)
